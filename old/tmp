@@ -1,0 +1,17 @@
+<div id="icookieToggle">
+
+<div>
+<div id="icookieOverlay">
+
+</div>
+
+
+		keycloak.loadUserInfo().success(function (userInfo) {
+			console.log(userInfo);
+			window.userInfo = userInfo;
+			window.keycloak = keycloak;
+			setCookie("X-Authorization-Token", keycloak.token);
+			initIcookie();
+		}).error(function (message) {
+			console.log(message);
+		});
