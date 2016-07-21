@@ -2,8 +2,7 @@
  * Static variables
  * */
 // var icookieHostAndPort = "icookie.humanswitch.io";
-// var icookieHostAndPort = "work-steven.asknow.local";
-var icookieHostAndPort = "home-steven.asknow.local";
+var icookieHostAndPort = "static.test.iqnomy.com";
 
 /*
  * Init functions
