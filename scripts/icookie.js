@@ -174,5 +174,5 @@ function getCookieValue(c_name) {
 
 // Function to get basepath
 function calcBaseUrl() {
-	return '//' + icookieBaseUrl';
+	return '//' + icookieBaseUrl;
 };
