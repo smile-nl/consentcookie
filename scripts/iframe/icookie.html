@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
+
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://keycloak.iqnomy.com/auth/js/keycloak.js"></script>
+	<script src="//home-steven.asknow.local/icookie/js/iframe/iframe.js"></script>	
+	<link rel="stylesheet" type="text/css" href="//home-steven.asknow.local/icookie/js/icookie.css"></link>
+</head>
+
+<body>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+		
+		body{
+			margin:0px !important;
+			padding:10px;
+			width:500px;
+			height:100vh;
+		}
+	</style>
+	<script type="text/javascript">
+		window.keycloak = null;
+		
+		window.visitorId = -1;
+		window.tenantId = -1;
+		
+		function initIframe(){
+			tenantId = getUrlParameter("tenant");
+			visitorId = getUrlParameter("visitor");
+			
+			initKeycloak();
+		}
+		
+		/* Init keycloak authentication */
+		function initKeycloak() {
+			var keycloakConfig = {
+				"realm": "IQNOMY",
+				"realm-public-key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgOPs5qY3nKxvp9vGB9jMe+Cxjj+QDruKSCNNxaRcQLKLhLOuqyZpT3srd75xIWY9BrFdCXQ1p0t2+otf4UiXuPKreNzpQbFaVDrAPhv26geJj/eZJEoUgYjCVTWnJr+JB7cIEo/bf1QTr7YNmm++WEZBJV/1aGjiffG7UbepbrQ//kCtd1ep2u+sJhbuyHfG+D34oAY81ZB3iAOZBA5hz1CX18s24IagIaIc+6OntKBL7YqwPXRpq+s0ik9ZjqhitkcqNrE1dAAldbLVVVGBGX0jiZX355rsoV3MhQc9Y7fyz371J+HLTGAxpr5ef9ygBhHTkdN+tjnMXZvmpgKOJwIDAQAB",
+				"auth-server-url": "https://keycloak.iqnomy.com/auth",
+				"ssl-required": "external",
+				"clientId": "icookie-test",
+				"public-client": true
+			};
+
+			keycloak = Keycloak(keycloakConfig);
+			keycloak.init({
+				onLoad: 'login-required'
+			}).success(function() {
+				keycloak.updateToken(10).success(function() {}).error(function() {
+					alert('Failed to load data.  User is logged out.');
+				});
+				getVisitorProfile();
+			});
+		}
+		
+		function getVisitorProfile() {
+			jQuery.ajax({
+				url: "https://myliquidsuite-api.iqnomy.com/api/liquidaccount/" + tenantId + "/profile/" + visitorId,
+				headers: {
+					"Authorization": "Bearer " + keycloak.token
+				},
+				type: "GET",
+				success: function(data) {
+					console.log(data);
+					window.visitorProfile = data;
+					jQuery('body').append("<div>" + JSON.stringify(window.visitorProfile, null, "\t") + "</div>");
+				}
+			});
+		};
+		
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		};
+		
+		$(document).ready(function(){
+			initIframe();
+		});
+	</script>
+	<div id="icookieIframe">
+		<h1>Dit is icookie</h1>
+	</div>
+</body>
+</html>
+
+

@@ -1,10 +1,6 @@
 /*
  * Static variables
  * */
-var COOKIE_NAME_VID = '_iqnomyvid'; // persistent cookie
-var dependenciesLoaded = false;
-var visitorId = -1;
-var tenantId = 1273096080;
 // var icookieHostAndPort = "icookie.humanswitch.io";
 // var icookieHostAndPort = "work-steven.asknow.local";
 var icookieHostAndPort = "home-steven.asknow.local";
@@ -18,11 +14,6 @@ var icookieHostAndPort = "home-steven.asknow.local";
 
 /* Main init */
 function init() {
-    if (!checkVisitorIdVisitorId()) {
-        alert("This website is not connected to the HumanSwitch platform.");
-        return;
-    }
-    initDependencies();
     initUI();
 };
 
