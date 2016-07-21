@@ -6,10 +6,9 @@ var visitorId = -1;
 var tenantId = 1273096080;
 
 // var icookieHostAndPort = "icookie.humanswitch.io";
-// var icookieHostAndPort = "work-steven.asknow.local";
 
-var icookieHostAndPort = "home-steven.asknow.local";
-var icookieBaseUrl = icookieHostAndPort + "/icookie/js/";
+var icookieHostAndPort = "static.test.iqnomy.com";
+var icookieBaseUrl = icookieHostAndPort + "/icookie/";
 var icookieOverlayPage = "icookieIframe.html";
 
 var icookieOverlay = null;
@@ -92,7 +91,7 @@ function initOverlay(){
 	icookieOverlay = jQuery('<div id="icookie"><div>');
 	icookieIframe = jQuery('<iframe id="icookieContent" style="width:100%;height:100%;"></iframe>');
 	icookieIframe[0].frameborder = "0";
-	icookieIframe[0].src = "//home-steven.asknow.local/icookie/js/iframe/icookie.html?output=embed&tenant=" + tenantId + "&visitor=" + visitorId;
+	icookieIframe[0].src = calcBaseUrl() + "iframe/icookie.html?tenant=" + tenantId + "&visitor=" + visitorId;
 	icookieOverlay.css({position:'fixed',top:0,right:'-500px',bottom:0,height:'100%',height:'100vh',width:'500px','z-index':1000});
 	icookieOverlay.append(icookieIframe);
 	
@@ -175,8 +174,5 @@ function getCookieValue(c_name) {
 
 // Function to get basepath
 function calcBaseUrl() {
-	if (typeof staticPrefix !== 'undefined' && staticPrefix != '') {
-		return staticPrefix;
-	}
-	return '//' + icookieHostAndPort + '/icookie/js/';
+	return '//' + icookieBaseUrl';
 };
