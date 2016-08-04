@@ -3,7 +3,7 @@
  * */
 var COOKIE_NAME_VID = '_iqnomyvid'; // persistent cookie
 var visitorId = -1;
-var tenantId = 1273096080;
+var tenantId = -1;
 
 // var icookieHostAndPort = "icookie.humanswitch.io";
 
@@ -23,8 +23,12 @@ var collapsed = true;
 })();
 
 /* Main init */
-function init() {	
-    if (!checkVisitorIdVisitorId()) {
+function init() {
+    if (!checkVisitorId()) {
+        alert("This website is not connected to the HumanSwitch platform.");
+        return;
+    }
+    if (!checkTenantId()) {
         alert("This website is not connected to the HumanSwitch platform.");
         return;
     }
@@ -35,14 +39,18 @@ function init() {
 function initDependencies() {
 
 	// Add icookie css
-	 jQuery('head').append('<link rel="stylesheet" type="text/css" href="' + calcBaseUrl() + 'icookie.css">');
+	css=document.createElement('link');
+	css.href= calcBaseUrl() + 'icookie.css';
+	css.type='text/css';
+	css.rel='stylesheet';
+	document.getElementsByTagName('head')[0].appendChild(css);
 
 	// Skip loading jQuery if its already loaded
 	if(window.jQuery){
 		console.log("skipping dependencies. Already loaded.");
 		return initUI();
 	}
-	
+
 	// Creating LAB.js options
     var _LABOpts = {
         BasePath: calcBasePath()
@@ -75,7 +83,7 @@ function initDependencies() {
             dependenciesInitFunction();
         };
     };
-}		
+}
 
 /* Init UI */
 function initUI(){
@@ -87,14 +95,15 @@ function initOverlay(){
 	if(jQuery('#icookieOverlay').length != 0){
 		return false;
 	}
-	
+
 	icookieOverlay = jQuery('<div id="icookie"><div>');
 	icookieIframe = jQuery('<iframe id="icookieContent" style="width:100%;height:100%;"></iframe>');
 	icookieIframe[0].frameborder = "0";
 	icookieIframe[0].src = calcBaseUrl() + "iframe/icookie.html?tenant=" + tenantId + "&visitor=" + visitorId;
-	icookieOverlay.css({position:'fixed',top:0,right:'-500px',bottom:0,height:'100%',height:'100vh',width:'500px','z-index':1000});
+	// Add + 20px for the default scrollbar;
+	icookieOverlay.css({position:'fixed',top:0,right:'-500px',bottom:0,height:'100%',height:'100vh',width:'520px','z-index':1000});
 	icookieOverlay.append(icookieIframe);
-	
+
 	jQuery('body').append(icookieOverlay);
 }
 
@@ -124,11 +133,11 @@ function toggleOverlay(){
 }
 
 function loadIframe(){
-	
+
 }
 
 function refreshIframe(){
-	
+
 }
 
 function rePosTrigger(){
@@ -140,18 +149,25 @@ function rePosTrigger(){
 /*
  * Validations and checks
  */
- 
+
 /* Check if connected to Humanswitch platform */
-function checkVisitorIdVisitorId() {
+function checkVisitorId() {
     var id = getCookieValue(COOKIE_NAME_VID);
     visitorId = null != id ? id : visitorId;
     return null != id;
 };
 
-/* 
+/* Check if connected to Humanswitch platform */
+function checkTenantId() {
+    var id = _iqsTenant;
+    tenantId = null != id ? id : tenantId;
+    return null != id;
+};
+
+/*
  * Util functions
  */
- 
+
 // Get cookie value function
 function getCookieValue(c_name) {
     var c_value = document.cookie;
