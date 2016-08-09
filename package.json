@@ -1,0 +1,23 @@
+{
+	"name":"icookie-client",
+	"version":"0.0.1",
+	"author":"Steven Choo",
+	"description":"The icookie client",
+	"dependencies":{
+		"jquery":"1.12.4"
+	},
+	"devDependencies":{
+		"browserify":"latest",
+		"html2js-browserify":"latest",
+		"console-browserify":"latest",
+		"uglifyify":"latest",
+		"watchify":"latest"
+	},
+	"scripts":{
+		"build-js":"browserify -t [html2js-browserify --minify --collapseWhitespace] -g uglifyify source/main.js > build/icookie.js -dv",
+		"build-css":"cp source/css/* build/",
+		"build-img":"cp source/img/* build/",
+		"build":"npm run build-js && npm run build-css && npm run build-img",
+		"watch-js":"watchify -t [html2js-browserify --minify --collapseWhitespace] -g uglifyify source/main.js -o build/icookie.js -dv"
+	}
+}
