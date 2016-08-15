@@ -10,14 +10,17 @@
 		"browserify":"latest",
 		"html2js-browserify":"latest",
 		"console-browserify":"latest",
+		"browserify-css":"latest",
 		"uglifyify":"latest",
 		"watchify":"latest"
 	},
 	"scripts":{
-		"build-js":"browserify -t [html2js-browserify --minify --collapseWhitespace] -g uglifyify source/main.js > build/icookie.js -dv",
+		"build-js-debug":"browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js -dv",
+		"build-js":"browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js",
 		"build-css":"cp source/css/* build/",
 		"build-img":"cp source/img/* build/",
 		"build":"npm run build-js && npm run build-css && npm run build-img",
-		"watch-js":"watchify -t [html2js-browserify --minify --collapseWhitespace] -g uglifyify source/main.js -o build/icookie.js -dv"
+		"watch-js-debug":"watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js -dv",
+		"watch-js":"watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js"
 	}
 }

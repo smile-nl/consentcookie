@@ -3,8 +3,10 @@
 /*
  * Browserify dependencies
  */
-var icookieHtml = require('../html/icookie.html');
+var icookieHtml = require('../html/icookieMain.html');
 var icookieConsentHtml = require('../html/icookieConsent.html');
+var icookieCss = require('../css/icookie.css');
+
 var jQuery = require('jquery');
 
 /*
@@ -75,7 +77,6 @@ function init() {
 
 function initView() {
     // Add icookie css
-    $('head').append('<link rel="stylesheet" href="' + icookieBaseUrl + 'icookie.css" type="text/css" />');
     $('body').append(icookieHtml);
 
     // Init Icookie
@@ -110,9 +111,9 @@ function showIcookieToggle(instant){
 }
 
 function rePosToggle() {
-    var icookieHeight = _icookie.height();
+	var viewportHeight = jQuery(window).height();
     var icookieToggleHeight = _icookieToggle.height();
-    _icookieToggle.css('top', ((icookieHeight / 2) + (icookieToggleHeight / 2)));
+    _icookieToggle.css('top', ((viewportHeight / 2) - (icookieToggleHeight / 2)));
 }
 
 function toggleIcookie(instant) {
