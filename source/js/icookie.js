@@ -3,8 +3,8 @@
 /*
  * Browserify dependencies
  */
-var icookieHtml = require('../html/icookieMain.html');
-var icookieConsentHtml = require('../html/icookieConsent.html');
+var icookieHtml = require("html!../html/icookieDashboard.html");
+var icookieConsentHtml = require("html!../html/icookieConsent.html");
 var icookieCss = require('../css/icookie.css');
 
 var jQuery = require('jquery');

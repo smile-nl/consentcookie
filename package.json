@@ -1,26 +1,28 @@
 {
-	"name":"icookie-client",
-	"version":"0.0.1",
-	"author":"Steven Choo",
-	"description":"The icookie client",
-	"dependencies":{
-		"jquery":"1.12.4"
+	"name": "icookie-client",
+	"version": "0.0.1",
+	"author": "Steven Choo",
+	"description": "The icookie client",
+	"dependencies": {
+		"jquery": "1.12.4"
 	},
-	"devDependencies":{
-		"browserify":"latest",
-		"html2js-browserify":"latest",
-		"console-browserify":"latest",
-		"browserify-css":"latest",
-		"uglifyify":"latest",
-		"watchify":"latest"
+	"devDependencies": {
+		"browserify": "latest",
+		"browserify-css": "latest",
+		"console-browserify": "latest",
+		"html2js-browserify": "latest",
+		"uglifyify": "latest",
+		"watchify": "latest",
+		"css-loader": "^0.18.0",
+		"html-loader": "latest"
 	},
-	"scripts":{
-		"build-js-debug":"browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js -dv",
-		"build-js":"browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js",
-		"build-css":"cp source/css/* build/",
-		"build-img":"cp source/img/* build/",
-		"build":"npm run build-js && npm run build-css && npm run build-img",
-		"watch-js-debug":"watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js -dv",
-		"watch-js":"watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js"
+	"scripts": {
+		"build-js-debug": "browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js -dv",
+		"build-js": "browserify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js > build/icookie.js",
+		"build-css": "cp source/css/* build/",
+		"build-img": "cp source/img/* build/",
+		"build": "npm run build-js && npm run build-css && npm run build-img",
+		"watch-js-debug": "watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js -dv",
+		"watch-js": "watchify -t [html2js-browserify --minify --collapseWhitespace] -t [ browserify-css --autoInject=true --minify=true ] -g uglifyify source/main.js -o build/icookie.js"
 	}
 }
