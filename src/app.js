@@ -1,9 +1,5 @@
 "use strict";
 
-/*
- * Dependencies
- */
-
 var jQuery = require('jquery');
 var vue = require('vue');
 var vueRouter =  require('vue-router');
@@ -30,7 +26,7 @@ function initBaseView(){
 
 /* Vue routing */ 
 function initVue(){
-	var icRouterConfig = require('../vue/router/routerConfig.js');
+	var icRouterConfig = require('./router/routerConfig.js');
 
 	vue.use(vueRouter);
 	
@@ -43,7 +39,7 @@ function initVue(){
 	icRouterConfig(icRouter);
 	
 	/* Setup global app */
-	var main = vue.extend(require('../vue/views/main.vue'));
+	var main = vue.extend(require('./views/main.vue'));
 	icRouter.start(main, '#icookie');
 	
 	/* For testing purposes*/
