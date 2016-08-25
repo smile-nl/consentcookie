@@ -1,7 +1,7 @@
-var path = require('path')
-var config = require('../config')
-var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
+var path = require('path');
+var config = require('../config');
+var utils = require('./utils');
+var projectRoot = path.resolve(__dirname, '../');
 
 module.exports = {
 	entry : {
@@ -9,7 +9,7 @@ module.exports = {
 	},
 	output : {
 		path : config.build.assetsRoot,
-		publicPath : process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
+		publicPath : "/",
 		filename : 'icookie.js'
 	},
 	resolve : {
@@ -42,22 +42,20 @@ module.exports = {
 			test : /\.html$/,
 			loader : 'vue-html'
 		}, {
-			test : /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+			test : /\.(png|jpe?g|gif)(\?.*)?$/,
 			loader : 'url',
 			query : {
 				limit : 10000,
 				name : utils.assetsPath('img/[name].[hash:7].[ext]')
 			}
-		}, {
-			test : /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-			loader : 'url',
-			query : {
-				limit : 10000,
-				name : utils.assetsPath('fonts/[name].[hash:7].[ext]')
-			}
+		},
+		/* Font loading as Base64 */
+		{
+			test : /\.(woff|woff2|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+			loader : 'base64-font-loader'
 		}]
 	},
 	vue : {
 		loaders : utils.cssLoaders()
 	}
-}
+};
