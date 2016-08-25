@@ -1,140 +1,20 @@
 /***********************************************************************************************
  * Version 0.1
  * ICOOKIE CSS Styling
+ * 
+ * Used to easy load fonts
  ************************************************************************************************/
-
-#icookie {
-	position: fixed;
-	top: 0px;
-	right: -500px;
-	bottom: 0px;
-	width: 500px;
-	height: 100%;
-	height: 100vh;
-	z-index: 2147483645;
-	background: #FFFFFF;
-	border-style: solid;
-	border-color: #F2F2F2;
-	border-width: 0px 0px 0px 3px;
-	-webkit-box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
-	-moz-box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
-	box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
+@font-face {
+    font-family: 'Calibre Regular';
+    src: url(../fonts/Calibre-Regular.eot);
+    src: url(../fonts/Calibre-Regular.eot?#iefix)format('embedded-opentype'), url(../fonts/Calibre-Regular.woff)format('woff'), url(../fonts/Calibre-Regular.ttf)format('truetype'), url(../fonts/Calibre-Regular.svg#98292a1e4407be9097aa202a1c7584b2)format('svg');
+    font-style: normal;
+    font-weight: 400;
 }
-
-/* */
-#icookieToggle {
-	position: absolute;
-	overflow:hidden;
-	width: 52px;
-	height: 54px;
-	top: 50%;
-	left: -52px;
-	padding: 2px 0px 2px 2px;
-	z-index:2147483646;
+@font-face {
+    font-family: 'Calibre Medium';
+    src: url(../fonts/Calibre-Medium.eot);
+    src: url(../fonts/Calibre-Medium.eot?#iefix)format('embedded-opentype'), url(../fonts/Calibre-Medium.woff)format('woff'), url(../fonts/Calibre-Medium.ttf)format('truetype'), url(../fonts/Calibre-Medium.svg#3915d0766a54f577ab174df350abfe80)format('svg');
+    font-style: normal;
+    font-weight: 400;
 }
-
-#icookieToggle ._icToggleContent{
-	background: #FFFFFF;
-	border-style: solid;
-	border-color: #F2F2F2;
-	border-width: 2px 0px 2px 2px;
-	box-sizing:border-box;
-	-webkit-border-radius: 5px 0px 0px 5px;
-	-moz-border-radius: 5px 0px 0px 5px;
-	border-radius: 5px 0px 0px 5px;
-	-webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-	-moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-	box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.4);
-	width: 50px;
-	height: 50px;
-}
-
-#icookieToggle ._icToggleContent:hover {
-	background:#F2F2F2;
-	cursor: pointer;
-}
-
-#icookieToggle .icookieToggleImg {
-	background: url("//static.test.iqnomy.com/icookie/logo.png");
-	background-size: contain;
-	background-repeat: no-repeat;
-	width: 100%;
-	height: 100%;
-}
-
-#icookieOverlay {
-	background: rgba(0,0,0,0.3);
-	border: 1px solid rgba(0,0,0,0.5);
-	border-right: 0px;
-	-webkit-border-radius: 5px 0px 0px 5px;
-	-moz-border-radius: 5px 0px 0px 5px;
-	border-radius: 5px 0px 0px 5px;
-}
-
-#icookieContent {
-	padding: 40px;
-	background: rgb(256,256,256,0.3);
-}
-
-/* Consent styling*/
-#icookieContent ._icCookieConsent {
-	margin-bottom: 20px;
-}
-
-#icookieContent ._icCookieConsent .button {
-	padding: 8px;
-	float: none;
-	position: static;
-	margin: 0;
-	display: block;
-	text-align: center;
-	margin-bottom: 10px;
-	font-weight: bold;
-	text-decoration: none;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	line-height: 18px;
-	color: #FFFFFF;
-	cursor: pointer;
-}
-
-#icookieContent ._icCookieConsent .button.accept-button {
-	background: #9bdc02;
-	background: -moz-linear-gradient(top, #9bdc02 0%, #57a725 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9bdc02), color-stop(100%,#57a725));
-	background: -webkit-linear-gradient(top, #9bdc02 0%,#57a725 100%);
-	background: -o-linear-gradient(top, #9bdc02 0%,#57a725 100%);
-	background: -ms-linear-gradient(top, #9bdc02 0%,#57a725 100%);
-	background: linear-gradient(to bottom, #9bdc02 0%,#57a725 100%);
-	border: 1px solid rgb(113, 169, 43);
-}
-
-#icookieContent ._icCookieConsent .button.cookie-settings {
-	background-color: #4c76a9 !important;
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#87b0d2), to(#4c76a9)) !important;
-	background-image: -webkit-linear-gradient(top, #87b0d2, #4c76a9) !important;
-	background-image: -moz-linear-gradient(top, #87b0d2, #4c76a9) !important;
-	background-image: -ms-linear-gradient(top, #87b0d2 0%, #4c76a9 100%) !important;
-	background-image: -o-linear-gradient(top, #87b0d2, #4c76a9) !important;
-	background-image: linear-gradient(to bottom, #87b0d2, #4c76a9) !important;
-}
-
-#icookieContent ._icCookieConsent ._icLink {
-	color: #191919;
-	font-size: 12px;
-	font-weight: normal;
-	text-decoration: underline;
-	cursor: pointer !important;
-	text-align: center;
-	display: block;
-	margin-bottom: 10px;
-}
-
-#icookieContent ._icCookieConsent ._icConsentText {
-	margin: 20px 0px;
-}
-
-/* Profile */
-#icookieContent ._icProfile {
-}
-
