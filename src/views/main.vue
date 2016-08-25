@@ -8,7 +8,7 @@
 </template>
 
 <script>
-	var toggle = require('../components/toggle.vue');
+	var toggle = require('../components/main/toggle.vue');
 
 	module.exports = {
 		name:"main",
@@ -23,8 +23,7 @@
 		position: fixed;
 		top: 0px;
 		bottom: 0px;
-		right:0px;
-		/*right:-500px; Disabled for debugging purporse */
+		right:-503px;/* width + border*/
 		width: 500px;
 		height: 100%;
 		height: 100vh;
