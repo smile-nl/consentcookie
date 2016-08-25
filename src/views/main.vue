@@ -19,7 +19,6 @@
 </script>
 
 <style lang="scss" scoped>
-
 	#icookie {
 		position: fixed;
 		top: 0px;
@@ -38,8 +37,13 @@
 		-moz-box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
 		box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
 		
-		._ic_contentPanel{
-			
+		._ic_contentPanel {
+			background: rgba(256,256,256,0.3);
 		}
+		
+		* {
+			font-family: "Calibre Regular", "sans-serif";
+		}
+		
 	}
 </style>

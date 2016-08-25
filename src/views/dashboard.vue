@@ -1,54 +1,86 @@
 <template>
 	<div class="_ic_dashboard">
 		<div class="_ic_header">
-			<div class="_ic_logo"></div>
-			<div class="_ic_logo"></div>
+			<img class="_ic_logo" alt="logo" src="../assets/img/hs_red_logo_sub.png"/>
+			<div class="_ic_title">Your personal page</div>
 		</div>
-		<dashboard-menu></dashboard-menu>
-		<div class="_ic_stats">
-			
+		<div class="_ic_content">
+			<dashboard-menu :menuitems="dashboardMenuItemsTop"></dashboard-menu>
+			<dashboard-stats></dashboard-stats>
+			<dashboard-menu :menuitems="dashboardMenuItemsBottom"></dashboard-menu>
 		</div>
-		<div class="_ic_app-menu">
-			
-		</div>
-		
-		
-		<h1>Your page</h1>	
-         <a v-link="{ path: '/profile' }">
-            <div class="_ic_button">Your profile</div>
-      	</a>
-      	<a v-link="{ path: '/tracking' }">
-            <div class="_ic_button">Who is tracking</div>
-      	</a>
-      	<a v-link="{ path: '/foryou' }">
-            <div class="_ic_button">Selected for you</div>
-      	</a>
-      	<a v-link="{ path: '/settings' }">
-            <div class="_ic_button">Settings</div>
-      	</a>
-      	<a v-link="{ path: '/about' }">
-            <div class="_ic_button">How it works</div>
-      	</a>
-      	<a v-link="{ path: '/contact' }">
-            <div class="_ic_button">Contact</div>
-      	</a>
 	</div>
 </template>
 
 <script>
-	var dashboardMenu = require('../components/dashboard-menu.vue');
+	var dashboardMenuItemsTop = [{
+		icon: "user",
+		title: "Your page",
+		path: "/profile",	
+	},{
+		icon: "line-chart",
+		title: "Who is tracking",
+		path: "/tracking",	
+	},{
+		icon: "gift",
+		title: "Selected for you",
+		path: "/foryou",	
+	},
+	
+	];
+	
+	var dashboardMenuItemsBottom = [{
+		icon: "heart-o",
+		title: "How it works",
+		path: "/about",	
+	},{
+		icon: "gears",
+		title: "Settings",
+		path: "/settings",	
+	},{
+		icon: "envelope-o",
+		title: "Contact",
+		path: "/contact",	
+	},
+	
+	];
+	
+	var dashboardMenu = require('../components/dashboard/dashboard-menu.vue');
+	var dashboardStats = require('../components/dashboard/dashboard-stats.vue');
 
 	module.exports = {
-		name:"dashboard",
-		components:{
-			dashboardMenu
+		name : "dashboard",
+		components : {
+			dashboardMenu,dashboardStats
 		},
-		data: function(){
-			return {};
+		data : function() {
+			return {
+				dashboardMenuItemsTop: dashboardMenuItemsTop,
+				dashboardMenuItemsBottom: dashboardMenuItemsBottom
+			};
 		}
-	};	
+	}; 
 </script>
 
-<style>
-
+<style lang="scss">
+	._ic_dashboard{
+		
+		._ic_header{
+			
+			margin-bottom:20px;
+			
+			._ic_logo{
+				margin:20px;
+			}
+			
+			._ic_title{
+				margin:10px;
+    			font-size: 30px;
+			}
+		}
+		
+		._ic_content{
+			padding-left: 10px;
+		}
+	}
 </style>
