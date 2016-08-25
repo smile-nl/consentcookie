@@ -23,8 +23,8 @@
 		position: fixed;
 		top: 0px;
 		bottom: 0px;
-		right:-503px;/* width + border*/
-		width: 500px;
+		right:-403px;/* width + border*/
+		width: 400px;
 		height: 100%;
 		height: 100vh;
 		z-index: 2147483645;
