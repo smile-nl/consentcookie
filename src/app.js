@@ -1,5 +1,10 @@
 "use strict";
 
+// Static dependencies
+require('./assets/css/icookie.css');
+require('font-awesome/css/font-awesome.css');
+
+// Active dependencies
 var jQuery = require('jquery');
 var vue = require('vue');
 var vueRouter =  require('vue-router');
