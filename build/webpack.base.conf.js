@@ -3,6 +3,10 @@ var config = require('../config');
 var utils = require('./utils');
 var projectRoot = path.resolve(__dirname, '../');
 
+/* adding bourbon, a sass library*/
+var node_modules = path.resolve(__dirname, 'node_modules');
+var pathToBourbon = require('node-bourbon').includePaths;
+
 module.exports = {
 	entry : {
 		app : './src/app.js'
@@ -57,6 +61,10 @@ module.exports = {
 		}]
 	},
 	vue : {
-		loaders : utils.cssLoaders()
-	}
+		loaders : utils.cssLoaders(),
+		exclude: node_modules
+	},
+	sassLoader: {
+        includePaths: [pathToBourbon]
+    }
 };
