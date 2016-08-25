@@ -25,9 +25,7 @@
 		icon: "gift",
 		title: "Selected for you",
 		path: "/foryou",	
-	},
-	
-	];
+	}];
 	
 	var dashboardMenuItemsBottom = [{
 		icon: "heart-o",
@@ -41,9 +39,7 @@
 		icon: "envelope-o",
 		title: "Contact",
 		path: "/contact",	
-	},
-	
-	];
+	}];
 	
 	var dashboardMenu = require('../components/dashboard/dashboard-menu.vue');
 	var dashboardStats = require('../components/dashboard/dashboard-stats.vue');

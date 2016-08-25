@@ -9,7 +9,6 @@
 </template>
 
 <script>
-
 	module.exports = {
 		name : "dashboard-menu",
 		components :{},
