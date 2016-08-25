@@ -40,8 +40,8 @@
 			height: 50px;	
 		}
 		
-		._ic_content:hover {
-			background: #F2F2F2;
+		&:hover {
+			background: rgba(0,0,0,0.4);
 			cursor: pointer;
 		}
 		
