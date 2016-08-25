@@ -49,12 +49,18 @@
 
 <style lang="scss" scoped>
 
+	@import "bourbon";
+
 	#icToggle {
+		
+		@include calc(top, "50% - 27px");
+		
 		position: absolute;
 		overflow: hidden;
 		width: 50px;
 		height: 54px;
-		top: 50%;
+		top:50%;
+		@include calc(top, "50% - 27px");
 		left: -54px;
 		padding: 2px 0px 2px 2px;
 		z-index: 2147483646;
