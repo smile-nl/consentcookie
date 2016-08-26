@@ -23,21 +23,25 @@
 		position: fixed;
 		top: 0px;
 		bottom: 0px;
-		right:-403px;/* width + border*/
+		right:-400px;
 		width: 400px;
 		height: 100%;
 		height: 100vh;
 		z-index: 2147483645;
 		background: #FFFFFF;
-		border-style: solid;
-		border-color: #F2F2F2;
-		border-width: 0px 0px 0px 3px;
+		border: none;
 		-webkit-box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
 		-moz-box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
 		box-shadow: -2px 0px 10px 0px rgba(0,0,0,0.4);
 		
 		._ic_contentPanel {
 			background: rgba(256,256,256,0.3);
+			overflow:hidden;
+			height: 100%;
+			
+			._ic_content{
+    			position: relative;
+			}
 		}
 		
 		* {

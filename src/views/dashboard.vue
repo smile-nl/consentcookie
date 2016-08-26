@@ -13,6 +13,7 @@
 </template>
 
 <script>
+
 	var dashboardMenuItemsTop = [{
 		icon: "user",
 		title: "Your page",
@@ -59,8 +60,9 @@
 </script>
 
 <style lang="scss">
+
+	/* CSS*/
 	._ic_dashboard{
-		
 		._ic_header{
 			
 			margin-bottom:20px;
@@ -78,5 +80,6 @@
 		._ic_content{
 			padding-left: 10px;
 		}
+		
 	}
 </style>

@@ -61,7 +61,7 @@
 		height: 54px;
 		top:50%;
 		@include calc(top, "50% - 27px");
-		left: -54px;
+		left: -52px;
 		padding: 2px 0px 2px 2px;
 		z-index: 2147483646;
 		
