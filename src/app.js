@@ -32,7 +32,8 @@ function initBaseView(){
 /* Vue routing */ 
 function initVue(){
 	
-	registerBaseComponents();
+	initVueResource();
+	initBaseComponents();
 	
 	var icRouterConfig = require('./router/routerConfig.js');
 
@@ -56,7 +57,17 @@ function initVue(){
 	test.jQuery = jQuery;
 }
 
-function registerBaseComponents(){
+function initVueResource(){
+	
+	// Init vue resource
+	var vueResource = require('vue-resource');
+	vue.use(vueResource);
+	
+	// Setup vue resource
+	vue.http.options.root = 'https://myliquidsuite-api.iqnomy.com/api';
+}
+
+function initBaseComponents(){
 	
 	// Retrieve the components
 	var viewHeader = require('./components/base/view-header.vue'); 

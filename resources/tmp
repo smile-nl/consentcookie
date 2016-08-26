@@ -1,0 +1,121 @@
+<template>
+	<div class="_ic_dashboard">
+		<div class="_ic_header">
+			<img class="_ic_logo" alt="logo" src="../assets/img/hs_red_logo_sub.png"/>
+			<div class="_ic_title">Your personal page</div>
+		</div>
+		{{profile}}
+		{{profile.test}}
+		<div v-if="profile.test">
+			"not undefined"  {{profile.test}}
+		</div>
+		<div class="_ic_content">
+			<!-- 
+			<dashboard-menu :menuitems="dashboardMenuItemsTop"></dashboard-menu>
+			<dashboard-stats></dashboard-stats>
+			<dashboard-menu :menuitems="dashboardMenuItemsBottom"></dashboard-menu>
+			-->
+		</div>
+	</div>
+</template>
+
+<script>
+	
+	var iqnomyService = require('services/iqnomyService.js');
+	
+	var profile = {};
+
+	var dashboardMenuItemsTop = [{
+		icon: "user",
+		title: "Your page",
+		path: "/profile",	
+	},{
+		icon: "line-chart",
+		title: "Who is tracking",
+		path: "/tracking",	
+	},{
+		icon: "gift",
+		title: "Selected for you",
+		path: "/foryou",	
+	}];
+	
+	var dashboardMenuItemsBottom = [{
+		icon: "heart-o",
+		title: "How it works",
+		path: "/about",	
+	},{
+		icon: "gears",
+		title: "Settings",
+		path: "/settings",	
+	},{
+		icon: "envelope-o",
+		title: "Contact",
+		path: "/contact",	
+	}];
+	
+	var dashboardMenu = require('../components/dashboard/dashboard-menu.vue');
+	var dashboardStats = require('../components/dashboard/dashboard-stats.vue');
+
+	module.exports = {
+		name : "dashboard",
+		components : {
+			dashboardMenu,dashboardStats
+		},
+		data : function() {
+			return {
+				profile: {},
+				dashboardMenuItemsTop: dashboardMenuItemsTop,
+				dashboardMenuItemsBottom: dashboardMenuItemsBottom
+			};
+		},
+		methods: {
+			test : function(){
+				console.log(this.$parent);
+				console.log(this.$data.profile);
+				console.log(this);
+				
+				this.$set('profile',{test: "testvalue"});
+				
+				iqnomyService.updateProfile(this.$data);
+			}
+		},
+		ready: function(){
+			this.test();
+		}
+	}; 
+</script>
+
+<style lang="scss">
+
+	/* CSS*/
+	._ic_dashboard{
+		._ic_header{
+			
+			margin-bottom:20px;
+			
+			._ic_logo{
+				margin:20px;
+			}
+			
+			._ic_title{
+				margin:10px;
+    			font-size: 30px;
+			}
+		}
+		
+		._ic_content{
+			padding-left: 10px;
+		}
+		
+	}
+</style>
+
+
+	var 
+
+	// GET /someUrl
+	vue.http.get('').then(function(response) {
+		console.log(response);
+	}, function(response) {
+		console.log(response);
+	});

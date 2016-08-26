@@ -22,7 +22,12 @@ module.exports = function configRouter(router) {
 			component : require('../views/contact.vue')
 		}
 	});
+	/*
 	router.redirect({
 		'/' : '/dashboard'
+	});
+	*/
+	router.redirect({
+		'/' : '/profile'
 	});
 };

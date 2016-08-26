@@ -23,7 +23,8 @@
 		position: fixed;
 		top: 0px;
 		bottom: 0px;
-		right:-400px;
+		/* right:-400px;*/
+		right:0px;
 		width: 400px;
 		height: 100%;
 		height: 100vh;
