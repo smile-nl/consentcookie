@@ -31,6 +31,9 @@ function initBaseView(){
 
 /* Vue routing */ 
 function initVue(){
+	
+	registerBaseComponents();
+	
 	var icRouterConfig = require('./router/routerConfig.js');
 
 	vue.use(vueRouter);
@@ -38,7 +41,8 @@ function initVue(){
 	var icRouter = new vueRouter({
 	  history: true,
 	  saveScrollPosition: true,
-	  abstract: true
+	  abstract: true,
+	  replace:false
 	});
 	
 	icRouterConfig(icRouter);
@@ -50,4 +54,13 @@ function initVue(){
 	/* For testing purposes*/
 	test.vue = main;
 	test.jQuery = jQuery;
+}
+
+function registerBaseComponents(){
+	
+	// Retrieve the components
+	var viewHeader = require('./components/base/view-header.vue'); 
+	
+	// Register the components
+	vue.component('view-header', viewHeader);
 }

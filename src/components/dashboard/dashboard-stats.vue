@@ -1,6 +1,5 @@
 <template>
 	<div class="_ic_dashboard-stats">
-		<div></div>
 		<div class="_ic_tracking_title">Your tracking status!</div>
 		<div class="_ic_tracking_status">
 			<i class="fa fa-star{{trackingStarCount >= 1 ? '' : '-o' }}" aria-hidden="true"></i>

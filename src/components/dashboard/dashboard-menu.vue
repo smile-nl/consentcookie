@@ -1,6 +1,6 @@
 <template>
 	<ul class="_ic_dashboard-menu">
-		<li class="_ic_menu-item" v-for="menuitem in menuitems">
+		<li class="_ic_menu-item" v-for="menuitem in menuitems"  v-on:click="goToPath(menuitem.path)">
 			<div class="_ic_icon"><i class="fa fa-{{menuitem.icon}}" aria-hidden="true"></i></div>
 			<div class="_ic_title">{{menuitem.title}}</div>
 			<div class="_ic_navicon"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
@@ -26,9 +26,12 @@
 				required : true
 			}
 		},
-		watch : {
-
+		methods: {
+			goToPath : function(path){
+				this.$route.router.go(path);
+			}
 		},
+		watch : {},
 		ready : function() {
 
 		}
