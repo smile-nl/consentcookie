@@ -19,32 +19,3 @@
     font-style: normal;
     font-weight: 400;
 }
-
-/******************************************************************************************
-/*** Colour reference chart ***************************************************************
-/*************************** comment *********** colour ***********************************
-
-default white               dw                  #FFFFFF
-default black               db                  #000000
-
-default darker red          ddr                 #F05F5A
-default red                 dr                  #F15F5A
-default pink                dp                  #F8AFAC
-default grey                dg                  #E6E7E0
-default blue                db                  #23B0E8
-
-border grey                 bg                  #E7E8E1
-grey selected               sgs                 #F3F3F1
-*******************************************************************************************/
-
-$hs-color-white: #FFFFFF;
-$hs-color-black: #000000;
-$hs-color-dark-red: #F05F5A;
-$hs-color-red: #F15F5A;
-$hs-color-pink: #F8AFAC;
-$hs-color-grey: #E6E7E0;
-$hs-color-blue: #23B0E8;
-
-$hs-color-border-grey: #E7E8E1;
-$hs-color-selected-grey: #F3F3F1;
-
