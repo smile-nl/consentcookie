@@ -6,6 +6,7 @@
 	"dependencies": {
 		"vue": "^1.0.26",
 		"vue-router": "^0.7.13",
+		"vue-resource": "^0.9.3",
 	 	"font-awesome": "^4.6.3",
 		"jquery": "1.12.4"
 	},
@@ -42,6 +43,8 @@
 		"node-bourbon":"4.2.8"
 	},
 	"scripts": {
+		"test-dev": "node build/test-dev.js",
+		"build-dev-min": "node build/build-dev-min.js",
 		"build-dev": "node build/build-dev.js",
 		"build-production": "node build/build-production.js",
 		"build": "node build/build-final.js"
