@@ -13,7 +13,7 @@
 </template>
 
 <script>
-
+	
 	var dashboardMenuItemsTop = [{
 		icon: "user",
 		title: "Your page",
@@ -55,6 +55,8 @@
 				dashboardMenuItemsTop: dashboardMenuItemsTop,
 				dashboardMenuItemsBottom: dashboardMenuItemsBottom
 			};
+		},
+		methods: {
 		}
 	}; 
 </script>
