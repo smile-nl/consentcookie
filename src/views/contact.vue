@@ -1,4 +1,8 @@
 <template>
-	<div></div>
+	<div class="_ic_settings">
+		<view-header title="Contact"></view-header>
+	</div>
 </template>
-<script></script>
+<script>
+	
+</script>
