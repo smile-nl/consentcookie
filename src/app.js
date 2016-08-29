@@ -40,10 +40,11 @@ function initVue(){
 	vue.use(vueRouter);
 	
 	var icRouter = new vueRouter({
-	  history: true,
-	  saveScrollPosition: true,
-	  abstract: true,
-	  replace:false
+	  	history: true,
+ 	 	saveScrollPosition: true,
+	  	abstract: true,
+	  	replace:true,
+	  	append:false
 	});
 	
 	icRouterConfig(icRouter);
@@ -62,9 +63,6 @@ function initVueResource(){
 	// Init vue resource
 	var vueResource = require('vue-resource');
 	vue.use(vueResource);
-	
-	// Setup vue resource
-	vue.http.options.root = 'https://myliquidsuite-api.iqnomy.com/api';
 }
 
 function initBaseComponents(){
