@@ -1,13 +1,41 @@
 <template>
 	<div class="_ic_profile">
-		<view-header title="Your profile" :refresh="refreshProfile"></view-header>
-		<div>
-			{{profile | json }}
-		</div>
-		
+		<view-header title="Your profile" :refresh="refreshProfile"></view-header>		
 		<div v-if="!initFinished">No profile loaded.</div>
 		<div v-else>
-			{{profile | json }}
+			<div class="_ic_header">Profile</div>
+			<div class="_ic_properties">
+				<div class="_ic_property">
+					<div class="_ic_name">Id</div>
+					<div class="_ic_value">{{profile.internalId}}</div>
+				</div>
+				<div class="_ic_property">
+					<div class="_ic_name">Created</div>
+					<div class="_ic_value">{{profile.dateCreated}}</div>
+				</div>
+				<div class="_ic_property">
+					<div class="_ic_name">Last seen</div>
+					<div class="_ic_value">{{profile.dateLastSeen}}</div>
+				</div>
+			</div>
+			<div class="_ic_header">Stats</div>
+			<div class="_ic_properties">
+				<div class="_ic_property">
+					<div class="_ic_name">Session count</div>
+					<div class="_ic_value">{{profile.sessionCount}}</div>
+				</div>
+				<div class="_ic_property">
+					<div class="_ic_name">Pagevisit count</div>
+					<div class="_ic_value">{{profile.pagevisitCount}}</div>
+				</div>
+			</div>
+			<div class="_ic_header">Dimensions</div>
+			<div class="_ic_properties">				
+				<div class="_ic_property" v-for="property in profile.dimensionProperties">
+					<div class="_ic_name">{{property.dimension.name}}</div>
+					<div class="_ic_value">{{property.value}}</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -38,6 +66,7 @@
 				if(!$vueScope.initFinished){
 					$vueScope.initFinished = true;
 				}
+				console.log($data.data);
 			});
 		}
 	}
@@ -71,5 +100,29 @@
 
 	._ic_profile{
 		
+		._ic_header{
+			margin:10px 20px 5px;
+			font-family: "Calibre Regular", "sans-serif";
+    		font-size: 20px;
+    		font-weight: bold;
+		}
+		
+		._ic_properties{
+			margin:0px 20px;
+			padding:10px;
+			border: 1px solid #DDDDDD;
+			
+			
+			._ic_property{
+				margin-bottom: 10px;
+				
+				._ic_name{
+					font-family: "Calibre Regular", "sans-serif";
+    				font-size: 15px;
+    				font-weight: bold;
+    				color:#6E6E6E;
+				}
+			}
+		}
 	}
 </style>

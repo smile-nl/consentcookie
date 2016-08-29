@@ -6,22 +6,19 @@
 
 var iqnomyService = function() {
 
+	var settingsService = require('services/settingsService.js');
+
 	var vue = require('vue');
 
 	// Private variables
-	var baseRESTApiUrl = "https://myliquidsuite-api.iqnomy.com/api";
-
 	var iqVisitorCookie = '_iqnomyvid';
 
-	// var iqVisitorId = -1;
-	// var iqTenantId = -1;
-	// Test values
-	var iqVisitorId = 2836822921;
-	var iqTenantId = 1273096080;
+	var iqVisitorId = -1;
+	var iqTenantId = -1;
 
 	// Private functions
 	function getProfilePath(){
-		return "liquidaccount/" + iqTenantId + "/profile/cookie/" + iqVisitorId;
+		return settingsService.getRESTBasePath() + "/liquidaccount/" + iqTenantId + "/profile/cookie/" + iqVisitorId;
 	}
 	
 	function getProfile(callback) {
