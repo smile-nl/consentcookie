@@ -14,10 +14,15 @@
 
 <script>
 	
+	
+	var notificationService = require('services/notificationService.js');
+	var notificationCount = notificationService.getCount();
+
 	var dashboardMenuItemsTop = [{
 		icon: "user",
 		title: "Your page",
-		path: "/profile",	
+		path: "/profile",
+		count: notificationCount
 	},{
 		icon: "line-chart",
 		title: "Who is tracking",
@@ -44,6 +49,12 @@
 	
 	var dashboardMenu = require('../components/dashboard/dashboard-menu.vue');
 	var dashboardStats = require('../components/dashboard/dashboard-stats.vue');
+
+	function _initListeners(){
+		mainService.$on('notificationService#update',function(){
+			notificationCount = notificationService.getCount();
+		});
+	}
 
 	module.exports = {
 		name : "dashboard",

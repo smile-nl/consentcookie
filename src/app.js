@@ -52,10 +52,6 @@ function initVue(){
 	/* Setup global app */
 	var main = vue.extend(require('./views/main.vue'));
 	icRouter.start(main, '#icookie');
-	
-	/* For testing purposes*/
-	test.vue = main;
-	test.jQuery = jQuery;
 }
 
 function initVueResource(){

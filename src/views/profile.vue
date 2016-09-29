@@ -1,6 +1,6 @@
 <template>
 	<div class="_ic_profile">
-		<view-header title="Your profile" :refresh="refreshProfile"></view-header>		
+		<view-header title="Your profile" :refresh="refreshProfile" :loading="isLoading"></view-header>		
 		<div v-if="!initFinished">No profile loaded.</div>
 		<div v-else>
 			<div class="_ic_header">Profile</div>

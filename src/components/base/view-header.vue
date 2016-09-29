@@ -1,12 +1,15 @@
 <template>
 	<div class="_ic_view-header">
 		<div class="_ic_title">{{title}}</div>
-			<div class="_ic_action _ic_close" v-on:click="goHome()">
-				<i class="fa fa-close" aria-hidden="true"></i>
-			</div>
-			<div v-if="typeof refresh !== 'undefined' && null != refresh" class="_ic_action _ic_refresh" v-on:click="doRefresh()">
-				<i class="fa fa-refresh" aria-hidden="true"></i>
-			</div>
+		<div v-if="loading" class="_ic_loader">
+			<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
+		</div>
+		<div class="_ic_action _ic_close" v-on:click="goHome()">
+			<i class="fa fa-close" aria-hidden="true"></i>
+		</div>
+		<div v-if="typeof refresh !== 'undefined' && null != refresh" class="_ic_action _ic_refresh" v-on:click="doRefresh()">
+			<i class="fa fa-refresh" aria-hidden="true"></i>
+		</div>
 	</div>
 </template>
 
@@ -18,7 +21,8 @@
 			title : {
 				type : String,
 				required : true
-			}
+			},
+			loading: Boolean
 		},
 		methods: {
 			doRefresh : function(){
@@ -41,11 +45,18 @@
 		padding: 20px 10px;
 		border-bottom: 2px solid rgba(0,0,0,0.3);
 		line-height: 30px;
+		height: 70px;
 		vertical-align: middle;
 		
 		._ic_title{
 			float:left;
 			font-size: 30px;
+		}
+		
+		._ic_loader{
+			position: absolute;
+    		left: 5px;
+    		top: 0px;
 		}
 		
 		._ic_action{

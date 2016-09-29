@@ -2,16 +2,24 @@
 	<ul class="_ic_dashboard-menu">
 		<li class="_ic_menu-item" v-for="menuitem in menuitems"  v-on:click="goToPath(menuitem.path)">
 			<div class="_ic_icon"><i class="fa fa-{{menuitem.icon}}" aria-hidden="true"></i></div>
-			<div class="_ic_title">{{menuitem.title}}</div>
-			<div class="_ic_navicon"><i class="fa fa-chevron-right" aria-hidden="true"></i></div>
+			<div class="_ic_title">{{menuitem.title}}</div>			
+			<span class="_ic_navicon fa fa-chevron-right" aria-hidden="true"></span>
+			<span v-show="menuitem.count > 0" class="_ic_notification_count">
+				<span class="_ic_count">{{menuitem.count}}</span>
+			</span>
 		</li>
 	</ul>
 </template>
 
 <script>
+
+	var notificationCount = require('components/main/notification-count.vue');
+
 	module.exports = {
 		name : "dashboard-menu",
-		components :{},
+		components :{
+			notificationCount
+		},
 		data : function() {
 			return {
 				path : ''
@@ -53,8 +61,9 @@
         background-color: #FFFFFF;
         border-bottom: 1px solid #DDDDDD;
         list-style-type: none;
-        min-height: 45px;
-        line-height: 45px;
+        height:50px;
+        min-height: 50px;
+        line-height: 50px;
         padding: 0px 15px;
        
       	&:hover{
@@ -78,12 +87,40 @@
         }
         
         ._ic_navicon{
+        	min-height: 50px;
+        	height:50px;
+        	line-height:50px;
+			display:inline-block;
+        	vertical-align:middle;
         	float:right;
     		color:rgba(0,0,0,0.8);
     		font-size:16px;
-    	}
-    }
-    
-    
+        }
+        
+        ._ic_notification_count{
+        	min-height: 50px;
+        	height:50px;
+        	line-height:50px;
+			display:inline-block;
+        	vertical-align:middle;
+        	float:right;
+        	margin-right:15px;
+        	
+        	._ic_count{
+		    	min-width: 10px;
+		    	padding: 3px 7px;
+		    	font-size: 14px;
+		    	font-weight: 700;
+		    	color: #fff;
+		    	line-height: 1;
+		    	white-space: nowrap;
+		    	text-align: center;
+		    	vertical-align:middle;
+		    	background-color: #999;
+		    	border-radius: 10px;
+		    	background: red;
+        	}
+        }
+    }    
 }
 </style>

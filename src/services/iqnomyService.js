@@ -78,6 +78,14 @@ var iqnomyService = function() {
 
 	// Public functions
 	return {
+		getTenantId : function(){
+			validTenantId();
+			return iqTenantId;
+		},
+		getVisitorId : function(){
+			validVisitorId();
+			return iqVisitorId;
+		},
 		getStatus : function() {
 			return "ok";
 		},

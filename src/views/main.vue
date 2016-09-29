@@ -9,7 +9,9 @@
 
 <script>
 	var toggle = require('../components/main/toggle.vue');
-
+	var mainService = require('services/mainService.js');
+	mainService.$broadcast('init',1,2,3,4);
+	
 	module.exports = {
 		name:"main",
 		components:{
@@ -37,7 +39,8 @@
 		
 		._ic_contentPanel {
 			background: rgba(256,256,256,0.3);
-			overflow:hidden;
+			overflow-y:auto;
+			overflow-x:hidden;
 			height: 100%;
 			
 			._ic_content{

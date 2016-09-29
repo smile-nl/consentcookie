@@ -1,5 +1,6 @@
 <template>
-	<div id="icToggle" style="display:none">
+	<div id="icToggle">
+		<notification-count></notification-count>
 		<div class="_ic_content">
 			<div class="_ic_image"></div>
 		</div>
@@ -39,11 +40,14 @@
 	    }
 	}
 
-	
-	
+	var notificationCount = require('components/main/notification-count.vue');
+
 	/* VUE */
 	module.exports = {
-		name:"toggle"
+		name:"toggle",
+		components: {
+			notificationCount
+		}
 	};
 </script>
 
@@ -52,18 +56,11 @@
 	@import "bourbon";
 
 	#icToggle {
-		
-		@include calc(top, "50% - 27px");
-		
-		position: absolute;
-		overflow: hidden;
-		width: 50px;
-		height: 54px;
-		top:50%;
-		@include calc(top, "50% - 27px");
-		left: -52px;
+		position: relative;
+    	margin-left: -52px;
+    	top: calc(50% - 27px);
 		padding: 2px 0px 2px 2px;
-		z-index: 2147483646;
+		z-index: 2000000000;
 		
 		._ic_content{
 			background: #FFFFFF;
@@ -80,6 +77,16 @@
 			width: 50px;
 			height: 50px;
 			
+			&:after{
+			   	content:"";
+			    position:absolute;
+			    width:8px;
+			    background:#FFFFFF;
+			    height:70px;
+			    left:52px;
+			    bottom:-9px;
+			}
+			
 			&:hover {
 				background: rgba(0,0,0,0.4);
 				cursor: pointer;
@@ -92,6 +99,25 @@
 			background-repeat: no-repeat;
 			width: 100%;
 			height: 100%;
+		}
+		
+		._ic_notification{
+			position:absolute;
+			top: -7px;
+			left: -7px;
+			display:inline-block;
+		    min-width: 10px;
+		    padding: 3px 7px;
+		    font-size: 14px;
+		    font-weight: 700;
+		    color: #fff;
+		    line-height: 1;
+		    vertical-align: baseline;
+		    white-space: nowrap;
+		    text-align: center;
+		    background-color: #999;
+		    border-radius: 10px;
+		    background: red;
 		}
 	}
 </style>
