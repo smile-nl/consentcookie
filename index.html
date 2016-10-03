@@ -5,6 +5,7 @@
 	</head>
 	<body>
 		<h1>Test COOKIE</h1>
+		<!-- PRODUCTION
 		<script>                               
 		  var _iqsTenant = 157078931;
 		  var _iqsImpress = { hostAndPort: "liquifier.iqnomy.com", timeout: 5000, extra: false };
@@ -13,6 +14,17 @@
 			var _iqs = document.createElement('script'); _iqs.type = 'text/javascript'; _iqs.async = true;
 			_iqs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.iqnomy.com/myliquidsuite/js/IQImpressor.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_iqs, s);
+		  })();
+
+		-->
+		<script>                               
+		  var _iqsTenant = 2147429759;
+		  var _iqsImpress = { hostAndPort: "liquifier.test.iqnomy.com", timeout: 5000, extra: true };
+		    
+		  (function() {
+		    var _iqs = document.createElement('script'); _iqs.type = 'text/javascript'; _iqs.async = true;
+		    _iqs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.test.iqnomy.com/myliquidsuite/js/IQImpressor.js';
+		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_iqs, s);
 		  })();
 		</script>
 	</body>
