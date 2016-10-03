@@ -35,7 +35,7 @@ var iqnomyService = function() {
 		}
 		var callOptions = {};
 		callOptions.params = {
-			includeSession:10,
+			includeSessions:10,
 			includeEvents:50
 		};
 
