@@ -101,6 +101,10 @@ var iqnomyService = function() {
 			validVisitorId();
 			return iqVisitorId;
 		},
+		getSecureVisitorId : function(){
+			validVisitorId();
+			return iqSecureVisitorId; 
+		},
 		getStatus : function() {
 			return "ok";
 		},

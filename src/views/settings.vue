@@ -47,6 +47,7 @@
 	
 	function remoteProfile(){
 		jsCookie.remove('_iqnomyvid',{domain:getTopDomain()});
+		jsCookie.remove('prid',{domain:getTopDomain()});
 	}
 	
 	function getTopDomain(){

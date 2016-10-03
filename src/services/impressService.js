@@ -112,8 +112,16 @@ var impressService = function() {
 	function _getImpressUrl(guid){
 		return _getImpressBaseUrl(guid) + "?iqversion=3&fid=1&" +
 			"tenant=" + iqnomyService.getTenantId() +  "&" +
-			"vid=" + iqnomyService.getVisitorId() +  "&" +
-			"iqurl=" + encodeURIComponent(_getIQUrl());
+			"iqurl=" + encodeURIComponent(_getIQUrl()) + "&" + 
+			_getVisitorIdParam();
+	}
+	
+	function _getVisitorIdParam(){
+		if(iqnomyService.getSecureVisitorId()){
+			return "prid=" + iqnomyService.getSecureVisitorId();
+		}else{
+			return "vid=" + iqnomyService.getVisitorId(); 
+		}
 	}
 	
 	// Conform the current impress standard 

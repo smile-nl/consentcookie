@@ -36,6 +36,25 @@
 					<div class="_ic_value">{{property.value}}</div>
 				</div>
 			</div>
+			<div class="_ic_header">Statistics</div>
+			<div class="_ic_properties">				
+				<div class="_ic_property">
+					<div class="_ic_name">Visit count</div>
+					<div class="_ic_value">{{profile.sessions ? profile.sessions.length : ''}}</div>
+				</div>
+			</div>
+			<div class="_ic_header">Last Events</div>
+			<div class="_ic_properties">				
+				<div class="_ic_property" v-for="session in profile.sessions">
+					<div class="_ic_name">Visit</div>
+					<div class="_ic_value">End: {{session.dateLastSeen | date '%Y-%m-%d %T'}}</div>
+					<div class="_ic_value" v-for="event in session.events">
+						<i class="fa fa-clock-o" aria-hidden="true" title="{{event.dateCreated | date '%Y-%m-%d %T'}}"></i>
+						<span class="_ic_event_path" title="{{event.type}}" >{{event.url}}</span>
+					</div>
+					<div class="_ic_value">Start: {{session.dateCreated | date '%Y-%m-%d %T'}}</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -43,7 +62,7 @@
 <script>
 
 	var iqnomyService = require('services/iqnomyService.js');
-	
+
 	// data variables
 	var data = {};
 	data.initFinished = false;
