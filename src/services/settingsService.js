@@ -15,6 +15,7 @@ var settingsService = function() {
 
 	// Private settings
 	var testEnviroment = false;
+	var doNotTrack = false;
 
 	// Public functions
 	return {
@@ -24,11 +25,17 @@ var settingsService = function() {
 		getRESTBasePath : function(){
 			return testEnviroment ? baseRESTApiUrlTest : baseRESTApiUrlProduction;
 		},
-		toggleTest : function() {
+		toggleTestEnviroment : function() {
 			testEnviroment = !testEnviroment;
 		},
-		isTest : function() {
+		isTestEnviroment : function() {
 			return testEnviroment;
+		},
+		toggleDoNotTrack : function(){
+			doNotTrack = !doNotTrack;
+		},
+		doNotTrackEnabled : function(){
+			return doNotTrack;
 		}
 	};
 }();

@@ -5,18 +5,53 @@
 			<div class="_ic_setting">
 				<div class="_ic_title">Enable test enviroment</div>
 				<div class="_ic_action">
-					<button type="button" class="btn {{testSelectedClass}} test-selected" 
-						@click="toggleTest">{{testSelectedText}}</button>
+					<button type="button" class="btn {{testEnviromentSelected}}" 
+						@click="toggleTestEnviroment">{{testEnviromentSelectedText}}</button>
+				</div>
+			</div>
+			<div class="_ic_setting">
+				<div class="_ic_title">Enable Do not Track</div>
+				<div class="_ic_action">
+					<button type="button" class="btn {{doNotTrackSelected}}" 
+						@click="toggleDoNotTrack">{{doNotTrackSelectedText}}</button>
+				</div>
+			</div>
+			<div class="_ic_setting">
+				<div class="_ic_title">Delete profile</div>
+				<div class="_ic_action">
+					<button type="button" class="btn btn-danger" 
+						@click="removeProfile">Delete</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+	var jsCookie = require('js-cookie');
+	
 	require('bootstrap-css');
-
+	
 	var settingsService = require('services/settingsService.js');
 	var checkbox = require('vue-strap').checkbox;
+
+	function toggleDoNotTrack(){
+		if(settingsService.doNotTrackEnabled()){
+			// Enable do not tracking
+			jsCookie.set('icDNT','true',{domain:getTopDomain()});
+		}else{
+			// Disable do not tracking
+			jsCookie.remove('icDNT',{domain:getTopDomain()});
+		}
+	}
+	
+	function remoteProfile(){
+		jsCookie.remove('_iqnomyvid',{domain:getTopDomain()});
+	}
+	
+	function getTopDomain(){
+		var hostname = document.location.hostname.split('.');
+		return hostname[hostname.length - 2] + "." + hostname[hostname.length - 1];
+	}
 
 	module.exports = {
 		name : "settings",
@@ -26,25 +61,41 @@
 		data : function() {
 			return {
 				url : settingsService.getRESTBasePath(),
-				isTest : settingsService.isTest()
+				isTestEnviroment : settingsService.isTestEnviroment(),
+				doNotTrack : settingsService.doNotTrackEnabled()
 			};
 		},
 		computed : {
-			testSelectedClass : function(){
-				return this.isTest ? 'btn-success' : 'btn-danger';
+			testEnviromentSelected : function(){
+				return this.isTestEnviroment ? 'btn-success' : 'btn-danger';
 			},
-			testSelectedText : function(){
-				return this.isTest ? 'enabled' : 'disabled';
+			testEnviromentSelectedText : function(){
+				return this.isTestEnviroment ? 'enabled' : 'disabled';
+			},
+			doNotTrackSelected : function(){
+				return this.doNotTrack ? 'btn-danger' : 'btn-success';
+			},
+			doNotTrackSelectedText : function(){
+				return this.doNotTrack ? 'Tracking disabled' : 'Tracking enabled';
 			}
 		},
 		props : {
 			
 		},
 		methods: {
-			toggleTest: function(){
-				settingsService.toggleTest();
+			toggleTestEnviroment: function(){
+				settingsService.toggleTestEnviroment();
 				this.url = settingsService.getRESTBasePath();
-				this.isTest = settingsService.isTest();
+				this.isTestEnviroment = settingsService.isTestEnviroment();
+			},
+			toggleDoNotTrack: function(){
+				settingsService.toggleDoNotTrack();
+				this.doNotTrack = settingsService.doNotTrackEnabled();
+				
+				toggleDoNotTrack();
+			},
+			removeProfile : function(){
+				remoteProfile();
 			}
 		},
 		watch : {},
@@ -80,7 +131,7 @@
 		        	float:right;
 		        	
 		        	button {
-		        		width: 80px;
+		        		min-width: 80px;
 		        	}
 		        }
 		       
