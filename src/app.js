@@ -8,8 +8,7 @@ require('font-awesome/css/font-awesome.css');
 var jQuery = require('jquery');
 var vue = require('vue');
 var vueRouter =  require('vue-router');
-
-var test = {};
+var vueFilter = require('vue-filter');
 
 // Run init on documentready
 jQuery(document).ready(function(){
@@ -19,9 +18,6 @@ jQuery(document).ready(function(){
 function init(){
 	initBaseView();
 	initVue();
-	
-	/* For testing purposes*/
-	window.icookieTest = test;
 }
 
 /* Init base view*/
@@ -38,6 +34,7 @@ function initVue(){
 	var icRouterConfig = require('./router/routerConfig.js');
 
 	vue.use(vueRouter);
+	vue.use(vueFilter);
 	
 	var icRouter = new vueRouter({
 	  	history: true,
