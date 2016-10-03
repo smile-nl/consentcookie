@@ -27,7 +27,13 @@ var iqnomyService = function() {
 		} else if (!validVisitorId()) {
 			callback(wrap('error',-1,false,'No IQNOMY visitor id available. Please refresh and try again.',null));
 		}
-		vue.http.get(getProfilePath()).then(function(response) {
+		var callOptions = {};
+		callOptions.params = {
+			includeSession:10,
+			includeEvents:50
+		};
+
+		vue.http.get(getProfilePath(),callOptions).then(function(response) {
 			callback(wrap(response.ok,response.status,response.statusText,response.data));
 		}, function(response) {
 			callback(wrap(response.ok,response.status,response.statusText,response.data));
