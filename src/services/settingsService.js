@@ -14,7 +14,7 @@ var settingsService = function() {
 	var baseImpressUrlTest = "https://liquifier.test.iqnomy.com/myliquidsuite-ws/async/impr";
 
 	// Private settings
-	var testEnviroment = false;
+	var testEnviroment = true;
 	var doNotTrack = false;
 
 	// Public functions
