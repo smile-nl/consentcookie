@@ -11,4 +11,3 @@ dist/*
 /dist/*
 /.tern-project
 npm-debug.log
-*.git
