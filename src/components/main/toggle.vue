@@ -61,7 +61,6 @@
     	width:52px;
     	top: calc(50% - 27px);
 		padding: 2px 0px 2px 2px;
-		z-index: 2000000000;
 		
 		._ic_content{
 			background: #FFFFFF;
