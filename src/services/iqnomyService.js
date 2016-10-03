@@ -12,13 +12,19 @@ var iqnomyService = function() {
 
 	// Private variables
 	var iqVisitorCookie = '_iqnomyvid';
+	var iqProfileId = 'prid';
 
 	var iqVisitorId = -1;
+	var iqSecureVisitorId = null;
 	var iqTenantId = -1;
 
 	// Private functions
 	function getProfilePath(){
-		return settingsService.getRESTBasePath() + "/liquidaccount/" + iqTenantId + "/profile/cookie/" + iqVisitorId;
+		if(iqSecureVisitorId){
+			return settingsService.getRESTBasePath() + "/liquidaccount/" + iqTenantId + "/profile/cookie/" + iqSecureVisitorId;
+		}else{
+			return settingsService.getRESTBasePath() + "/liquidaccount/" + iqTenantId + "/profile/cookie/" + iqVisitorId;
+		}
 	}
 	
 	function getProfile(callback) {
@@ -53,7 +59,10 @@ var iqnomyService = function() {
 	function validVisitorId() {
 		var id = getCookieValue(iqVisitorCookie);
 		iqVisitorId = null != id ? id : iqVisitorId;
-		return null != id;
+		
+		var secureId = getCookieValue(iqProfileId);
+		iqSecureVisitorId = null != secureId ? secureId : iqSecureVisitorId;
+		return null != id || null != secureId;
 	};
 
 	/* Check if connected to Humanswitch platform */

@@ -27,6 +27,7 @@
 	</div>
 </template>
 <script>
+	var iCookieDNT = '_icDNT';
 	var jsCookie = require('js-cookie');
 	
 	require('bootstrap-css');
@@ -37,10 +38,10 @@
 	function toggleDoNotTrack(){
 		if(settingsService.doNotTrackEnabled()){
 			// Enable do not tracking
-			jsCookie.set('icDNT','true',{domain:getTopDomain()});
+			jsCookie.set(iCookieDNT,'true',{domain:getTopDomain()});
 		}else{
 			// Disable do not tracking
-			jsCookie.remove('icDNT',{domain:getTopDomain()});
+			jsCookie.remove(iCookieDNT,{domain:getTopDomain()});
 		}
 	}
 	
