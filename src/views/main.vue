@@ -10,6 +10,8 @@
 <script>
 	var toggle = require('../components/main/toggle.vue');
 	var mainService = require('services/mainService.js');
+	var impressService = require('services/impressService.js');
+	impressService.checkForContent();
 	
 	module.exports = {
 		name:"main",
@@ -53,69 +55,70 @@
 			font-size: 14px;
 			color: #000000;
 		}
-}
-	/**
-	* vue-router transition
-	*/
-	
-	.vux-pop-out-transition,
-	.vux-pop-in-transition {
-	    width: 100%;
-	    animation-duration: 0.5s;
-	    animation-fill-mode: both;
-	    backface-visibility: hidden;
-	}
-	.vux-pop-out-enter,
-	.vux-pop-out-leave,
-	.vux-pop-in-enter,
-	.vux-pop-in-leave {
-	    will-change: transform;
-	    height: 100%;
-	    position: absolute;
-	    right: 0;
-	}
-	.vux-pop-out-enter {
-	    animation-name: popInLeft;
-	}
-	.vux-pop-out-leave {
-	    animation-name: popOutRight;
-	}
-	.vux-pop-in-enter {
-	    animation-name: popInRight;
-	}
-	.vux-pop-in-leave {
-	    animation-name: popOutLeft;
-	}
-	@keyframes popInLeft {
-	    from {
-	        transform: translate3d(-100%, 0, 0);
-	    }
-	    to {
-	        transform: translate3d(0, 0, 0);
-	    }
-	}
-	@keyframes popOutLeft {
-	    from {
-	        transform: translate3d(0, 0, 0);
-	    }
-	    to {
-	        transform: translate3d(-100%, 0, 0);
-	    }
-	}
-	@keyframes popInRight {
-	    from {
-	        transform: translate3d(100%, 0, 0);
-	    }
-	    to {
-	        transform: translate3d(0, 0, 0);
-	    }
-	}
-	@keyframes popOutRight {
-	    from {
-	        transform: translate3d(0, 0, 0);
-	    }
-	    to {
-	        transform: translate3d(100%, 0, 0);
-	    }
+		
+		/**
+		* vue-router transition
+		*/
+		
+		.vux-pop-out-transition,
+		.vux-pop-in-transition {
+		    width: 100%;
+		    animation-duration: 0.5s;
+		    animation-fill-mode: both;
+		    backface-visibility: hidden;
+		}
+		.vux-pop-out-enter,
+		.vux-pop-out-leave,
+		.vux-pop-in-enter,
+		.vux-pop-in-leave {
+		    will-change: transform;
+		    height: 100%;
+		    position: absolute;
+		    right: 0;
+		}
+		.vux-pop-out-enter {
+		    animation-name: popInLeft;
+		}
+		.vux-pop-out-leave {
+		    animation-name: popOutRight;
+		}
+		.vux-pop-in-enter {
+		    animation-name: popInRight;
+		}
+		.vux-pop-in-leave {
+		    animation-name: popOutLeft;
+		}
+		@keyframes popInLeft {
+		    from {
+		        transform: translate3d(-100%, 0, 0);
+		    }
+		    to {
+		        transform: translate3d(0, 0, 0);
+		    }
+		}
+		@keyframes popOutLeft {
+		    from {
+		        transform: translate3d(0, 0, 0);
+		    }
+		    to {
+		        transform: translate3d(-100%, 0, 0);
+		    }
+		}
+		@keyframes popInRight {
+		    from {
+		        transform: translate3d(100%, 0, 0);
+		    }
+		    to {
+		        transform: translate3d(0, 0, 0);
+		    }
+		}
+		@keyframes popOutRight {
+		    from {
+		        transform: translate3d(0, 0, 0);
+		    }
+		    to {
+		        transform: translate3d(100%, 0, 0);
+		    }
+		}
 	}
 </style>

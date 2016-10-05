@@ -39,7 +39,7 @@
 
 	@import '../../assets/scss/colors';
 
-	._ic_view-header{
+	#icookie ._ic_view-header{
 		
 		overflow:hidden;
 		padding: 20px 10px;
@@ -71,6 +71,10 @@
     		vertical-align: middle;
 			border: 2px solid #000000;
 			margin-left:10px;
+			
+			> i {
+				vertical-align: baseline;
+			}
 		}
 		
 		._ic_close{
