@@ -154,10 +154,13 @@
 			    line-height: 1.42857143;
 			    border-radius: 4px;
 			    -webkit-user-select: none;
+			    font-size: 12px;
+			    margin:auto;
 			    
     			&:hover {
 					color: #333333;
     				text-decoration: none;
+    				box-shadow: none;
 				}
 				
 				&:focus {

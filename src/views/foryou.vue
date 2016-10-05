@@ -1,6 +1,6 @@
 <template>
 	<div class="_ic_foryou">
-		<view-header title="Your profile" :refresh="updateImpression" :loading="isLoading"></view-header>
+		<view-header title="Selected for you" :refresh="updateImpression" :loading="isLoading"></view-header>
 		<div class="_ic_content">
 			<div class="_ic_impression" v-for="impression in impressions" data-container-id="{{impression.container.id}}" 
 				data-container-name="{{impression.container.name}}">

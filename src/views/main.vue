@@ -56,13 +56,6 @@
 			color: #000000;
 		}
 		
-		button:hover, 
-		input[type="button"]:hover, 
-		input[type="reset"]:hover, 
-		input[type="submit"]:hover{
-			box-shadow: none;
-		}
-		
 		/**
 		* vue-router transition
 		*/
