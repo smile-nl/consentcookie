@@ -45,7 +45,7 @@
 		padding: 20px 10px;
 		border-bottom: 2px solid rgba(0,0,0,0.3);
 		line-height: 30px;
-		height: 70px;
+		height: 30px;
 		vertical-align: middle;
 		
 		._ic_title{

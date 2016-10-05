@@ -28,19 +28,23 @@
 					<div class="_ic_name">Pagevisit count</div>
 					<div class="_ic_value">{{profile.pagevisitCount}}</div>
 				</div>
+				<div class="_ic_property">
+					<div class="_ic_name">Visit count</div>
+					<div class="_ic_value">{{profile.sessions ? profile.sessions.length : ''}}</div>
+				</div>
+			</div>
+			<div class="_ic_header">Properties</div>
+			<div class="_ic_properties">				
+				<div class="_ic_property" v-for="property in profile.properties">
+					<div class="_ic_name">{{property.name}}</div>
+					<div class="_ic_value">{{property.value}}</div>
+				</div>
 			</div>
 			<div class="_ic_header">Dimensions</div>
 			<div class="_ic_properties">				
 				<div class="_ic_property" v-for="property in profile.dimensionProperties">
 					<div class="_ic_name">{{property.dimension.name}}</div>
 					<div class="_ic_value">{{property.value}}</div>
-				</div>
-			</div>
-			<div class="_ic_header">Statistics</div>
-			<div class="_ic_properties">				
-				<div class="_ic_property">
-					<div class="_ic_name">Visit count</div>
-					<div class="_ic_value">{{profile.sessions ? profile.sessions.length : ''}}</div>
 				</div>
 			</div>
 			<div class="_ic_header">Last Events</div>
