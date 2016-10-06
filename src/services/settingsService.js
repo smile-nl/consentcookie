@@ -16,6 +16,7 @@ var settingsService = function() {
 	// Private settings
 	var testEnviroment = true;
 	var doNotTrack = false;
+	var consent = false;
 
 	// Public functions
 	return {
@@ -36,6 +37,12 @@ var settingsService = function() {
 		},
 		doNotTrackEnabled : function(){
 			return doNotTrack;
+		},
+		isConsent : function(){
+			return consent;
+		},
+		setConsent : function($consent){
+			consent = $consent;
 		}
 	};
 }();

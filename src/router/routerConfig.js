@@ -20,9 +20,12 @@ module.exports = function configRouter(router) {
 		},
 		'/contact' : {
 			component : require('../views/contact.vue')
+		},
+		'/consent' : {
+			component : require('../views/consent.vue')
 		}
 	});
 	router.redirect({
-		'/' : '/dashboard'
+		'/' : '/consent'
 	});
 };

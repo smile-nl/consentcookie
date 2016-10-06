@@ -11,3 +11,4 @@ dist/*
 /dist/*
 /.tern-project
 npm-debug.log
+src/views/settings.vue
