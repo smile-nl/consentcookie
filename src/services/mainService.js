@@ -7,9 +7,13 @@
 var mainService = function(){	
 		
 	var Vue = require('vue');	
-	var vue = new Vue({});	
+	var vue = new Vue({});
+	var jsCookie = require('js-cookie');	
+	
+	var app = null;
 		
-	var state = null;	
+	var state = null;
+	var COOKIE_NAME = 'EU_COOKIE_LAW_CONSENT';	
 		
 	function _initStateChangeListener(){
 		vue.$on('mainService#statechanged',function(newState){
@@ -17,7 +21,28 @@ var mainService = function(){
 				state = newState;
 			}
 		});
-	}	
+	}
+	
+	function _getTopDomain(){
+		var hostname = document.location.hostname.split('.');
+		return hostname[hostname.length - 2] + "." + hostname[hostname.length - 1];
+	}
+	
+	//Storing the consent in a cookie
+	function _setAccepted() {
+		jsCookie.set(COOKIE_NAME,'true',{domain:_getTopDomain()});
+		app.$router.go('/dashboard');
+	};
+	
+	//Let's see if we have a consent cookie already
+	function _hasAccepted() {
+		var consent = jsCookie.get(COOKIE_NAME);
+		return consent === 'true';
+	};
+	
+	function _setApp($app){
+		app = $app;
+	}
 		
 	// Public functions
 	return {
@@ -40,9 +65,18 @@ var mainService = function(){
 			// Broadcast does not work if the vue parent is listening itself
 			vue.$dispatch.apply(vue,arguments);
 		},
-		getCurrentState : function(){
-			return state;
-		}	
+		setAccepted : function(){
+			_setAccepted();
+		},
+		hasAccepted : function(){
+			return _hasAccepted();
+		},
+		setApp : function(app){
+			_setApp(app);
+		},
+		getApp : function(){
+			return app;
+		}		
 	};
 	
 }();

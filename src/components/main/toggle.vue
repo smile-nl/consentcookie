@@ -10,6 +10,7 @@
 <script>
 	/* jQuery for animations */
 	var jQuery = require('jquery');
+	var mainService = require('services/mainService');
 	
 	var _icookie = null;
 	var _icookieToggle = null;
@@ -23,6 +24,11 @@
     	_icookieToggle.on("click", function() {
     		toggleIcookie();
     	});
+    	
+		var hasAccepted = mainService.hasAccepted();
+		if(!hasAccepted){
+			toggleIcookie(true);
+		}
     	_icookieToggle.fadeIn(1000);
 	});
 	

@@ -1,4 +1,17 @@
 module.exports = function configRouter(router) {
+	
+	var mainService = require('services/mainService.js');
+	
+	function _getRedirect(){
+		var hasAccepted = mainService.hasAccepted();
+		
+		if(hasAccepted){
+			return "/dashboard";
+		}else{
+			return "/consent";
+		}
+	};
+	
 	router.map({
 		'/dashboard' : {
 			component : require('../views/dashboard.vue')
@@ -26,6 +39,6 @@ module.exports = function configRouter(router) {
 		}
 	});
 	router.redirect({
-		'/' : '/consent'
+		'/' : _getRedirect()
 	});
 };

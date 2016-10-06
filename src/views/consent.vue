@@ -5,8 +5,8 @@
 		</div>
 		<div class="_ic_content _ic_consent">
 			<div class="_ic_consent">
-				<a id="acceptButton" class="_ic_btn _ic_btn-success" href="#">Akkoord</a>
-				<a id="settingsButton" class="_ic_btn _ic_btn-danger" href="#">Cookie instellingen aanpassen</a>
+				<button type="button" class="_ic_btn _ic_btn-success" @click="acceptConsent">Akkoord</button>
+				<button type="button" class="_ic_btn _ic_btn-danger" @click="hasAccepted">Cookie instellingen aanpassen</button>
 				<a class="_ic_link" href="#">Privacy- en cookiebeleid</a>
 				<a class="_ic_link" href="#">Meer informatie tonen</a>
 				<div class="_ic_content_text">
@@ -27,6 +27,34 @@
 </template>
 
 <script>
+	
+	var mainService = require('services/mainService.js');
+	
+	module.exports = {
+		name : "consent",
+		components :{
+			
+		},
+		data : function() {
+			return {
+			}
+		},
+		computed : {
+
+		},
+		props : {
+			
+		},
+		methods: {
+			acceptConsent: function(){
+				mainService.setAccepted();
+			},
+			hasAccepted : function(){
+				mainService.hasAccepted();
+			}
+		},
+		watch : {},
+	}; 
 	
 </script>
 
@@ -50,8 +78,9 @@
 		}
 		
 		._ic_button {
-	     	display: inline-block;
-		    margin-bottom: 0;
+	     	display: block;
+		    margin: 15px auto;
+		    width: 200px;
 		    font-weight: 400;
 		    text-align: center;
 		    vertical-align: middle;
@@ -67,7 +96,6 @@
 		    border-radius: 4px;
 		    -webkit-user-select: none;
 		    font-size: 12px;
-		    margin:auto;
 		    
 			&:hover {
 				color: #333333;

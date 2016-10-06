@@ -17,7 +17,10 @@
 		name:"main",
 		components:{
 			toggle
-		}
+		},
+		created : function() {
+			mainService.setApp(this);		
+  		}
 	};
 </script>
 
