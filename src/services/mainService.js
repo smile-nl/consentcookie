@@ -31,6 +31,8 @@ var mainService = function(){
 	//Storing the consent in a cookie
 	function _setAccepted() {
 		jsCookie.set(COOKIE_NAME,'true',{domain:_getTopDomain()});
+		
+		app.$router.redirect({'/' : '/dashboard'});
 		app.$router.go('/dashboard');
 	};
 	
