@@ -19,3 +19,16 @@
     font-style: normal;
     font-weight: 400;
 }
+
+
+/**
+ * 	General styling
+ */
+
+#icookie .clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}

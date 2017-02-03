@@ -22,7 +22,7 @@ function init(){
 
 /* Init base view*/
 function initBaseView(){
-	jQuery('body').append('<div id="icookie" style="display:none"></div>');
+	jQuery('body').append('<div id="icookie"></div>');
 }
 
 /* Vue routing */ 
