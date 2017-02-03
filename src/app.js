@@ -7,8 +7,8 @@ require('font-awesome/css/font-awesome.css');
 // Active dependencies
 var jQuery = require('jquery');
 var vue = require('vue');
-var vueRouter =  require('vue-router');
 var vueFilter = require('vue-filter');
+var vueState = require('./base/configState.js');
 
 // Run init on documentready
 jQuery(document).ready(function(){
@@ -29,26 +29,19 @@ function initBaseView(){
 function initVue(){
 	
 	initVueResource();
-	initBaseComponents();
+	initVueBaseComponents();
+	initVueRouter();
+	initVueFilters();
 	
-	var icRouterConfig = require('./router/routerConfig.js');
-
-	vue.use(vueRouter);
-	vue.use(vueFilter);
-	
-	var icRouter = new vueRouter({
-	  	history: true,
- 	 	saveScrollPosition: true,
-	  	abstract: true,
-	  	replace:true,
-	  	append:false
-	});
-	
-	icRouterConfig(icRouter);
-	
-	/* Setup global app */
 	var main = vue.extend(require('./views/main.vue'));
-	icRouter.start(main, '#icookie');
+	window.steventest = new main({
+		store: new vueState(vue)
+	}).$mount('#icookie');
+}
+
+function initVueRouter(){
+	var configRouter = require('./base/configRouter.js');
+	configRouter(vue);
 }
 
 function initVueResource(){
@@ -58,11 +51,15 @@ function initVueResource(){
 	vue.use(vueResource);
 }
 
-function initBaseComponents(){
+function initVueBaseComponents(){
 	
 	// Retrieve the components
-	var viewHeader = require('./components/base/view-header.vue'); 
+	//var viewHeader = require('./components/base/view-header.vue'); 
 	
 	// Register the components
-	vue.component('view-header', viewHeader);
+	// vue.component('view-header', viewHeader);
+}
+
+function initVueFilters(){
+	vue.use(vueFilter);
 }

@@ -1,9 +1,7 @@
 <template>
 	<div id="icMenu" class="clearfix">
-		<div class="ic-menu-button">
-			
-		</div>
-		<ul class="ic-menu-items clearfix">
+		<div class="ic-menu-button" v-on:click="toggleOpen"></div>
+		<ul class="ic-menu-items clearfix" v-show="isOpen">
 			<ic-menu-item v-for="menuItem in menuItems" :data="menuItem"></ic-menu-item>
 		</ul>
 	</div>
@@ -38,12 +36,14 @@
 				menuItems: menuItems
 			};
 		},
-		props : {
-			
+		computed : {
+			isOpen : function(){
+				return this.$store.state.view.open;
+			}
 		},
 		methods : {
-			goToPath : function(path) {
-				this.$route.router.go(path);
+			toggleOpen : function(){
+				this.$store.state.view.open = !this.$store.state.view.open;
 			}
 		},
 		watch : {},
@@ -54,8 +54,7 @@
 </script>
 
 <style lang="scss" scoped>
-	@import "bourbon";
-
+	
 	#icMenu {
 		
 		.ic-menu-button{

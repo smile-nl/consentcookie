@@ -1,6 +1,6 @@
 <template>
 	<li class="ic-menu-item" v-on:click="goToPath(data.path)">
-		<i class="fa fa-{{data.icon}}" aria-hidden="true"></i>
+		<i :class="'fa fa-' + data.icon" aria-hidden="true"></i>
 	</li>
 </template>
 
@@ -25,8 +25,6 @@
 </script>
 
 <style lang="scss" scoped>
-
-	@import "bourbon";
 
 	.ic-menu-item {
     	cursor:pointer;
