@@ -1,65 +1,83 @@
 "use strict";
 
-// Static dependencies
-require('./assets/css/icookie.css');
-require('font-awesome/css/font-awesome.css');
 
-// Active dependencies
-var jQuery = require('jquery');
-var vue = require('vue');
-var vueFilter = require('vue-filter');
-var vueState = require('./base/configState.js');
+// Avoid leaking scope
+(function(){
 
-// Run init on documentready
-jQuery(document).ready(function(){
+	// Static dependencies
+	require('./assets/css/icookie.css');
+	// require('./assets/css/animate.css');
+	require('font-awesome/css/font-awesome.css');
+	
+	// Vue dependencies
+	var vue = require('vue');
+	var vueFilter = require('vue-filter');
+	var vueState = require('./base/configState.js');
+	var vueRouter = require('./base/configRouter.js');
+	var vuexRouterSync = require("vuex-router-sync");
+	
+	// Vue Icookie Dependencies
+	var vueServices = require('./base/configServices.js');
+	
+	// Run init on documentready
 	init();
-});
-
-function init(){
-	initBaseView();
-	initVue();
-}
-
-/* Init base view*/
-function initBaseView(){
-	jQuery('body').append('<div id="icookie"></div>');
-}
-
-/* Vue routing */ 
-function initVue(){
 	
-	initVueResource();
-	initVueBaseComponents();
-	initVueRouter();
-	initVueFilters();
+	function init(){
+		initBaseView();
+		initVue();
+	}
 	
-	var main = vue.extend(require('./views/main.vue'));
-	window.steventest = new main({
-		store: new vueState(vue)
-	}).$mount('#icookie');
-}
-
-function initVueRouter(){
-	var configRouter = require('./base/configRouter.js');
-	configRouter(vue);
-}
-
-function initVueResource(){
+	/* Init base view*/
+	function initBaseView(){
+		var icookie = document.createElement("div");
+		icookie.id = "icookie";
+		icookie.className = "icookie";
+		document.body.appendChild(icookie);
+	}
 	
-	// Init vue resource
-	var vueResource = require('vue-resource');
-	vue.use(vueResource);
-}
-
-function initVueBaseComponents(){
+	/* Vue routing */ 
+	function initVue(){
+		
+		var store = new vueState(vue);
+		var router = new vueRouter(vue);
+		var services = new vueServices(vue);
+		
+		
+		initVueResource();
+		initVueBaseComponents();
+		initVueFilters();
+		initVueRouterSync(store,router);
+			
+		var main = vue.extend(require('./views/main.vue'));
+		var mainInstance = new main({
+			router: router,
+			store: store,
+			services : services
+		}).$mount('#icookie');
+		
+		window.steventest = mainInstance;
+	}
 	
-	// Retrieve the components
-	//var viewHeader = require('./components/base/view-header.vue'); 
+	function initVueResource(){
+		
+		// Init vue resource
+		var vueResource = require('vue-resource');
+		vue.use(vueResource);
+	}
 	
-	// Register the components
-	// vue.component('view-header', viewHeader);
-}
+	function initVueBaseComponents(){
+		// Register the components
+		vue.component('ic-content-box',require("components/general/icContentBox.vue"));
+		vue.component('ic-button',require("components/general/icButton.vue"));
+		vue.component('ic-switch',require("components/general/icSwitch.vue"));
+	}
+	
+	function initVueFilters(){
+		vue.use(vueFilter);
+	}
+	
+	function initVueRouterSync($store,$router){
+		vuexRouterSync.sync($store,$router);
+	}
 
-function initVueFilters(){
-	vue.use(vueFilter);
-}
+})();

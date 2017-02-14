@@ -1,7 +1,7 @@
 <template>
-	<li class="ic-menu-item" v-on:click="goToPath(data.path)">
+	<router-link :to="data.path" class="ic-menu-item" tag="div">
 		<i :class="'fa fa-' + data.icon" aria-hidden="true"></i>
-	</li>
+	</router-link>
 </template>
 
 <script>
@@ -11,7 +11,7 @@
 		name:"icMenuItem",
 		components: {
 			
-		},
+		},			
 		props:{
 			data : {
 				type : Object,
@@ -20,32 +20,55 @@
 				},
 				required : true
 			}
-		}
+		},
 	};
 </script>
 
 <style lang="scss" scoped>
 
 	.ic-menu-item {
+		
     	cursor:pointer;
-        display: inline-block;
-        background-color: #FFFFFF;
-        border: 1px solid black;
         float:left;
-        height:60px;
-        width:60px;
-        line-height: 60px;
+        height:50px;
+        width:50px;
+        line-height: 50px;
+        margin-right:20px;        
+        border: 2px solid #FFFFFF;
+        border-radius:50px;
         text-align: center;
+        transition: all 0.2s;
         
       	&:hover{
-      		background: rgba(0,0,0,0.4);
+      		background: rgba(255,255,255,0.4);
       	} 
        
-        ._ic_icon {
-        	width:20px;
-    		color:rgba(0,0,0,0.8);
-    		font-size:16px;
+        i {
+    		color:#FFFFFF;
+    		font-size: 20px;
         }
+        
+        &.active {
+        	background: #FFFFFF;
+        	margin: -5px 15px -5px -5px;
+			height: 60px;
+			width: 60px;
+			border-radius: 60px;
+			line-height: 60px;	
+        	
+        	i {
+        		color: rgba(252,109,109,255);
+        	}
+        }
+    }
+    
+    .no-content .ic-menu-item.active,
+    .ic-menu-item {
+    	background: none;	
+        	
+    	i {
+    		color: #FFFFFF;
+    	}
     }
 
 </style>

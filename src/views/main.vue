@@ -1,5 +1,5 @@
 <template>
-	<div id="icookie">
+	<div id="icookie" class="icookie">
 		<ic-view></ic-view>
 		<ic-menu></ic-menu>
 	</div>
@@ -23,7 +23,7 @@
 <style lang="scss" scoped>
 	#icookie {
 		position: fixed;
-		bottom: 20px;
-		right: 20px;
+		bottom: 40px;
+		right: 40px;
 	}
 </style>

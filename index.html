@@ -1,31 +1,48 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
-    <head>
-		 
+	<head>
+
 	</head>
 	<body>
+		<style>
+			body {
+				background: #D6D6D6;
+				min-width: 100%;
+				min-height: 100%;
+			}
+		</style>
 		<h1>Test COOKIE</h1>
-		<!-- PRODUCTION
-		<script>                               
-		  var _iqsTenant = 157078931;
-		  var _iqsImpress = { hostAndPort: "liquifier.iqnomy.com", timeout: 5000, extra: false };
-			
-		  (function() {
+		
+		<script>
+			var _iqsTenant = 157078931;
+			var _iqsImpress = { hostAndPort: "liquifier.iqnomy.com", timeout: 5000, extra: false };
+	
+			(function() {
 			var _iqs = document.createElement('script'); _iqs.type = 'text/javascript'; _iqs.async = true;
 			_iqs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.iqnomy.com/myliquidsuite/js/IQImpressor.js';
 			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_iqs, s);
-		  })();
-
-		-->
-		<script>                               
-		  var _iqsTenant = 2147429759;
-		  var _iqsImpress = { hostAndPort: "liquifier.test.iqnomy.com", timeout: 5000, extra: false };
-		    
-		  (function() {
-		    var _iqs = document.createElement('script'); _iqs.type = 'text/javascript'; _iqs.async = true;
-		    _iqs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.test.iqnomy.com/myliquidsuite/js/IQImpressor.js';
-		    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_iqs, s);
-		  })();
+			})();
 		</script>
+		
+		<!-- TEST -->
+		<!--
+		<script>
+			var _iqsTenant = 2147429759;
+			var _iqsImpress = {
+				hostAndPort : "liquifier.test.iqnomy.com",
+				timeout : 5000,
+				extra : false
+			};
+
+			(function() {
+				var _iqs = document.createElement('script');
+				_iqs.type = 'text/javascript';
+				_iqs.async = true;
+				_iqs.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'static.test.iqnomy.com/myliquidsuite/js/IQImpressor.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(_iqs, s);
+			})();
+		</script>
+		-->
 	</body>
 </html>

@@ -1,11 +1,13 @@
 <template>
-	<div class="ic-view-header">
+	<div class="ic-view-header clearfix">
 		<div class="title">{{title}}</div>
-		<div v-if="loading" class="loader">
-			<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
-		</div>
-		<div class="close" v-on:click="goHome()">
-			<i class="fa fa-close" aria-hidden="true"></i>
+		<div class="actions">
+			<div v-if="loading" class="loader">
+				<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
+			</div>
+			<div class="close" v-on:click="close()">
+				<i class="fa fa-close" aria-hidden="true"></i>
+			</div>
 		</div>
 	</div>
 </template>
@@ -26,7 +28,8 @@
 		},
 		methods: {
 			close : function(){
-				
+				this.$store.commit("updateView",{contentActive:false});
+				this.$router.reset();
 			}
 		},
 	};
@@ -34,36 +37,31 @@
 
 <style lang="scss" scoped>
 
-	@import '../../assets/scss/colors';
+	@import '../../assets/scss/general-variables';
 
 	.ic-view-header{
 		
-		overflow:hidden;
-		padding: 20px 10px;
-		border-bottom: 2px solid rgba(0,0,0,0.3);
-		line-height: 30px;
-		height: auto;
-		vertical-align: middle;
+		min-width: 350px;
+		padding:20px;
+		background: $ic-brand-color;
+		color:#FFFFFF;
+		border-radius: 5px 5px 0px 0px;
+		overflow: hidden;
 		
-		.title{
+		.title {
 			float:left;
-			font-size: 30px;
+			font-size: 16px;
+			font-weight: bold;
 		}
 		
-		.loader{
-			position: absolute;
-    		left: 5px;
-    		top: 0px;
-		}
-		
-		.close{
-			color: #000000;
-			border: 2px solid #000000;
+		.actions {
+			float:right;
 			
-			&:hover{
+			> * {
 				cursor: pointer;
-				background: $hs-color-red;
 			}
 		}
+		
+		
 	}
 </style>

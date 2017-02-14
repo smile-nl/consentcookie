@@ -1,7 +1,11 @@
 <template>
-	<div id="icView" v-show="isOpen">
-		<ic-view-header></ic-view-header>
-		
+	<div id="icView">
+		<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
+			<div  class="ic-view-content" v-show="isShown">
+				<ic-view-header></ic-view-header>
+				<router-view></router-view>
+			</div>
+		</transition>
 	</div>
 </template>
 
@@ -19,22 +23,32 @@
 			return {};
 		},	
 		computed : {
-			isOpen : function(){
-				return this.$store.state.view.open;
+			isShown : function(){
+				return this.$store.state.view.open && this.$store.state.view.contentActive;
 			}
 		},
 	};
 </script>
 
 <style lang="scss" scoped>
+	
+	@import '../../assets/scss/general-variables';
 
 	#icView{
 		position: absolute;
 		right: 0px;
 		bottom: 110px;
-		width: 300px;
-		height: 400px;
-		border: 5px black solid;
+		overflow: hidden;
+		
+		.ic-view-content{
+			border-radius: 5px;
+			background: #FFFFFF;
+			box-shadow: $ic-drop-shadow;
+			overflow: hidden;
+			
+			.ic-content{
+				min-height: 400px;
+			}
+		}	
 	}
-
 </style>

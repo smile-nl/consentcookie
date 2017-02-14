@@ -3,8 +3,13 @@
  *
  * Service is exported at the end of the file
  */
+module.exports = function() {
 
-var settingsService = function() {
+	var vueInstance = null;
+	var store = null;
+	
+	// Defaults options
+	var envs = ["production","test"];
 
 	// Private variables
 	var baseRESTApiUrlProduction = "https://myliquidsuite-api.iqnomy.com/api";
@@ -13,37 +18,31 @@ var settingsService = function() {
 	var baseImpressUrlProduction = "https://liquifier.iqnomy.com/myliquidsuite-ws/async/impr";
 	var baseImpressUrlTest = "https://liquifier.test.iqnomy.com/myliquidsuite-ws/async/impr";
 
-	// Private settings
-	var testEnviroment = false;
-	var doNotTrack = false;
-	var consent = false;
-
 	// Public functions
 	return {
+		// Vue services require a init function
+		init: function(vueServices){
+			vueInstance = vueServices.vueInstance;
+			store = vueServices.vueInstance.$store;
+		},
 		getImpressBasePath : function(){
-			return testEnviroment ? baseImpressUrlTest : baseImpressUrlProduction;
+			return this.isTestEnv() ? baseImpressUrlTest : baseImpressUrlProduction;
 		},
 		getRESTBasePath : function(){
-			return testEnviroment ? baseRESTApiUrlTest : baseRESTApiUrlProduction;
+			return this.isTestEnv() ? baseRESTApiUrlTest : baseRESTApiUrlProduction;
 		},
-		toggleTestEnviroment : function() {
-			testEnviroment = !testEnviroment;
+		toggleTestEnv : function(){
+			
 		},
-		isTestEnviroment : function() {
-			return testEnviroment;
+		isTestEnv : function() {
+			
 		},
-		toggleDoNotTrack : function(){
-			doNotTrack = !doNotTrack;
+		toggleDNT : function(){
+			var newVal = !store.state.settings.dnt;
+			store.commit("updateSettings",{dnt:newVal});
 		},
-		doNotTrackEnabled : function(){
-			return doNotTrack;
-		},
-		isConsent : function(){
-			return consent;
-		},
-		setConsent : function($consent){
-			consent = $consent;
+		isDNT : function(){
+			return store.state.settings.dnt;
 		}
 	};
 }();
-module.exports = settingsService;

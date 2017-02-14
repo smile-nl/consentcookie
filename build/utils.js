@@ -28,14 +28,15 @@ exports.cssLoaders = function (options) {
     // Extract CSS when that option is specified
     // (which is the case during production build)
     if (options.extract) {
-      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
+      // return ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
+      return ['vue-style-loader', sourceLoader].join('!')
     } else {
       return ['vue-style-loader', sourceLoader].join('!')
     }
   }
 
   // http://vuejs.github.io/vue-loader/en/configurations/extract-css.html
-  var test = {
+  return {
     css: generateLoaders(['css']),
     // postcss: generateLoaders({plugins:['css','postcss-modules'],options:{scopeBehaviour: 'global'}}),
     postcss: generateLoaders(['css']),
@@ -45,8 +46,6 @@ exports.cssLoaders = function (options) {
     stylus: generateLoaders(['css', 'stylus']),
     styl: generateLoaders(['css', 'stylus'])
   }
-  console.log(test);
-  return test;
 }
 
 // Generate loaders for standalone style files (outside of .vue)

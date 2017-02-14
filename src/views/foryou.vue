@@ -1,19 +1,22 @@
 <template>
-	<div class="_ic_foryou">
-		<view-header title="Selected for you" :refresh="updateImpression" :loading="isLoading"></view-header>
+	<div id="foryou" class="ic-content">
 		<div class="_ic_content">
-			<div class="_ic_impression" v-for="impression in impressions" data-container-id="{{impression.container.id}}" 
-				data-container-name="{{impression.container.name}}">
+			<div class="_ic_impression" v-for="impression in impressions" :data-container-id="impression.container.id" 
+				:data-container-name="impression.container.name">
 				<div class="_ic_impression_name">{{impression.container.name}} </div>
 				<div class="_ic_impression_content">
-					{{{impression.getMergedTemplates()}}}
+					{{impression.getMergedTemplates()}}
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+	// Dependencies
 	var impressService = require('services/impressService.js');
+
+	// Defaults
+	var viewTitle = "Selected for you";
 
 	var data = {};
 	data.isLoading = false;
@@ -45,12 +48,15 @@
 		ready : function() {
 			var scope = this;
 			scope.updateImpression();
+		},
+		beforeMount : function(){
+			this.$store.commit('updateView',{title: viewTitle});
 		}
 	};
 </script>
 <style lang="scss">
 	
-	@import '../assets/scss/colors';
+	@import '../assets/scss/general-variables';
 
 	._ic_foryou{
 		height:100%;
