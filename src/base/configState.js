@@ -49,7 +49,13 @@ module.exports = function configState(vue) {
 			view : {
 				open: false,
 				title: "",
-				contentActive:false
+				contentActive:false,
+				size:{
+					height: null,
+					width: null,
+					maxHeight: null,
+					maxWidth:null
+				}
 			},
 			application : {
 				shownWelcome : false,

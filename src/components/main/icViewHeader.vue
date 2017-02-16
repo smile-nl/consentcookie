@@ -1,5 +1,5 @@
 <template>
-	<div class="ic-view-header clearfix">
+	<div class="ic-view-header clearfix" v-bind:style="componentCss">
 		<div class="title">{{title}}</div>
 		<div class="actions">
 			<div v-if="loading" class="loader">
@@ -13,10 +13,18 @@
 </template>
 
 <script>
+
+	// Defaults
+	var DEFAULT_HEADER_HEIGHT = "60"; 
+	
+	// Vue module
 	module.exports = {
 		name : "icViewHeader",
 		props : {
-
+			height:{
+  				type: Number,
+  				default: DEFAULT_HEADER_HEIGHT
+			}
 		},
 		computed : {
 			title : function(){
@@ -24,6 +32,11 @@
 			},
 			loading : function(){
 				return this.$store.state.view.loading;
+			},
+			componentCss : function(){
+				return {
+					height: this.height + "px",
+				}
 			}
 		},
 		methods: {

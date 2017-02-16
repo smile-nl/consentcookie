@@ -1,6 +1,6 @@
 <template>
 	<div id="welcome" class="ic-content">
-		
+		<h1>Welcome</h1>
 	</div>
 </template>
 <script>

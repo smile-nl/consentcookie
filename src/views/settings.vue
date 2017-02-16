@@ -1,16 +1,17 @@
 <template>
-	<ic-content-box styleClass="test">
-		<div>
-			<ic-switch :value="testEnv" >Enable test enviroment</ic-switch>
-		</div>
-		<div>
-			<ic-switch :value="dnt" orientation="right">Enable "Do Not Track"</ic-switch>
-		</div>
-		<div>
-			<ic-button v-on:click="deleteProfile" size="large">Delete profile</ic-button>
-		</div>
-		
-	</ic-content-box>
+	<div id="settings">
+		<ic-content-box>
+			<div>
+				<ic-switch :value="testEnv" >Enable test enviroment</ic-switch>
+			</div>
+			<div>
+				<ic-switch :value="dnt" orientation="right">Enable "Do Not Track"</ic-switch>
+			</div>
+			<div>
+				<ic-button v-on:click="deleteProfile" size="large">Delete profile</ic-button>
+			</div>
+		</ic-content-box>
+	</div>
 </template>
 <script>
 

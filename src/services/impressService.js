@@ -25,9 +25,7 @@ var impressService = function() {
 	
 	// Private functions
 	function _initListeners(){
-		mainService.$on('init', function(){
-			_checkForContent();
-		});
+		
 	}
 	
 	function _impress(callback){

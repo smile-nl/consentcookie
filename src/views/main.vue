@@ -15,7 +15,7 @@
 			icMenu,icView
 		},
 		created : function() {
-					
+			
   		}
 	};
 </script>

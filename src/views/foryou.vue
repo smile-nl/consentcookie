@@ -1,13 +1,17 @@
 <template>
 	<div id="foryou" class="ic-content">
-		<div class="_ic_content">
-			<div class="_ic_impression" v-for="impression in impressions" :data-container-id="impression.container.id" 
+		<div v-if="!hasImpressions" class="no-content">
+			<i class="fa fa-gift" aria-hidden="true"></i>
+		</div>
+		<div v-else class="impressions">
+			<div class="impression" v-for="impression in impressions" :data-container-id="impression.container.id" 
 				:data-container-name="impression.container.name">
 				<div class="_ic_impression_name">{{impression.container.name}} </div>
 				<div class="_ic_impression_content">
 					{{impression.getMergedTemplates()}}
 				</div>
 			</div>
+		</div>
 		</div>
 	</div>
 </template>
@@ -40,6 +44,11 @@
 		data : function(){
 			return data;
 		},
+		computed: {
+			hasImpressions : function(){
+				return false;
+			}
+		},
 		methods : {
 			updateImpression : function(){
 				_impress();
@@ -58,12 +67,33 @@
 	
 	@import '../assets/scss/general-variables';
 
-	._ic_foryou{
-		height:100%;
-		min-height: 100%;
+	#foryou{
+		min-height: 400px;
+		
+		.no-content{
+			
+			text-align: center;
+			padding-top: 120px;
+			
+			i{
+				font-size: 100px;
+				opacity: 0.1;
+			}
+			
+		}
 		
 		._ic_content{
 			min-height: calc(100% - 70px); /* full height minus header */
+		}
+		
+		.impressions{
+			
+			
+			.impression{
+				padding: 20px 10px;
+				
+				
+			}
 		}
 		
 		._ic_impression{

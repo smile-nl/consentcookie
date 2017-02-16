@@ -1,6 +1,8 @@
 <template>
 	<div id="tracking" class="ic-content">
-		
+		<div class="no-content">
+			<i class="fa fa-line-chart" aria-hidden="true"></i>
+		</div>
 	</div>
 </template>
 <script>
@@ -33,3 +35,24 @@
 	};
 	
 </script>
+
+<style lang="scss">
+	
+	@import '../assets/scss/general-variables';
+
+	#tracking{
+		min-height: 400px;
+		
+		.no-content{
+			
+			text-align: center;
+			padding-top: 120px;
+			
+			i{
+				font-size: 100px;
+				opacity: 0.1;
+			}
+			
+		}
+	}
+</style>

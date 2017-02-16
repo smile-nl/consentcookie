@@ -1,6 +1,8 @@
 <template>
 	<div id="howto" class="ic-content">
-		
+		<div class="no-content">
+			<i class="fa fa-question" aria-hidden="true"></i>
+		</div>
 	</div>
 </template>
 <script>
@@ -31,3 +33,24 @@
 		}
 	};
 </script>
+
+<style lang="scss">
+	
+	@import '../assets/scss/general-variables';
+
+	#howto{
+		min-height: 400px;
+		
+		.no-content{
+			
+			text-align: center;
+			padding-top: 120px;
+			
+			i{
+				font-size: 100px;
+				opacity: 0.1;
+			}
+			
+		}
+	}
+</style>

@@ -8,6 +8,7 @@
       "vue-router":"^2.2.0",
       "vue-resource":"^1.1.2",
       "vuex":"2.1.1",
+      "vue-resize-directive":"^1.0.0",
       "font-awesome":"^4.6.3",
       "js-cookie":"^2.1.3"
    },
