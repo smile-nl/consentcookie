@@ -26,21 +26,36 @@ var iqnomyService = function() {
 	
 		_initStore();
 		_refreshProfile();
-		//_refreshImpressions();
+		_refreshImpressions();
 	}
 	
 	function _initStore(){
 		storeModule = {
 			state:{
-				profileId:_getProfileId(),
-				profile:null,
-				profileLoaded:false,
+				profile : {
+					id:_getProfileId(),
+					data:null,
+					loaded:false,
+				},
+				impress : {
+					impressions : null
+				}
 			},
 			mutations : {
 		  		updateProfile : function($state,$payload){
-		  			$state.profile = $payload;
-		  			$state.profileLoaded = true;    
+		  			$state.profile.data = $payload;
+		  			$state.profile.loaded = true;    
 	  			},
+	  			updateImpressions : function($state,$impressions){
+	  				if($impressions.length > 0){
+	  					for(var n in $impressions){
+	  						$impressions[n].getHTML = function(){
+	  							console.log(this);
+	  						}
+	  						$impressions[n].getHTML();
+	  					}
+	  				}
+	  			}
 	  		}
 		};
 		vue.$store.registerModule("iqnomy",storeModule);
@@ -83,7 +98,8 @@ var iqnomyService = function() {
 			"&fid=" + _getFollowId() +
 			"&tenant=" + _getTenantId() +
 			"&prid=" + _getProfileId() +
-			"&iqurl=" + encodeURIComponent(_getIQUrl());
+			"&iqurl=" + encodeURIComponent(_getIQUrl()) + 
+			"&jsonpTransport=_ic_jsonp_callback"
 	}
 	
 	function _refreshProfile() {
@@ -116,17 +132,12 @@ var iqnomyService = function() {
 			vue.$store.commit("updateImpressions",null);
 			return;
 		}
-		var callOptions = {
-			params : {
-				includeSessions:10,
-				includeEvents:50
-			}
-		};
 		
-		vue.$http.get(_getImpressionPath(),callOptions).then(function(response) {
-			console.log("dgsd");
-			console.log(response);
-			vue.$store.commit("updateImpressions",response.data);
+		vue.$http.jsonp(_getImpressionPath(),{
+			jsonpCallback: "_ic_jsonp_callback"
+		}).then(function(response){
+			var impressions = response.data && response.data.containerImpressions ? response.data.containerImpressions : [];
+			vue.$store.commit("updateImpressions",impressions);
 		});
 	}
 

@@ -11,9 +11,10 @@
 	
 	// Vue dependencies
 	var vue = require('vue');
-	var vueFilter = require('vue-filter');
+	// var vueFilter = require('vue-filter');
 	var vueState = require('./base/configState.js');
 	var vueRouter = require('./base/configRouter.js');
+	var vueResource = require('./base/configResource.js');
 	var vuexRouterSync = require("vuex-router-sync");
 	
 	// Vue Icookie Dependencies
@@ -38,9 +39,9 @@
 	/* Vue routing */ 
 	function initVue(){
 		
-		var store = new vueState(vue);
-		var router = new vueRouter(vue);
-		var services = new vueServices(vue);
+		var store = vueState(vue);
+		var router = vueRouter(vue);
+		var services = vueServices(vue);
 		
 		
 		initVueResource();
@@ -54,8 +55,6 @@
 			store: store,
 			services : services
 		}).$mount('#icookie');
-		
-		window.steventest = mainInstance;
 	}
 	
 	function initVueResource(){
@@ -73,7 +72,7 @@
 	}
 	
 	function initVueFilters(){
-		vue.use(vueFilter);
+		// vue.use(vueFilter);
 	}
 	
 	function initVueRouterSync($store,$router){
