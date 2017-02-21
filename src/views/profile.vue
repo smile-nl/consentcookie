@@ -6,70 +6,22 @@
 			</div>
 		</div>
 		<div v-if="profileLoaded && profile">
-			<div class="_ic_header">Profile</div>
-			<div class="_ic_properties">
-				<div class="_ic_property">
-					<div class="_ic_name">Id</div>
-					<div class="_ic_value">{{profile.id}}</div>
-				</div>
-				<div class="_ic_property">
-					<div class="_ic_name">Created</div>
-					<div class="_ic_value">{{profile.dateCreated}}</div>
-				</div>
-				<div class="_ic_property">
-					<div class="_ic_name">Last seen</div>
-					<div class="_ic_value">{{profile.dateLastSeen}}</div>
-				</div>
-			</div>
-			<div class="_ic_header">Stats</div>
-			<div class="_ic_properties">
-				<div class="_ic_property">
-					<div class="_ic_name">Session count</div>
-					<div class="_ic_value">{{profile.sessionCount}}</div>
-				</div>
-				<div class="_ic_property">
-					<div class="_ic_name">Pagevisit count</div>
-					<div class="_ic_value">{{profile.pagevisitCount}}</div>
-				</div>
-				<div class="_ic_property">
-					<div class="_ic_name">Visit count</div>
-					<div class="_ic_value">{{profile.sessions ? profile.sessions.length : ''}}</div>
-				</div>
-			</div>
-			<div class="_ic_header">Properties</div>
-			<div class="_ic_properties">				
-				<div class="_ic_property" v-for="property in profile.properties">
-					<div class="_ic_name">{{property.name}}</div>
-					<div class="_ic_value">{{property.value}}</div>
-				</div>
-			</div>
-			<div class="_ic_header">Dimensions</div>
-			<div class="_ic_properties">				
-				<div class="_ic_property" v-for="property in profile.dimensionProperties">
-					<div class="_ic_name">{{property.dimension.name}}</div>
-					<div class="_ic_value">{{property.value}}</div>
-				</div>
-			</div>
-			<div class="_ic_header">Last Events</div>
-			<div class="_ic_properties">				
-				<div class="_ic_property" v-for="session in profile.sessions">
-					<div class="_ic_name">Visit</div>
-					<div class="_ic_value">End: {{session.dateLastSeen }}</div>
-					<div class="_ic_value" v-for="event in session.events">
-						<i class="fa fa-clock-o" aria-hidden="true" :title="event.dateCreated"></i>
-						<span class="_ic_event_path" :title="event.type" >{{event.url}}</span>
-					</div>
-					<div class="_ic_value">Start: {{session.dateCreated}}</div>
-				</div>
-			</div>
+			<ic-tracking-status></ic-tracking-status>
+			<ic-content-box :title="'Dimensions'">
+			 	
+			</ic-content-box>
+			<ic-content-box :title="'Interesses'">
+				
+			</ic-content-box>
 		</div>
 	</div>
 </template>
 
 <script>
 
-	// Dependencies
-	var iqnomyService = require('services/iqnomyService.js');
+	// Components
+	var icTrackingStatus = require("components/tracking/icTrackingStatus.vue");
+	
 
 	// Defaults
 	var viewTitle = "Your profile";
@@ -78,27 +30,13 @@
 	var data = {};
 	
 	// Private functions
-	function _getProfile($vueScope,$refresh){
-		if($refresh || null == $vueScope.profile){
-			$vueScope.isLoading = true;
-			iqnomyService.getProfile(function($data){
-				$vueScope.hasError = !$data.ok; 		
-				$vueScope.errorCode = $data.statusCode;
-				$vueScope.errorMessage = $data.message;			
-				$vueScope.profile = $data.ok ? $data.data : {};
-				$vueScope.isLoading = false;
-				if(!$vueScope.initFinished){
-					$vueScope.initFinished = true;
-				}
-				console.log($data.data);
-			});
-		}
-	}
 	
 	// Public functions
 	module.exports = {
 		name:"profile",
 		components:{
+			icTrackingStatus:icTrackingStatus,
+			
 		},
 		data : function(){
 			return data;

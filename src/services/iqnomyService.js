@@ -7,12 +7,14 @@
 var iqnomyService = function() {
 	
 	// Libraries
+	var underscore = require("underscore");
 	var jsCookie = require('js-cookie');
 
 	// Defaults
 	var DEFAULT_COOKIE_KEY_PROFILEID = "_iqprid";
 	var DEFAULT_COOKIE_KEY_FOLLOWID = "_fid";
 	var DEFAULT_URL_PARAM_ICOOKIE_IMPRESS_MARKER = "#icookie/selectedForYou";
+	var DEFAULT_URL_PARAM_IMPRESS_CALLBACK_PREFIX = "_ic_jsonp_";
 	
 	var vue = null;
 	var storeModule = null;
@@ -22,6 +24,7 @@ var iqnomyService = function() {
 
 	// Private functions
 	function _init(vueServices){
+		
 		vue = vueServices.vueInstance;
 	
 		_initStore();
@@ -38,7 +41,8 @@ var iqnomyService = function() {
 					loaded:false,
 				},
 				impress : {
-					impressions : null
+					raw : null,
+					impressions: []
 				}
 			},
 			mutations : {
@@ -47,14 +51,7 @@ var iqnomyService = function() {
 		  			$state.profile.loaded = true;    
 	  			},
 	  			updateImpressions : function($state,$impressions){
-	  				if($impressions.length > 0){
-	  					for(var n in $impressions){
-	  						$impressions[n].getHTML = function(){
-	  							console.log(this);
-	  						}
-	  						$impressions[n].getHTML();
-	  					}
-	  				}
+	  				_processImpressions($state,$impressions);
 	  			}
 	  		}
 		};
@@ -91,7 +88,7 @@ var iqnomyService = function() {
 		return vue.$services.settings.getRESTBasePath() + "/liquidaccount/" + _getTenantId() + "/profile/cookie/" + _getProfileId();
 	}
 	
-	function _getImpressionPath(){
+	function _getImpressionPath($uniqueJSONP){
 		return vue.$services.settings.getImpressBasePath() +
 			"/" + _generateGUID() +
 			"?iqversion=3" +
@@ -99,7 +96,7 @@ var iqnomyService = function() {
 			"&tenant=" + _getTenantId() +
 			"&prid=" + _getProfileId() +
 			"&iqurl=" + encodeURIComponent(_getIQUrl()) + 
-			"&jsonpTransport=_ic_jsonp_callback"
+			"&jsonpTransport=" + DEFAULT_URL_PARAM_IMPRESS_CALLBACK_PREFIX + ($uniqueJSONP ? $uniqueJSONP : "callback")
 	}
 	
 	function _refreshProfile() {
@@ -133,12 +130,42 @@ var iqnomyService = function() {
 			return;
 		}
 		
-		vue.$http.jsonp(_getImpressionPath(),{
-			jsonpCallback: "_ic_jsonp_callback"
+		var jsonpUniqueId = Math.random().toString(36).substr(2);
+		
+		vue.$http.jsonp(_getImpressionPath(jsonpUniqueId),{
+			jsonpCallback: DEFAULT_URL_PARAM_IMPRESS_CALLBACK_PREFIX + jsonpUniqueId
 		}).then(function(response){
 			var impressions = response.data && response.data.containerImpressions ? response.data.containerImpressions : [];
 			vue.$store.commit("updateImpressions",impressions);
 		});
+	}
+	
+	function _processImpressions($state,$impressions){
+		// Lets save the original state
+		$state.impress.raw = $impressions ? $impressions : null;
+		
+		var impressions = [];
+		
+		underscore.each($impressions,function($impression){
+			var container = $impression.container;
+			underscore.each($impression.imprElements,function($impressionElement){
+				impressions.push(_createImpression(container,$impressionElement));
+			});
+		});
+		$state.impress.impressions = impressions;
+	}
+	
+	function _createImpression($container,$impression){
+		var impression = underscore.pick($impression, 'id','name','description','htmlTemplate','lqcid');
+		impression.container = underscore.pick($container,"id","name","description");
+		impression.hasContent =  function(){
+			return typeof this.htmlTemplate == 'string' && !underscore.isEmpty(this.htmlTemplate.trim());
+		}
+		return impression;
+	}
+
+	function _deleteProfile(){
+		
 	}
 
 	// Public functions
@@ -147,12 +174,9 @@ var iqnomyService = function() {
 		init: function(vueServices){
 			_init(vueServices);
 		},
-		refreshProfile : function() {
-			_refreshProfile();
-		},
-		refreshImpressions : function(){
-			_refreshImpressions();
-		}
+		refreshProfile : _refreshProfile,
+		refreshImpressions : _refreshImpressions,
+		deleteProfile : _deleteProfile
 	};
 }();
 module.exports = iqnomyService;

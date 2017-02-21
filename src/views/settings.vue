@@ -2,10 +2,10 @@
 	<div id="settings">
 		<ic-content-box>
 			<div>
-				<ic-switch :value="testEnv" >Enable test enviroment</ic-switch>
+				<ic-switch v-model="testEnv" >Enable test enviroment</ic-switch>
 			</div>
 			<div>
-				<ic-switch :value="dnt" orientation="right">Enable "Do Not Track"</ic-switch>
+				<ic-switch v-model="dnt" orientation="right">Enable "Do Not Track"</ic-switch>
 			</div>
 			<div>
 				<ic-button v-on:click="deleteProfile" size="large">Delete profile</ic-button>
@@ -24,24 +24,24 @@
 		name:"settings",
 		methods : {
 			deleteProfile: function(){
-				
+				this.$services.iqnomy.deleteProfile();
 			}
 		},
 		computed: {
 			dnt : {
 				set: function(val){
-					
+					return this.$services.settings.setDNT(val)
 				},
 				get: function(){
-					return this.$store.state.settings.dnt;
+					return this.$services.settings.isDNT()
 				}
 			},
 			testEnv : {
 				set: function(val){
-					
+					return this.$services.settings.setTestEnv(val)
 				},
 				get: function(){
-					return "test" == this.$store.state.settings.env;
+					return this.$services.settings.isTestEnv()
 				}
 			}
 		},

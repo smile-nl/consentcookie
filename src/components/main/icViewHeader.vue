@@ -1,12 +1,14 @@
 <template>
 	<div class="ic-view-header clearfix" v-bind:style="componentCss">
-		<div class="title">{{title}}</div>
-		<div class="actions">
-			<div v-if="loading" class="loader">
-				<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
-			</div>
-			<div class="close" v-on:click="close()">
-				<i class="fa fa-close" aria-hidden="true"></i>
+		<div class="wrapper">
+			<div class="title">{{title}}</div>
+			<div class="actions">
+				<div v-if="loading" class="loader">
+					<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
+				</div>
+				<div class="action close" v-on:click="close()">
+					<i class="fa fa-close" aria-hidden="true"></i>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -67,11 +69,19 @@
 			font-weight: bold;
 		}
 		
+		.wrapper{
+			
+		}
+		
 		.actions {
 			float:right;
 			
 			> * {
 				cursor: pointer;
+			}
+			
+			.action{
+				padding: 15px;
 			}
 		}
 		

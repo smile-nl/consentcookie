@@ -16,11 +16,12 @@ module.exports = function configState(vue) {
 		"application.shownWelcome",
 		"application.lastPath",
 		"route",
-		
+		"settings",
 	];
 	
 	var vuexPlugins = [
 		vuexPersistedState({
+			key: "icookie",
 			paths: pathsToPersist,
 		}),
 	];
@@ -60,10 +61,6 @@ module.exports = function configState(vue) {
 			application : {
 				shownWelcome : false,
 				lastPath: null
-			},
-			settings : {
-				env: envs[0],
-				dnt: false,	
 			}
 	  	},
 	  	mutations : {
@@ -75,10 +72,6 @@ module.exports = function configState(vue) {
 	  		updateApplication : function($state,$payload){
 	  			$state.application.shownWelcome = !validator.isBoolean($payload.shownWelcome) ? $state.application.shownWelcome : $payload.shownWelcome;
 	  			$state.application.lastPath = validator.isInValid($payload.lastPath) ? $state.application.lastPath : $payload.lastPath;
-	  		},
-	  		updateSettings : function($state,$payload){
-	  			$state.settings.dnt = !validator.isBoolean($payload.dnt) ? $state.settings.dnt : $payload.dnt;
-	  			$state.settings.env = validator.isString($payload.env) ? $state.settings.env : $payload.env;
 	  		},
 	  		toggleView : function($state){
 	  			$state.view.open = !$state.view.open; 

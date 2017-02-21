@@ -55,6 +55,9 @@
 			store: store,
 			services : services
 		}).$mount('#icookie');
+		
+		// Debugging
+		window.steventest = mainInstance;
 	}
 	
 	function initVueResource(){

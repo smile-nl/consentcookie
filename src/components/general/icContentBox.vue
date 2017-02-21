@@ -1,6 +1,9 @@
 <template>
 	<div :class="'ic-content-box' + clazz">
-		<slot></slot>
+		<div v-if="title" class="title">{{title}}</div>
+		<div class="content">
+			<slot></slot>
+		</div>
 	</div>
 </template>
 
@@ -8,7 +11,8 @@
 module.exports = {
     name: 'ic-content-box',
     props: {
-        styleClass: String
+        styleClass: String,
+        title: String
     },
     data : function(){
     	return {};
@@ -21,21 +25,25 @@ module.exports = {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
  
   @import '../../assets/scss/general-variables';
   
   .ic-content-box{
   		margin: 5px;
-  		border: $ic-content-border;
+  		
+  		.content{
+  			border: $ic-content-border;
+  		
+  		> * {
+  			padding: $ic-content-padding;
+  			border-bottom: $ic-content-border;
+  		}
   	
-  	> * {
-  		padding: $ic-content-padding;
-  		border-bottom: $ic-content-border;
-  	}
-  	
-  	> *:last-child{
-  		border:none;
-  	}
+  		> *:last-child{
+  			border:none;
+  		}
+  		
+	}
   }
 </style>

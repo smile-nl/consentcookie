@@ -3,39 +3,20 @@
 		<div v-if="!hasImpressions" class="no-content">
 			<i class="fa fa-gift" aria-hidden="true"></i>
 		</div>
-		<div v-else class="impressions">
-			<div class="impression" v-for="impression in impressions" :data-container-id="impression.container.id" 
-				:data-container-name="impression.container.name">
-				<div class="_ic_impression_name">{{impression.container.name}} </div>
-				<div class="_ic_impression_content">
-					{{impression.getMergedTemplates()}}
-				</div>
-			</div>
-		</div>
+		<div v-else class="ic-impressions">
+			<div class="ic-impression-wrapper" v-for="impression in impressions" v-html="impression.htmlTemplate"></div>
 		</div>
 	</div>
 </template>
-<script>
-	// Dependencies
-	var impressService = require('services/impressService.js');
 
+<script>
 	// Defaults
 	var viewTitle = "Selected for you";
 
-	var data = {};
-	data.isLoading = false;
-	data.impressions = null;
-	
-	function _impress(){
-		data.isLoading = true;
-		impressService.impress(_impressCallback);
-	}
-	
-	function _impressCallback(hasError,error,containerImpressions){
-		data.isLoading = false;
-		data.impressions = containerImpressions;
-	}
-	
+	var data = {
+		
+	};
+
 	// Public functions
 	module.exports = {
 		name:"foryou",
@@ -46,17 +27,11 @@
 		},
 		computed: {
 			hasImpressions : function(){
-				return false;
+				return this.$store.state.iqnomy.impress.impressions.length != 0;
+			},
+			impressions : function(){
+				return this.$store.state.iqnomy.impress.impressions;
 			}
-		},
-		methods : {
-			updateImpression : function(){
-				_impress();
-			}
-		},
-		ready : function() {
-			var scope = this;
-			scope.updateImpression();
 		},
 		beforeMount : function(){
 			this.$store.commit('updateView',{title: viewTitle});
@@ -82,29 +57,13 @@
 			
 		}
 		
-		._ic_content{
-			min-height: calc(100% - 70px); /* full height minus header */
+		.ic-impression-wrapper{
+			margin:0px 10px 10px 10px;
+			border: $ic-content-border;
 		}
 		
-		.impressions{
-			
-			
-			.impression{
-				padding: 20px 10px;
-				
-				
-			}
-		}
-		
-		._ic_impression{
-			padding: 20px 10px;
-			
-			._ic_impression_content{
-				
-				> *,img {
-					width: 100%;
-				}
-			}
+		.ic-impression-wrapper:first-child{
+			margin: 10px;
 		}
 	}
 </style>
