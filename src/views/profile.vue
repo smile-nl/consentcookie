@@ -8,7 +8,7 @@
 		<div v-if="profileLoaded && profile">
 			<ic-tracking-status></ic-tracking-status>
 			<ic-content-box :title="'Dimensions'">
-			 	<ic-dimensions></ic-dimensions>
+			 	<ic-dimensions :profile="profile"></ic-dimensions>
 			</ic-content-box>
 			<ic-content-box :title="'Interesses'">
 				<ic-interests :interests="profileInterests"></ic-interests>
