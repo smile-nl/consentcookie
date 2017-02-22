@@ -15,6 +15,9 @@ module.exports = function configServiceLoader(vue) {
 		},{
 			name:"iqnomy",
 			service: require("services/iqnomyService.js")
+		},{
+			name:"view",
+			service: require("services/viewService.js")
 		}
 	]; 
 	

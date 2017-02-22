@@ -17,7 +17,7 @@
 	// Module data
 	var moduleData = {
 		
-	}
+	};
 	
 	// Vue module
 	module.exports = {

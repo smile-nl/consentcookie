@@ -8,10 +8,10 @@
 		<div v-if="profileLoaded && profile">
 			<ic-tracking-status></ic-tracking-status>
 			<ic-content-box :title="'Dimensions'">
-			 	
+			 	<ic-dimensions></ic-dimensions>
 			</ic-content-box>
 			<ic-content-box :title="'Interesses'">
-				
+				<ic-interests :interests="profileInterests"></ic-interests>
 			</ic-content-box>
 		</div>
 	</div>
@@ -21,7 +21,8 @@
 
 	// Components
 	var icTrackingStatus = require("components/tracking/icTrackingStatus.vue");
-	
+	var icDimensions = require("components/profile/icDimensions.vue");
+	var icInterests = require("components/profile/icInterests.vue");
 
 	// Defaults
 	var viewTitle = "Your profile";
@@ -36,7 +37,8 @@
 		name:"profile",
 		components:{
 			icTrackingStatus:icTrackingStatus,
-			
+			icDimensions:icDimensions,
+			icInterests:icInterests
 		},
 		data : function(){
 			return data;
@@ -47,6 +49,12 @@
 			},
 			profileLoaded : function(){
 				return this.$store.state.iqnomy.profile.loaded;
+			},
+			profileInterests : function(){
+				if(this.$store.state.iqnomy.profile.loaded){
+					return this.$store.state.iqnomy.profile.data.dimensionProperties;
+				}
+				return [];
 			}
 		},
 		methods : {
@@ -83,29 +91,8 @@
 			
 		}
 		
-		._ic_header{
-			margin:10px 20px 5px;
-			font-family: "Calibre Regular", "sans-serif";
-    		font-size: 20px;
-    		font-weight: bold;
-		}
-		
-		._ic_properties{
-			margin:0px 20px;
-			padding:10px;
-			border: 1px solid #DDDDDD;
-			
-			
-			._ic_property{
-				margin-bottom: 10px;
-				
-				._ic_name{
-					font-family: "Calibre Regular", "sans-serif";
-    				font-size: 15px;
-    				font-weight: bold;
-    				color:#6E6E6E;
-				}
-			}
-		}
+	  	.ic-content-box .content * {
+	  		padding: 10px;
+	  	}
 	}
 </style>

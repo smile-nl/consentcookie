@@ -38,7 +38,7 @@
 			componentCss : function(){
 				return {
 					height: this.height + "px",
-				}
+				};
 			}
 		},
 		methods: {
@@ -81,7 +81,7 @@
 			}
 			
 			.action{
-				padding: 15px;
+				
 			}
 		}
 		

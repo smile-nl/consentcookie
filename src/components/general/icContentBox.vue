@@ -32,18 +32,23 @@ module.exports = {
   .ic-content-box{
   		margin: 5px;
   		
+  		.title{
+  			margin: 20px 10px 10px 10px;
+    		font-weight: 600;
+  		}
+  		
   		.content{
   			border: $ic-content-border;
   		
-  		> * {
-  			padding: $ic-content-padding;
-  			border-bottom: $ic-content-border;
-  		}
-  	
-  		> *:last-child{
-  			border:none;
-  		}
-  		
-	}
+	  		> * {
+	  			padding: $ic-content-padding;
+	  			border-bottom: $ic-content-border;
+	  		}
+	  	
+	  		> *:last-child{
+	  			border:none;
+	  		}
+	  		
+		}
   }
 </style>
