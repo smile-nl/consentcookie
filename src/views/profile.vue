@@ -1,6 +1,6 @@
 <template>
 	<div id="profile" class="ic-content">		
-		<div v-if="!profileLoaded">
+		<div v-if="!profileLoaded || !profile">
 			<div class="no-content">
 				<i class="fa fa-user" aria-hidden="true"></i>
 			</div>
@@ -83,6 +83,7 @@
 			
 			text-align: center;
 			padding-top: 120px;
+			min-height: 400px;
 			
 			i{
 				font-size: 100px;

@@ -76,9 +76,6 @@ module.exports = function configRouter(vue) {
 			path:'/profile',
 			component : require('views/profile.vue')
 		},{
-			path:'/tracking',
-			component : require('views/tracking.vue')
-		},{
 			path:DEFAULT_PATH_FORYOU,
 			component : require('views/foryou.vue')
 		},{
@@ -87,6 +84,14 @@ module.exports = function configRouter(vue) {
 		},{
 			path:'/howto',
 			component : require('views/howto.vue')
+		},{
+			path:'/tracking',
+			component : require('views/tracking.vue')
+		},{
+			name:'trackingDetail',
+			path:'/tracking/detail',
+			component : require('views/tracking-detail.vue'),
+			props: true,
 		}];
 	}	
 	

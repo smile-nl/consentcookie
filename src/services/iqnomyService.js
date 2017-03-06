@@ -165,7 +165,7 @@ var iqnomyService = function() {
 	}
 
 	function _deleteProfile(){
-		
+		vue.$store.commit("updateApplication",{shownWelcome:false});
 	}
 
 	// Public functions

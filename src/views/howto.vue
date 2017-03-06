@@ -1,8 +1,11 @@
 <template>
 	<div id="howto" class="ic-content">
-		<div class="big-title"></div>
-		<div class="info">
-			<video id="ic-howto-video" src="http://work-steven.asknow.local/icookie/static/icookie.mp4" width="100%" preload></video>
+		<div class="ic-info">
+			<div class="title">Wil jij weten hoe Icookie werkt?</div>
+			<div class="text">Bekijk het filmpje hieronder en kom er achter hoe Icookie je de controle terug geeft.</div>
+		</div>
+		<div class="howto-video">
+			<video id="ic-video-player" src="http://work-steven.asknow.local/icookie/static/icookie.mp4" width="100%" preload></video>
 			<div class="ic-video-toggle" v-on:click="toggleVideo" :class="toggleClass">
 				<div class="icon-wrapper inline-fix">
 					<i v-show="!isPlaying" class="fa fa-play-circle v-centered" aria-hidden="true"></i>
@@ -53,7 +56,7 @@
 		},
 		mounted: function () {
  	 		this.$nextTick(function () {
-    			videoPlayer = this.$el.querySelector('#ic-howto-video');
+    			videoPlayer = this.$el.querySelector('#ic-video-player');
   			})
 		},
 		beforeMount : function(){
@@ -80,7 +83,7 @@
 			
 		}
 		
-		.info{
+		.howto-video{
 			position: relative;
 			width: calc(100%-40px);
 			margin: 20px;

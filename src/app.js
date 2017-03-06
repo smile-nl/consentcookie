@@ -5,9 +5,11 @@
 (function(){
 
 	// Static dependencies
-	require('./assets/css/icookie.css');
+	// require('./assets/css/icookie.css');
 	// require('./assets/css/animate.css');
 	require('font-awesome/css/font-awesome.css');
+	// 
+	require('./assets/scss/_icookie.scss');
 	
 	// Vue dependencies
 	var vue = require('vue');

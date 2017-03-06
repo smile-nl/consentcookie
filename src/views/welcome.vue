@@ -1,6 +1,15 @@
 <template>
 	<div id="welcome" class="ic-content">
-		<h1>Welcome</h1>
+		<div class="ic-info">
+			<div class="title">Wil jij volledige controle over jouw data?</div>
+			<div class="text">Geniet van gepersonaliseerde content en ben de baas over jouw persoonlijke data met behulp van Icookie</div>
+		</div>
+		<div class="placeholder">
+			
+			<div class="cta">
+				<ic-button v-on:click="deleteProfile" size="large">Aan de slag met Icookie</ic-button>
+			</div>
+		</div>
 	</div>
 </template>
 <script>
@@ -34,3 +43,28 @@
 	};
 	
 </script>
+
+
+<style lang="scss" scoped>
+	
+	#welcome{
+		
+		.placeholder{
+			position: relative;
+			width:100%;
+			height: 220px;
+    		margin-top: 50px;
+			background-image: url('//work-steven.asknow.local/icookie/static/welcome_placeholder_v1.jpg');
+			background-repeat: no-repeat;
+			background-position: top center;
+			
+			.cta{
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				right: 0px;
+				text-align: center;
+			}
+		}
+	}
+</style>

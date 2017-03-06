@@ -59,6 +59,7 @@ module.exports = {
   .ic-switch {
       display: block;
       position: relative;
+  	  height: $switch-height;
       
       .ic-switch-label {
   			float:left;

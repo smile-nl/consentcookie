@@ -32,7 +32,8 @@ $hs-color-hover-grey: rgba(0,0,0,0.3);
 $ic-color-white: #FFFFFF;
 $ic-color-grey: #d9d9d9;
 
-$ic-brand-color: rgba(252,109,109,255);
+$ic-brand-color: rgba(252,109,109,1);
+$ic-brand-color-faded: rgba(252,109,109,0.4);
 
 // Generals
 $ic-drop-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);

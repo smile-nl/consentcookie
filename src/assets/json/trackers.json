@@ -1,35 +1,115 @@
-{ 
-	trackers : [
-		{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
-		},{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
-		},{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
-		},{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
-		},{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
-		},{
-			name:"",
-			description:"",
-			icon:"",
-			tag:"",
+{
+	"trackers": [{
+		"name": "Icookie",
+		"description": "A widget that gives insight in whick trackers are used on the website",
+		"icon": "http://www.humanswitch.io/wp-content/uploads/2015/08/favicon-152.png",
+		"type": "widget",
+		"detail": {
+			"infolink": "",
+			"websitelink": "https://www.icookie.io",
+			"bullets": {
+				"profiling": false,
+				"crosssite": false,
+				"optional": false,
+				"functional": true,
+				"personal" : false
+			}
 		}
-	]	
+	}, {
+		"name": "IQNOMY",
+		"description": "A tracker for anonymous realtime profiling and personalisation",
+		"icon": "https://management.iqnomy.com/management/img/IQ_50h.png",
+		"type": "tracker",
+		"detail": {
+			"infolink": "http://www.humanswitch.io",
+			"websitelink": "http://www.humanswitch.io",
+			"bullets": {
+				"profiling": true,
+				"crosssite": false,
+				"optional": false,
+				"functional": false,
+				"personal" : false
+			}
+		}
+	}, {
+		"name": "Facebook",
+		"description": "",
+		"icon": "https://en.facebookbrand.com/wp-content/uploads/2016/05/FB-fLogo-Blue-broadcast-2.png",
+		"type": "tracker",
+		"detail": {
+			"infolink": "https://www.facebook.com/business/",
+			"websitelink": "https://www.facebook.com/business/",
+			"bullets": {
+				"profiling": true,
+				"crosssite": true,
+				"optional": false,
+				"functional": false,
+				"personal" : false
+			}
+		}
+	}, {
+		"name": "Google Analytics",
+		"description": "",
+		"icon": "https://ssl.gstatic.com/analytics/header/legacy/v1/ic_analytics.svg",
+		"type": "tracker",
+		"detail": {
+			"infolink": "https://analytics.google.com",
+			"websitelink": "https://analytics.google.com",
+			"bullets": {
+				"profiling": true,
+				"crosssite": true,
+				"optional": false,
+				"functional": false,
+				"personal" : false
+			}
+		}
+	}, {
+		"name": "Relay 42",
+		"description": "",
+		"icon": "https://cdn2.hubspot.net/hubfs/1765314/Icons_Buttons_Logos/relay42_logo.png",
+		"type": "tracker",
+		"detail": {
+			"infolink": "http://www.relay42.com",
+			"websitelink": "http://www.relay42.com",
+			"bullets": {
+				"profiling": true,
+				"crosssite": true,
+				"optional": false,
+				"functional": false,
+				"personal" : true
+			}
+		}
+	}, {
+		"name": "Twitter",
+		"description": "",
+		"icon": "https://www.matrixgroup.net/snackoclock/wp-content/uploads/2012/07/twitter-bird-light-bgs.png",
+		"type": "tracker",
+		"detail": {
+			"infolink": "https:/business.twitter.com",
+			"websitelink": "https:/business.twitter.com",
+			"bullets": {
+				"profiling": true,
+				"crosssite": true,
+				"optional": false,
+				"functional": false,
+				"personal" : true
+			}
+		}
+	}, {
+		"name": "Google +",
+		"description": "",
+		"icon": "http://www.freeiconspng.com/uploads/google-plus-logo-5.png",
+		"type": "tracker",
+		"detail": {
+			"infolink": "https://plus.google.com/",
+			"websitelink": "https://plus.google.com/",
+			"bullets": {
+				"profiling": false,
+				"crosssite": true,
+				"optional": false,
+				"functional": false,
+				"personal" : true
+			}
+		}
+	}]
 }
