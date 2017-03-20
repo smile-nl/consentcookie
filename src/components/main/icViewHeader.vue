@@ -66,6 +66,7 @@
 		.title {
 			float:left;
 			font-size: 16px;
+			letter-spacing: 1px;
 			font-weight: bold;
 		}
 		

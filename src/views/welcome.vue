@@ -1,8 +1,8 @@
 <template>
 	<div id="welcome" class="ic-content">
 		<div class="ic-info">
-			<div class="title">Wil jij volledige controle over jouw data?</div>
-			<div class="text">Geniet van gepersonaliseerde content en ben de baas over jouw persoonlijke data met behulp van Icookie</div>
+			<div class="title">Testwebsite.nl maakt gebruik van cookies</div>
+			<div class="text">Met deze applicatie krijg je informatie over welke cookies dat zijn én kun je zien welke voordelen dat voor jou oplevert. </div>
 		</div>
 		<div class="placeholder">
 			
@@ -17,7 +17,7 @@
 	// Dependencies
 	
 	// Defaults
-	var viewTitle = "Welcome";
+	var viewTitle = "Welkom bij icookie";
 	
 	// View state
 	var data = {};
@@ -52,18 +52,18 @@
 		.placeholder{
 			position: relative;
 			width:100%;
-			height: 220px;
+			height: 240px;
     		margin-top: 50px;
 			background-image: url('//work-steven.asknow.local/icookie/static/welcome_placeholder_v1.jpg');
 			background-repeat: no-repeat;
 			background-position: top center;
 			
 			.cta{
-				position: absolute;
-				bottom: 0px;
-				left: 0px;
-				right: 0px;
-				text-align: center;
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			right: 10px;
+			text-align: center;
 			}
 		}
 	}
