@@ -1,5 +1,5 @@
 <template>
-	<router-link :to="data.path" class="ic-menu-item" tag="div">
+	<router-link :to="data.path" class="ic-menu-item" tag="div" :title="data.info">
 		<i :class="'fa fa-' + data.icon" aria-hidden="true"></i>
 	</router-link>
 </template>

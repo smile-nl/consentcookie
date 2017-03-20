@@ -20,19 +20,21 @@
 	var menuItems = [{
 		icon : "gift",
 		path : "/foryou",
-	}, {
-		icon : "question",
-		path : "/howto",
-	}, {
-		icon : "line-chart",
-		path : "/tracking",
-	}, {
-		icon : "cogs",
-		path : "/settings",
+		info : "Voor jou",
 	}, {
 		icon : "user",
 		path : "/profile",
+		info : "Profielen",
+	}, {
+		icon : "toggle-on",
+		path : "/tracking",
+		info : "Voorkeuren"
+	}, {
+		icon : "question",
+		path : "/howto",
+		info : "Info",
 	}];
+
 
 	/* VUE */
 	module.exports = {
