@@ -1,25 +1,23 @@
 <template>
 	<div id="howto" class="ic-content">
 		<div class="ic-info">
-			<div class="title">Wil jij weten hoe Icookie werkt?</div>
-			<div class="text">Bekijk het filmpje hieronder en kom er achter hoe Icookie je de controle terug geeft.</div>
+			<div class="title">Met icookie heb je controle over jouw data.</div>
+			<div class="text">Met icookie laten we zien welke data we verzamelen, leggen we uit waarom we deze data nodig hebben en krijg je de mogelijkheid om de datastromen aan of uit te zetten. Zo weet je precies waar je aan toe bent en dat is wel zo eerlijk, want het is jouw data.</div>
+			<div class="text">Door ons toestemming te geven om jouw data te gebruiken, kunnen we je <router-link to="foryou">persoonlijke aanbiedingen</router-link> doen die bij jouw interesses passen. Daarnaast verbeteren we onze website, passen we ons assortiment aan en laten we relevante reclame zien.</div>
+			<div class="text">Bekijk de functie per datastroom door in het <router-link to="tracking">‘Voorkeuren’ scherm</router-link> op ‘meer weten’ te klikken.</div>
+
+			<div class="title">icookie op uw website?</div>
+			<div class="text">HIER KOMT HET FINAL FILMPJE</div>
+			<div class="text"> Ga naar <a href="www.icookie.io">www.icookie.io</a> voor meer informatie </div>
+
 		</div>
-		<div class="howto-video">
-			<video id="ic-video-player" src="http://work-steven.asknow.local/icookie/static/icookie.mp4" width="100%" preload></video>
-			<div class="ic-video-toggle" v-on:click="toggleVideo" :class="toggleClass">
-				<div class="icon-wrapper inline-fix">
-					<i v-show="!isPlaying" class="fa fa-play-circle v-centered" aria-hidden="true"></i>
-					<i v-show="isPlaying" class="fa fa-pause-circle v-centered" aria-hidden="true"></i>
-				</div>
-			</div>
-		</div>		
 	</div>
 </template>
 <script>
 	// Dependencies
 
 	// Defaults
-	var viewTitle = "How it works";
+	var viewTitle = "Hoe icookie werkt";
 	
 	// View state
 	var data = {
@@ -71,18 +69,6 @@
 
 	#howto{
 		
-		.no-content{
-			
-			text-align: center;
-			padding-top: 120px;
-			
-			i{
-				font-size: 100px;
-				opacity: 0.1;
-			}
-			
-		}
-		
 		.howto-video{
 			position: relative;
 			width: calc(100%-40px);
@@ -106,7 +92,6 @@
 				    	display:none;
 				    	font-size: 40px;
 				    }
-			    
 			    }
 			    
 	          	&:hover{

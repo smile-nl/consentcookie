@@ -91,7 +91,7 @@
   padding: 0;
   border: 0;
   font-size: 100%;
-  font-family: Calibre, Helvetica, sans-serif;
+  font-family: Calibre-Regular, Helvetica, sans-serif;
   vertical-align: baseline;
   -webkit-font-smoothing: antialiased;
 
@@ -123,19 +123,34 @@
 }
 
 /* icookie general styling */
-#icookie .ic-info{
-  
+#icookie a{
+  color: $ic-brand-color;
+}
+
+#icookie .no-content {
   text-align: center;
-  margin:20px;
+  padding-top: 120px;
+  min-height: 400px;
+
+  i {
+    font-size: 100px;
+    opacity: 0.1;
+  }
+}
+
+#icookie .ic-info{
+  margin: 0px 20px 20px 20px;
   
   .title{
       font-size: 26px;
       color:$ic-brand-color;
-      margin:30px 0px;
+      margin: 30px 0px 5px 0px;
    }
   
   .text {
+      line-height: 22px;
       font-size: 18px;
+      padding-top: 15px;
   }
 }
 

@@ -60,17 +60,6 @@
 	#tracking{
 		min-height: 400px;
 		
-		.no-content{
-			
-			text-align: center;
-			padding-top: 120px;
-			
-			i{
-				font-size: 100px;
-				opacity: 0.1;
-			}
-		}
-		
 		.trackers{
 			
 			padding:20px 10px;

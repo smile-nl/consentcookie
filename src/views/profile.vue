@@ -6,7 +6,7 @@
 			</div>
 		</div>
 		<div v-if="profileLoaded && profile">
-			<ic-tracking-status></ic-tracking-status>
+
 			<ic-content-box :title="'Dimensions'">
 			 	<ic-dimensions :profile="profile"></ic-dimensions>
 			</ic-content-box>
@@ -20,12 +20,11 @@
 <script>
 
 	// Components
-	var icTrackingStatus = require("components/tracking/icTrackingStatus.vue");
 	var icDimensions = require("components/profile/icDimensions.vue");
 	var icInterests = require("components/profile/icInterests.vue");
 
 	// Defaults
-	var viewTitle = "Your profile";
+	var viewTitle = "Jouw profielen";
 
 	// View state
 	var data = {};
@@ -36,7 +35,6 @@
 	module.exports = {
 		name:"profile",
 		components:{
-			icTrackingStatus:icTrackingStatus,
 			icDimensions:icDimensions,
 			icInterests:icInterests
 		},
@@ -78,19 +76,6 @@
 	@import '../assets/scss/general-variables';
 
 	#profile{
-		
-		.no-content{
-			
-			text-align: center;
-			padding-top: 120px;
-			min-height: 400px;
-			
-			i{
-				font-size: 100px;
-				opacity: 0.1;
-			}
-			
-		}
 		
 	  	.ic-content-box .content * {
 	  		padding: 10px;
