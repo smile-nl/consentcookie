@@ -7,7 +7,15 @@
 			<div class="text">Bekijk de functie per datastroom door in het <router-link to="tracking">‘Voorkeuren’ scherm</router-link> op ‘meer weten’ te klikken.</div>
 
 			<div class="title">icookie op uw website?</div>
-			<div class="text">HIER KOMT HET FINAL FILMPJE</div>
+			<div class="howto-video">
+				<video id="ic-video-player" src="https://www.icookie.io/video/icookie_introductie_voor_website_eigenaren.mp4" width="100%" preload></video>
+				<div class="ic-video-toggle" v-on:click="toggleVideo" :class="toggleClass">
+					<div class="icon-wrapper inline-fix">
+						<i v-show="!isPlaying" class="fa fa-play-circle v-centered" aria-hidden="true"></i>
+						<i v-show="isPlaying" class="fa fa-pause-circle v-centered" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>		
 			<div class="text"> Ga naar <a href="www.icookie.io">www.icookie.io</a> voor meer informatie </div>
 
 		</div>
@@ -21,7 +29,7 @@
 	
 	// View state
 	var data = {
-		toggleClass : "paused",
+		toggleClass : "begin",
 		isPlaying: false,
 		isStarted: false,
 		isEnded: false,
@@ -102,6 +110,14 @@
 		      		}
 		      	}  
 			}
+			
+			.ic-video-toggle.begin{
+				background: rgba(255,255,255,0.7);
+		      		
+	      		i {
+	      			display:inline-block
+	      		}
+			}	
 		}
 	}
 </style>
