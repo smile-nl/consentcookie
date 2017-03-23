@@ -92,6 +92,7 @@ var iqnomyService = function() {
 		return vue.$services.settings.getImpressBasePath() +
 			"/" + _generateGUID() +
 			"?iqversion=3" +
+			"&sync=true" +
 			"&fid=" + _getFollowId() +
 			"&tenant=" + _getTenantId() +
 			"&prid=" + _getProfileId() +
@@ -148,8 +149,10 @@ var iqnomyService = function() {
 		
 		underscore.each($impressions,function($impression){
 			var container = $impression.container;
-			underscore.each($impression.imprElements,function($impressionElement){
-				impressions.push(_createImpression(container,$impressionElement));
+			underscore.each($impression.imprElements,function($impression){
+				if($impression && typeof $impression.htmlTemplate === "string" && $impression.htmlTemplate !== ""){
+					impressions.push(_createImpression(container,$impression));	
+				}
 			});
 		});
 		$state.impress.impressions = impressions;
@@ -166,6 +169,17 @@ var iqnomyService = function() {
 
 	function _deleteProfile(){
 		vue.$store.commit("updateApplication",{shownWelcome:false});
+	}
+	
+	function isValidImpression($impression){
+		if(!$impression || !$impression.imprElements || !$impression.imprElements.length >= 1){
+			return false;
+		}
+		var inValid = false;
+		underscore.each($impression.imprElements,function(item){
+			inValid = inValid || (!item || typeof item.htmlTemplate !== "string" || item.htmlTemplate == "");
+		});
+		return !inValid;
 	}
 
 	// Public functions

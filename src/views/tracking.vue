@@ -1,5 +1,8 @@
 <template>
 	<div id="tracking" class="ic-content">
+		<div class="info">
+			Een overzicht van trackers op de pagina
+		</div>
 		<div v-if="!trackers || trackers.length == 0" class="no-content">
 			<i class="fa fa-line-chart" aria-hidden="true"></i>
 		</div>
@@ -26,7 +29,7 @@
 	var trackers = require('assets/json/trackers.json');
 	
 	// Defaults
-	var viewTitle = "Who is tracking you?";
+	var viewTitle = "Voorkeuren";
 	
 	// View state
 	var data = {
@@ -60,9 +63,14 @@
 	#tracking{
 		min-height: 400px;
 		
+		.info{
+			margin:20px 20px 10px 20px;
+			text-align: center;
+		}
+		
 		.trackers{
 			
-			padding:20px 10px;
+			padding:5px 10px 20px;
 			
 			.tracker{
 				
@@ -120,9 +128,6 @@
 						    height: 40px;
 					    }
 					}
-					
-					
-					
 				}
 			}
 			

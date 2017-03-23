@@ -16,7 +16,6 @@
 	// var vueFilter = require('vue-filter');
 	var vueState = require('./base/configState.js');
 	var vueRouter = require('./base/configRouter.js');
-	var vueResource = require('./base/configResource.js');
 	var vuexRouterSync = require("vuex-router-sync");
 	
 	// Vue Icookie Dependencies
@@ -57,9 +56,6 @@
 			store: store,
 			services : services
 		}).$mount('#icookie');
-		
-		// Debugging
-		window.steventest = mainInstance;
 	}
 	
 	function initVueResource(){

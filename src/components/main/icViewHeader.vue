@@ -70,10 +70,6 @@
 			font-weight: bold;
 		}
 		
-		.wrapper{
-			
-		}
-		
 		.actions {
 			float:right;
 			
@@ -84,8 +80,6 @@
 			.action{
 				
 			}
-		}
-		
-		
+		}		
 	}
 </style>

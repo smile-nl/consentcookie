@@ -11,7 +11,7 @@
 
 <script>
 	// Defaults
-	var viewTitle = "Selected for you";
+	var viewTitle = "Voor jou selecteerd";
 
 	var data = {
 		

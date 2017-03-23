@@ -113,18 +113,11 @@
 	};
 	
 
-	// var prototypeAccessors = { currentRoute: {} };
-	
+	// var prototypeAccessors = { currentRoute: {} };	
 	// Object.defineProperties(VueServices.prototype, prototypeAccessors);
-
 
 	VueServices.install = install;
 	VueServices.version = '1.0.0';
-
-	// Auto intall if Vue is loaded in global window scope
-	if (window.Vue) {
-		window.Vue.use(VueServices);
-	}
 
 	return VueServices;
 })));

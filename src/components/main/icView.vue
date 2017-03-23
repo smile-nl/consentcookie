@@ -4,6 +4,7 @@
 			<div class="ic-view-content-wrapper" v-bind:style="contentWrapperCss" v-show="isShown">
 				<div  class="ic-view-content" v-bind:style="contentCss">
 					<ic-view-header :height="headerHeight"></ic-view-header>
+					<div class="ic-demo-warning" >Dit is een demo versie</div>
 					<router-view></router-view>
 				</div>
 			</div>
@@ -56,10 +57,6 @@
 		// Set the max height
 		componentData.viewCss.maxHeight = maxHeight;
 		// componentData.contentWrapperCss.maxHeight = maxHeight - ;
-		
-		console.log(icViewHeader.computed.heigth);
-		
-		window.steventest4 = vueComponent;
 	}
 	
 	/* VUE */
@@ -100,6 +97,14 @@
 			box-shadow: $ic-drop-shadow;
 			background: #FFFFFF;
 			overflow:hidden;
+		}
+		
+		.ic-demo-warning{
+			text-align: center;
+		    padding: 10px;
+		    margin: 10px;
+		    background: rgb(250, 255, 189);
+		    border: 1px solid #E7E8E1;
 		}	
 	}
 </style>
