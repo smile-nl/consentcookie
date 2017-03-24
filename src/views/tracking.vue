@@ -1,20 +1,20 @@
 <template>
-	<div id="tracking" class="ic-content">
-		<div class="info">
+	<div id="ic-tracking" class="ic-content">
+		<div class="ic-info">
 			Een overzicht van trackers op de pagina
 		</div>
 		<div v-if="!trackers || trackers.length == 0" class="no-content">
 			<i class="fa fa-line-chart" aria-hidden="true"></i>
 		</div>
-		<div class="trackers" v-if="trackers && trackers.length > 0">
-			<div class="tracker " v-for="tracker in trackers">
-				<div class="title">{{tracker.name}}</div>
-				<div class="box inline-fix" v-on:click="showDetail(tracker)">
-					<div class="logo v-centered">
+		<div class="ic-trackers" v-if="trackers && trackers.length > 0">
+			<div class="ic-tracker " v-for="tracker in trackers">
+				<div class="ic-title">{{tracker.name}}</div>
+				<div class="ic-box inline-fix" v-on:click="showDetail(tracker)">
+					<div class="ic-logo v-centered">
 						<img :src="tracker.icon" />	
 					</div>
-					<ic-switch class="v-centered toggle"></ic-switch>
-					<div class="more inline-fix"><span class="v-centered">meer weten</span><i class="fa fa-angle-right v-centered"></i></div>
+					<ic-switch class="v-centered ic-toggle"></ic-switch>
+					<div class="ic-more inline-fix"><span class="v-centered">meer weten</span><i class="fa fa-angle-right v-centered"></i></div>
 				</div>
 			</div>
 		</div>
@@ -60,27 +60,27 @@
 	
 	@import '../assets/scss/general-variables';
 
-	#tracking{
+	#ic-tracking{
 		min-height: 400px;
 		
-		.info{
+		.ic-info{
 			margin:20px 20px 10px 20px;
 			text-align: center;
 		}
 		
-		.trackers{
+		.ic-trackers{
 			
 			padding:5px 10px 20px;
 			
-			.tracker{
+			.ic-tracker{
 				
 				margin: 10px 0px 20px;
 				
-				.title{
+				.ic-title{
 					margin: 10px 0px 5px 10px;
 				}
 				
-				.box{
+				.ic-box{
 					position:relative;
 					border: $ic-content-border;
 					cursor: pointer;
@@ -88,12 +88,12 @@
 					&:hover{
 						background:$ic-brand-color-faded;
 						
-						.more{
+						.ic-more{
 							color: $ic-color-white;
 						}
 					}
 					
-					.logo {
+					.ic-logo {
 						margin: 10px;
 						width: 40px;
 						height: 40px;
@@ -105,11 +105,11 @@
 						}
 					}
 					
-					.toggle{
+					.ic-toggle{
 						margin:0px 20px;
 					}
 					
-					.more{
+					.ic-more{
 					    position: absolute;
 					    height:100%;
 					    top: 0px;

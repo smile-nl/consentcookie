@@ -1,7 +1,7 @@
 <template>
 	<div id="welcome" class="ic-content">
 		<div class="ic-info">
-			<div class="title">Testwebsite.nl maakt gebruik van cookies</div>
+			<div class="title">Deze demo website maakt gebruik van cookies</div>
 			<div class="text">Met deze applicatie krijg je informatie over welke cookies dat zijn én kun je zien welke voordelen dat voor jou oplevert. </div>
 		</div>
 		<div class="placeholder">

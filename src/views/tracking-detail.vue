@@ -1,32 +1,32 @@
 <template>
-	<div id="tracking-detail" class="ic-content">
-		<div class="logo">
+	<div id="ic-tracking-detail" class="ic-content">
+		<div class="ic-logo">
 			<img :src="tracker.icon"></img>
 		</div>
-		<div class="description">{{tracker.description}}</div>
-		<div class="properties">
-			<div class="property">
-				<i :class="'fa ' + (tracker.detail.bullets.optional ? 'fa-check ' : 'fa-close')"></i>
+		<div class="ic-description">{{tracker.description}}</div>
+		<div class="ic-properties">
+			<div class="ic-property">
+				<i :class="'fa ' + (tracker.detail.bullets.optional ? 'fa-ok ' : 'fa-cancel')"></i>
 				<div class="text">This {{label}} is optional</div>
 			</div>
-			<div class="property">
-				<i :class="'fa ' + (tracker.detail.bullets.profiling ? 'fa-check ' : 'fa-close')"></i>
+			<div class="ic-property">
+				<i :class="'fa ' + (tracker.detail.bullets.profiling ? 'fa-ok ' : 'fa-cancel')"></i>
 				<div class="text">This {{label}} creates profiles</div>
 			</div>
-			<div class="property">
-				<i :class="'fa ' + (tracker.detail.bullets.crosssite ? 'fa-check ' : 'fa-close')"></i>
+			<div class="ic-property">
+				<i :class="'fa ' + (tracker.detail.bullets.crosssite ? 'fa-ok ' : 'fa-cancel')"></i>
 				<div class="text">This {{label}} works crosssite</div>
 			</div>
-			<div class="property">
-				<i :class="'fa ' + (tracker.detail.bullets.cookie ? 'fa-check ' : 'fa-close')"></i>
+			<div class="ic-property">
+				<i :class="'fa ' + (tracker.detail.bullets.cookie ? 'fa-ok ' : 'fa-cancel')"></i>
 				<div class="text">This {{label}} uses analytic cookies</div>
 			</div>
-			<div class="property">
-				<i :class="'fa ' + (tracker.detail.bullets.functional ? 'fa-check ' : 'fa-close')"></i>
+			<div class="ic-property">
+				<i :class="'fa ' + (tracker.detail.bullets.functional ? 'fa-ok ' : 'fa-cancel')"></i>
 				<div class="text">This {{label}} uses functional cookies</div>
 			</div>
 		</div>
-		<div class="cta">
+		<div class="ic-cta">
 			<ic-button v-on:click="goToInfo">More info</ic-button>
 			<ic-button v-on:click="goToWebsite">Website</ic-button>
 		</div>
@@ -77,7 +77,6 @@
 		},
 		beforeMount : function(){
 			this.$store.commit('updateView',{title: viewTitle});
-			console.log(this)
 		}
 	};
 	
@@ -87,11 +86,11 @@
 	
 	@import '../assets/scss/general-variables';
 
-	#tracking-detail {
+	#ic-tracking-detail {
 		
 		padding:20px;
 		
-		.logo{
+		.ic-logo{
 			width: 140px;
 			padding:20px;
 			margin:0px auto;
@@ -103,16 +102,16 @@
 			}
 		}
 		
-		.description{
+		.ic-description{
 			margin: 20px 0px;
 			font-style: italic;
 		}
 		
-		.properties {
+		.ic-properties {
 			margin:20px 10px;
-			padding: 0px 20px;
+			padding: 0px 10px;
 			
-			.property{
+			.ic-property{
 			
 				margin: 10px 0px;
 			
@@ -122,21 +121,21 @@
 				
 				.fa{
 					font-size: 20px;
-					margin-right:10px;
+					margin-right:5px;
 				}
 				
-				.fa-check{
-					color:green;
+				.fa-ok{
+					color:#4CAF50;
 				}
 				
-				.fa-close{
-					color:red;
+				.fa-cancel{
+					color:#EF5350;
 				}
 			}
 			
 		}
 		
-		.cta{
+		.ic-cta{
 			width: 100%;
 			padding: 20px;
 			text-align: center;

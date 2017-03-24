@@ -86,6 +86,10 @@
 }
 
 /* icookie generic css class helpers */
+#icookie {
+  z-index:1073741823;
+}
+
 #icookie .clearfix:after {
   content: ".";
   visibility: hidden;
