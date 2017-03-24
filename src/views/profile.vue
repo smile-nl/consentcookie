@@ -6,6 +6,17 @@
 			</div>
 		</div>
 		<div v-if="profileLoaded && profile">
+			<ic-content-box class="trackerprofiel box inline-fix">
+					<div class="title v-centered"> HumanSwitch </div>
+					<ic-switch class="v-centered toggle"></ic-switch>
+					<ic-dropdown-button :state="state" :iconShowInfo="'question'" :iconHideInfo="'chevron-up'"></ic-dropdown-button>
+
+                    <div class="notification" v-if="!state.collapsed">
+                        <div class="text"> In dit scherm wordt jouw HumanSwitch profiel getoond. Meer informatie over de HumanSwitch tracker kun je vinden in<router-link to="tracking">voorkeuren</router-link>  </div>
+                    </div>
+
+			</ic-content-box>
+
 
 			<ic-content-box :title="'Dimensions'">
 			 	<ic-dimensions :profile="profile"></ic-dimensions>
@@ -27,8 +38,12 @@
 	var viewTitle = "Jouw profielen";
 
 	// View state
-	var data = {};
-	
+	var data = {
+        state:{
+            collapsed:true
+        }
+    };
+
 	// Private functions
 	
 	// Public functions
@@ -80,5 +95,16 @@
 	  	.ic-content-box .content * {
 	  		padding: 10px;
 	  	}
+
+		.trackerprofiel .title{
+		width: 180px;
+		}
+
+		.title{
+		font-size: 20px;
+		letter-spacing: 0.5px;
+
+
+}
 	}
 </style>
