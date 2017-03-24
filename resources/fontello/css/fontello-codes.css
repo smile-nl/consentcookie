@@ -1,0 +1,12 @@
+
+.fa-cancel:before { content: '\e800'; } /* '' */
+.fa-gift:before { content: '\e801'; } /* '' */
+.fa-user:before { content: '\e802'; } /* '' */
+.fa-ok:before { content: '\e803'; } /* '' */
+.fa-angle-right:before { content: '\f105'; } /* '' */
+.fa-angle-down:before { content: '\f107'; } /* '' */
+.fa-spinner:before { content: '\f110'; } /* '' */
+.fa-help:before { content: '\f128'; } /* '' */
+.fa-play-circled:before { content: '\f144'; } /* '' */
+.fa-toggle-on:before { content: '\f205'; } /* '' */
+.fa-pause-circle:before { content: '\f28b'; } /* '' */

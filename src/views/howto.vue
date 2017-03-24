@@ -11,7 +11,7 @@
 				<video id="ic-video-player" src="https://www.icookie.io/video/icookie_introductie_voor_website_eigenaren.mp4" width="100%" preload></video>
 				<div class="ic-video-toggle" v-on:click="toggleVideo" :class="toggleClass">
 					<div class="icon-wrapper inline-fix">
-						<i v-show="!isPlaying" class="fa fa-play-circle v-centered" aria-hidden="true"></i>
+						<i v-show="!isPlaying" class="fa fa-play-circled v-centered" aria-hidden="true"></i>
 						<i v-show="isPlaying" class="fa fa-pause-circle v-centered" aria-hidden="true"></i>
 					</div>
 				</div>

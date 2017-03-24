@@ -1,0 +1,12 @@
+
+.fa-cancel { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe800;&nbsp;'); }
+.fa-gift { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe801;&nbsp;'); }
+.fa-user { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe802;&nbsp;'); }
+.fa-ok { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe803;&nbsp;'); }
+.fa-angle-right { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf105;&nbsp;'); }
+.fa-angle-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf107;&nbsp;'); }
+.fa-spinner { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf110;&nbsp;'); }
+.fa-help { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf128;&nbsp;'); }
+.fa-play-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf144;&nbsp;'); }
+.fa-toggle-on { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf205;&nbsp;'); }
+.fa-pause-circle { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf28b;&nbsp;'); }

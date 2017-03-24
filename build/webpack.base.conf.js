@@ -55,17 +55,17 @@ module.exports = {
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
+        loader: process.env.NODE_ENV === 'production' ? 'base64-image-loader' : "url",
         query: {
-          limit: 10000,
+          limit : 1000000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
+        test: /\.(woff|woff2|ttf|eot|svg)(\?.*)?$/,
+        loader: process.env.NODE_ENV === 'production' ? 'base64-font-loader' : "url",
         query: {
-          limit: 10000,
+          limit : 1000000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },

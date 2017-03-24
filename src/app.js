@@ -5,15 +5,13 @@
 (function(){
 
 	// Static dependencies
-	// require('./assets/css/icookie.css');
-	// require('./assets/css/animate.css');
-	require('font-awesome/css/font-awesome.css');
-	// 
+	// require('font-awesome/css/font-awesome.css');
+	require('../resources/fontello/css/animation.css')
+	require('../resources/fontello/css/fontello.css')
 	require('./assets/scss/_icookie.scss');
 	
 	// Vue dependencies
 	var vue = require('vue');
-	// var vueFilter = require('vue-filter');
 	var vueState = require('./base/configState.js');
 	var vueRouter = require('./base/configRouter.js');
 	var vuexRouterSync = require("vuex-router-sync");
