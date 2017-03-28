@@ -1,6 +1,6 @@
 <template>
 	<label :class="'ic-switch inline-fix clearfix' + switchOrientation">
-		<input class="ic-switch-input" @change="$emit('change', currentValue)" type="checkbox" v-model="currentValue"><span class="ic-switch-core"></span>
+		<input class="ic-switch-input" @change="$emit('change', currentValue)" type="checkbox" v-model="currentValue"/> <span class="ic-switch-core"></span>
 		<div class="ic-switch-label"><slot></slot></div>
 	</label>
 </template>

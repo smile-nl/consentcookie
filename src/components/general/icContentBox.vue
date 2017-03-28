@@ -30,25 +30,23 @@ module.exports = {
   @import '../../assets/scss/general-variables';
   
   .ic-content-box{
-  		margin: 5px;
+        margin: 0px 10px;
   		
   		.title{
-  			margin: 20px 10px 10px 10px;
-    		font-weight: 600;
+  			margin: 10px 10px 10px 10px;
+    		font-size: 18px;
   		}
-  		
   		.content{
   			border: $ic-content-border;
   		
 	  		> * {
 	  			padding: $ic-content-padding;
-	  			border-bottom: $ic-content-border;
+	  			// border-bottom: $ic-content-border;
 	  		}
 	  	
 	  		> *:last-child{
 	  			border:none;
 	  		}
-	  		
 		}
   }
 </style>
