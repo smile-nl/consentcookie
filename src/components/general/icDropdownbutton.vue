@@ -16,7 +16,7 @@
     module.exports = {
         name: 'ic-dropdown-button',
         props: {
-            state : Object,
+            state:Object,
             iconShowInfo : String,
             iconHideInfo : String,
         },
@@ -35,6 +35,8 @@
     @import '../../assets/scss/general-variables';
 
     #icookie .ic-dropdown-button .fa{
+    margin-top: 15px;
     font-size: 20px;
 }
+
 </style>

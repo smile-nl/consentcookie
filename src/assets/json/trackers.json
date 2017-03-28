@@ -1,7 +1,7 @@
 {
 	"trackers": [{
-		"name": "icookie",
-		"description": "A widget that gives insight in which trackers are used on the website",
+		"name": "Icookie",
+		"description": "A widget that gives insight in whick trackers are used on the website",
 		"icon": "http://www.humanswitch.io/wp-content/uploads/2015/08/favicon-152.png",
 		"type": "widget",
 		"detail": {
