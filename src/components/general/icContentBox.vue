@@ -34,7 +34,7 @@ module.exports = {
   		
   		.title{
   			margin: 20px 10px 10px 10px;
-    		font-weight: 600;
+            font-size: 20px;
   		}
   		
   		.content{
@@ -42,13 +42,12 @@ module.exports = {
   		
 	  		> * {
 	  			padding: $ic-content-padding;
-	  			border-bottom: $ic-content-border;
+	  			//border-bottom: $ic-content-border;
 	  		}
 	  	
 	  		> *:last-child{
 	  			border:none;
 	  		}
-	  		
 		}
   }
 </style>

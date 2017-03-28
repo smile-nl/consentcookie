@@ -6,14 +6,13 @@
 			</div>
 		</div>
 		<div v-if="profileLoaded && profile">
-			<ic-content-box class="trackerprofiel box inline-fix">
+			<ic-content-box class="box inline-fix">
 					<div class="title v-centered"> HumanSwitch </div>
 					<ic-switch class="v-centered toggle"></ic-switch>
 					<ic-dropdown-button :state="state" :iconShowInfo="'question'" :iconHideInfo="'chevron-up'"></ic-dropdown-button>
 
-                    <div class="notification" v-if="!state.collapsed">
-                        <div class="text"> In dit scherm wordt jouw HumanSwitch profiel getoond. Meer informatie over de HumanSwitch tracker kun je vinden in<router-link to="tracking">voorkeuren</router-link>  </div>
-                    </div>
+                    <div class="text" v-if="!state.collapsed"> In dit scherm wordt jouw HumanSwitch profiel getoond. Meer informatie over de HumanSwitch tracker kun je vinden in <router-link to="tracking">voorkeuren</router-link>  </div>
+
 
 			</ic-content-box>
 
@@ -91,20 +90,22 @@
 	@import '../assets/scss/general-variables';
 
 	#profile{
-		
-	  	.ic-content-box .content * {
-	  		padding: 10px;
-	  	}
 
-		.trackerprofiel .title{
-		width: 180px;
+		.ic-content-box{
+
+			.title{
+			padding-left: 10px;
+			width: 180px;
+			font-size: 22px;
 		}
 
-		.title{
-		font-size: 20px;
-		letter-spacing: 0.5px;
-
-
-}
+			.ic-switch{
+			padding: 0px;
+		}
+			.text{
+			padding-top: 0px;
+		}
 	}
+}
+
 </style>
