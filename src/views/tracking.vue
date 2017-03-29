@@ -9,9 +9,10 @@
 				<div class="logo v-centered">
 					<img :src="tracker.icon" />
 				</div>
-				<ic-switch class="v-centered toggle"></ic-switch>
+				<ic-switch class="v-centered toggle" v-model="tracker.value"></ic-switch>
 				<ic-dropdown-button :state="tracker" :iconShowInfo="'chevron-down'" :iconHideInfo="'chevron-up'" title="Meer informatie"></ic-dropdown-button>
 
+				<div class="notification" v-if="tracker.value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
 				<div class="notification" v-if="!tracker.collapsed">
 					<div class="description">{{tracker.description}}</div>
 					<div class="properties">
@@ -54,12 +55,12 @@ var viewTitle = "Voorkeuren";
 
 // View state
 var data = {
-    trackers
+
 };
 
 // Public functions
 module.exports = {
-    name:"tracking",
+    name: "tracking",
     components:{
     },
 	props:{
@@ -69,6 +70,7 @@ module.exports = {
         return {
             trackers : underscore.each(trackers.trackers,function(item){
 				item.collapsed = true;
+				item.value = false
             })
         }
     }
@@ -103,7 +105,7 @@ module.exports = {
 		}
 
 		.description{
-			font-style: italic;
+            font-size: 16px;
 		}
 
 		.properties {
