@@ -1,14 +1,7 @@
 <template>
-
     <div class="ic-dropdown-button v-centered">
         <i v-bind:class="'fa fa-' + (state.collapsed ? iconShowInfo : iconHideInfo)" v-on:click="state.collapsed = !state.collapsed"></i>
-
-
-
-
     </div>
-
-
 </template>
 
 <script>
