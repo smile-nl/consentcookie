@@ -13,28 +13,28 @@
 				<ic-dropdown-button :state="tracker" :iconShowInfo="'chevron-down'" :iconHideInfo="'chevron-up'" title="Meer informatie"></ic-dropdown-button>
 
 				<div class="notification" v-if="tracker.value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
-				<div class="notification" v-if="!tracker.collapsed">
+				<div v-if="!tracker.collapsed">
 					<div class="description">{{tracker.description}}</div>
 					<div class="properties">
 						<div class="property">
 							<i :class="'fa ' + (tracker.detail.bullets.optional ? 'fa-check ' : 'fa-close')"></i>
-							<div class="text v-centered">This {{tracker.type}} is optional</div>
+							<div class="text v-centered">Deze {{tracker.type}} is optioneel</div>
 						</div>
 						<div class="property">
 							<i :class="'fa ' + (tracker.detail.bullets.profiling ? 'fa-check ' : 'fa-close')"></i>
-							<div class="text v-centered">This {{tracker.type}} creates profiles</div>
+							<div class="text v-centered">Deze {{tracker.type}} maakt profielen</div>
 						</div>
 						<div class="property">
 							<i :class="'fa ' + (tracker.detail.bullets.crosssite ? 'fa-check ' : 'fa-close')"></i>
-							<div class="text v-centered">This {{tracker.type}} works crosssite</div>
+							<div class="text v-centered">Deze {{tracker.type}} werkt over meerdere websites</div>
 						</div>
 						<div class="property">
 							<i :class="'fa ' + (tracker.detail.bullets.cookie ? 'fa-check ' : 'fa-close')"></i>
-							<div class="text v-centered">This {{tracker.type}} uses analytic cookies</div>
+							<div class="text v-centered">Deze {{tracker.type}} maakt gebruik van analytic cookies</div>
 						</div>
 						<div class="property">
 							<i :class="'fa ' + (tracker.detail.bullets.functional ? 'fa-check ' : 'fa-close')"></i>
-							<div class="text v-centered">This {{tracker.type}} uses functional cookies</div>
+							<div class="text v-centered">Deze {{tracker.type}} maakt gebruik van functionele cookies</div>
 						</div>
 					</div>
 				</div>
@@ -117,7 +117,7 @@ module.exports = {
 				margin: 10px 0px;
 
 				> *{
-					display: inline;
+					display: inline-block;
 				}
 
 				.fa{
@@ -134,8 +134,8 @@ module.exports = {
 				}
 
 				.text{
-					width: 250px;
 					font-size: 15px;
+					width: 250px;
 				}
 			}
 		}
