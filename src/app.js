@@ -5,7 +5,6 @@
 (function(){
 
 	// Static dependencies
-	// require('font-awesome/css/font-awesome.css');
 	require('../resources/fontello/css/animation.css')
 	require('../resources/fontello/css/fontello.css')
 	require('./assets/scss/_icookie.scss');

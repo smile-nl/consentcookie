@@ -18,6 +18,9 @@ module.exports = function configServiceLoader(vue) {
 		},{
 			name:"view",
 			service: require("services/viewService.js")
+		},{
+			name:"trackers",
+			service:require("services/trackersService.js")
 		}
 	]; 
 	
