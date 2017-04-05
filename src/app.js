@@ -16,7 +16,7 @@
 	var vueRouter = require('./base/configRouter.js');
 	var vuexRouterSync = require("vuex-router-sync");
 	
-	// Vue Icookie Dependencies
+	// Vue icookie Dependencies
 	var vueServices = require('./base/configServices.js');
 	
 	// Run init on documentready
@@ -67,6 +67,7 @@
 		// Register the components
 		vue.component('ic-content-box',require("components/general/icContentBox.vue"));
 		vue.component('ic-button',require("components/general/icButton.vue"));
+        vue.component('ic-dropdown-button',require("components/general/icDropdownButton.vue"));
 		vue.component('ic-switch',require("components/general/icSwitch.vue"));
 	}
 	

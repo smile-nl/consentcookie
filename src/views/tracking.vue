@@ -1,136 +1,143 @@
 <template>
-	<div id="ic-tracking" class="ic-content">
-		<div class="ic-info">
-			Een overzicht van trackers op de pagina
-		</div>
-		<div v-if="!trackers || trackers.length == 0" class="no-content">
-			<i class="fa fa-line-chart" aria-hidden="true"></i>
-		</div>
-		<div class="ic-trackers" v-if="trackers && trackers.length > 0">
-			<div class="ic-tracker " v-for="tracker in trackers">
-				<div class="ic-title">{{tracker.name}}</div>
-				<div class="ic-box inline-fix" v-on:click="showDetail(tracker)">
-					<div class="ic-logo v-centered">
-						<img :src="tracker.icon" />	
-					</div>
-					<ic-switch class="v-centered ic-toggle"></ic-switch>
-					<div class="ic-more inline-fix"><span class="v-centered">meer weten</span><i class="fa fa-angle-right v-centered"></i></div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div id="tracking" class="ic-content">
+        <div v-if="!trackers || trackers.length == 0" class="no-content">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </div>
+
+        <div class="trackers" v-if="trackers && trackers.length > 0">
+            <ic-content-box :title="tracker.name" v-for="tracker in trackers" class="inline-fix">
+                <div class="logo v-centered">
+                    <img :src="tracker.icon" />
+                </div>
+                <ic-switch class="v-centered toggle" v-model="tracker.value"></ic-switch>
+                <ic-dropdown-button :state="tracker" :iconShowInfo="'chevron-down'" :iconHideInfo="'chevron-up'" title="Meer informatie"></ic-dropdown-button>
+
+                <div class="notification" v-if="tracker.value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
+                <div v-if="!tracker.collapsed">
+                    <div class="description">{{tracker.description}}</div>
+                    <div class="properties">
+                        <div class="property">
+                            <i :class="'fa ' + (tracker.detail.bullets.optional ? 'fa-check ' : 'fa-close')"></i>
+                            <div class="text v-centered">Deze {{tracker.type}} is optioneel</div>
+                        </div>
+                        <div class="property">
+                            <i :class="'fa ' + (tracker.detail.bullets.profiling ? 'fa-check ' : 'fa-close')"></i>
+                            <div class="text v-centered">Deze {{tracker.type}} maakt profielen</div>
+                        </div>
+                        <div class="property">
+                            <i :class="'fa ' + (tracker.detail.bullets.crosssite ? 'fa-check ' : 'fa-close')"></i>
+                            <div class="text v-centered">Deze {{tracker.type}} werkt over meerdere websites</div>
+                        </div>
+                        <div class="property">
+                            <i :class="'fa ' + (tracker.detail.bullets.cookie ? 'fa-check ' : 'fa-close')"></i>
+                            <div class="text v-centered">Deze {{tracker.type}} maakt gebruik van analytic cookies</div>
+                        </div>
+                        <div class="property">
+                            <i :class="'fa ' + (tracker.detail.bullets.functional ? 'fa-check ' : 'fa-close')"></i>
+                            <div class="text v-centered">Deze {{tracker.type}} maakt gebruik van functionele cookies</div>
+                        </div>
+                    </div>
+                </div>
+            </ic-content-box>
+        </div>
+    </div>
 </template>
 <script>
-	
-	// Libraries
-	var underscore = require("underscore");
-	
-	// Custom import
-	var trackers = require('assets/json/trackers.json');
-	
-	// Defaults
-	var viewTitle = "Voorkeuren";
-	
-	// View state
-	var data = {
-		trackers : underscore.clone(trackers.trackers)
-	};
-	
-	// Public functions
-	module.exports = {
-		name:"tracking",
-		components:{
-		},
-		data : function(){
-			return data;
-		},
-		methods : {
-			showDetail : function($tracker){
-				this.$router.push({ name: 'trackingDetail',params:{tracker:$tracker}});
-			}
-		},
-		beforeMount : function(){
-			this.$store.commit('updateView',{title: viewTitle});
-		}
-	};
-	
+
+    // Libraries
+    var underscore = require("underscore");
+
+    // Custom import
+    var trackers = require('assets/json/trackers.json');
+
+    // Defaults
+    var viewTitle = "Voorkeuren";
+
+    // View state
+    var data = {
+
+    };
+
+    // Public functions
+    module.exports = {
+        name: "tracking",
+        components:{
+        },
+        props:{
+            tracker: Object
+        },
+        data : function(){
+            return {
+                trackers : underscore.each(trackers.trackers,function(item){
+                    item.collapsed = true;
+                    item.value = false
+                })
+            }
+        }
+    };
 </script>
 
 <style lang="scss" scoped>
-	
-	@import '../assets/scss/general-variables';
 
-	#ic-tracking{
-		min-height: 400px;
-		
-		.ic-info{
-			margin:20px 20px 10px 20px;
-			text-align: center;
-		}
-		
-		.ic-trackers{
-			
-			padding:5px 10px 20px;
-			
-			.ic-tracker{
-				
-				margin: 10px 0px 20px;
-				
-				.ic-title{
-					margin: 10px 0px 5px 10px;
-				}
-				
-				.ic-box{
-					position:relative;
-					border: $ic-content-border;
-					cursor: pointer;
-					
-					&:hover{
-						background:$ic-brand-color-faded;
-						
-						.ic-more{
-							color: $ic-color-white;
-						}
-					}
-					
-					.ic-logo {
-						margin: 10px;
-						width: 40px;
-						height: 40px;
-						line-height: 40px;
-						
-						img{
-							width: 100%;
-							height: auto;
-						}
-					}
-					
-					.ic-toggle{
-						margin:0px 20px;
-					}
-					
-					.ic-more{
-					    position: absolute;
-					    height:100%;
-					    top: 0px;
-					    right: 0px;
-					    bottom: 0px;
-					    margin: auto;
-					    
-					    .fa{
-					    	
-					    }
-					    
-					    i {
-					    	margin:0px 10px;
-					    	font-size: 30px;
-						    line-height: 36px;
-						    height: 40px;
-					    }
-					}
-				}
-			}
-			
-		}
-	}
+    @import '../assets/scss/general-variables';
+
+    #tracking{
+        min-height: 400px;
+
+        .logo{
+            width: 160px;
+            padding: 15px 0px 10px 0px;
+            margin-left: 20px;
+
+            img{
+                width: 40px;
+                height: auto;
+            }
+        }
+
+        .ic-switch{
+            margin-bottom: 25px;
+            padding-right: 0px;
+        }
+
+        .ic-dropdown-button{
+            padding-left: 15px;
+        }
+
+        .description{
+            font-size: 16px;
+        }
+
+        .properties {
+            margin:20px px;
+            padding: 0px 0px 0px 5px;
+
+            .property{
+
+                margin: 10px 0px;
+
+                > *{
+                    display: inline-block;
+                }
+
+                .fa{
+                    font-size: 20px;
+                    margin-right:10px;
+                }
+
+                .fa-check{
+                    color:#4caf50;
+                }
+
+                .fa-close{
+                    color:#ef5350;
+                }
+
+                .text{
+                    font-size: 15px;
+                    width: 250px;
+                }
+            }
+        }
+    }
 </style>
