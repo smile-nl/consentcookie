@@ -30,7 +30,7 @@
 		path : "/tracking",
 		info : "Voorkeuren"
 	}, {
-		icon : "help",
+		icon : "question",
 		path : "/howto",
 		info : "Info",
 	}];
