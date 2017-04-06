@@ -137,9 +137,15 @@
   
   .text {
       line-height: 22px;
-      font-size: 18px;
+      font-size: 15px;
       padding-top: 15px;
   }
+}
+
+#icookie .notification{
+    padding: 5px 10px;
+    border-left: 3px solid #ef5350;
+    margin: 10px 15px 10px 15px;
 }
 
 /* CSS Animations */

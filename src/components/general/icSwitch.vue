@@ -1,7 +1,6 @@
 <template>
 	<label :class="'ic-switch inline-fix clearfix' + switchOrientation">
-		<input class="ic-switch-input" v-on:change="$emit('change', checkboxValue)" type="checkbox" v-model="checkboxValue">
-		<span class="ic-switch-core"></span>
+		<input class="ic-switch-input" @change="$emit('change', currentValue)" type="checkbox" v-model="currentValue"/><span class="ic-switch-core"></span>
 		<div class="ic-switch-label"><slot></slot></div>
 	</label>
 </template>
@@ -22,15 +21,7 @@
 module.exports = {
     name: 'ic-switch',
     props: {
-        value: {
-        	type: Boolean,
-        },
-        onChange: {
-        	type : Function,
-        },
-        onChangeVal : {
-        	type: Object
-        },
+        value: Boolean,
        	orientation : {
         	type: String,
       		default: 'left',
@@ -43,14 +34,11 @@ module.exports = {
 		}
     },
     computed: {
-        checkboxValue: {
+        currentValue: {
             get : function(){
                 return this.value;
             },
             set : function(val) {
-            	if(this.onChange){
-            		this.onChangeVal ? this.onChange(val,this.onChangeVal) : this.onChange(val);
-            	}
                 this.$emit('input', val);
             }
         },

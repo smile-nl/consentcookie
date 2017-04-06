@@ -2,6 +2,8 @@
 .project
 .settings/*
 .svn/*
+.idea/*
+.iml
 /target/
 target/*
 /node_modules/
@@ -11,3 +13,4 @@ dist/*
 /dist/*
 /.tern-project
 npm-debug.log
+
