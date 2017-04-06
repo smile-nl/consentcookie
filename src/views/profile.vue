@@ -35,7 +35,7 @@
 
 	// View state
 	var data = {
-		value : true,
+		value : false,
 		state:{
             collapsed:true,
         },
@@ -90,15 +90,16 @@
 	#profile{
 
     .ic-content-box{
-		.title{
-			margin: 0px;
-			width: 180px;
-		}
+		margin: 0px 5px 25px 5px;
 
-		.ic-switch{
-			padding: 0px;
+			.title{
+				margin: 0px;
+				width: 190px;
+			}
+
+			.ic-switch{
+				padding: 0px;
+			}
 		}
 	}
-}
-
 </style>
