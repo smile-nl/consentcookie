@@ -5,6 +5,7 @@
   "description": "The icookie client",
   "dependencies": {
     "js-cookie": "^2.1.3",
+    "lory.js": "^2.2.1",
     "underscore": "^1.8.3",
     "vue": "^2.1.10",
     "vue-resize-directive": "^1.0.0",

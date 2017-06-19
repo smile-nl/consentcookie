@@ -1,11 +1,28 @@
 <template>
-	<div id="profile" class="ic-content">		
-		<div v-if="!profileLoaded || !profile">
-			<div class="no-content">
-				<i class="fa fa-user" aria-hidden="true"></i>
-			</div>
+	<div id="profile" class="ic-content">
+		<!-- Profile tracker slider -->
+		<div class="ic-header">
+			<ic-slider>
+				<ic-slider-item v-for="tracker in trackers">
+					<ic-tracker-info-slide :tracker="tracker"></ic-tracker-info-slide>
+				</ic-slider-item>
+			</ic-slider>
 		</div>
-		<div v-if="profileLoaded && profile">
+		<!-- Profile detail -->
+		<div class="ic-detail">
+
+
+		</div>
+
+
+		<div v-if="profileLoaded && profile" style="display:none">
+
+			<!-- Profile detail -->
+			<div class="ic-detail">
+
+
+			</div>
+
 			<ic-content-box class="box inline-fix">
 					<div class="title v-centered"> HumanSwitch </div>
 					<ic-switch class="v-centered toggle" v-model="value">
@@ -21,25 +38,23 @@
 				<ic-interests :interests="profileInterests"></ic-interests>
 			</ic-content-box>
 		</div>
+
 	</div>
 </template>
 
 <script>
 
 	// Components
+	var icSlider = require("components/general/slider/icSlider.vue")
+	var icSliderItem = require("components/general/slider/icSliderItem.vue");
+
+	var icTrackerInfoSlide = require("components/profile/icTrackerInfoSlide.vue")
+
 	var icDimensions = require("components/profile/icDimensions.vue");
 	var icInterests = require("components/profile/icInterests.vue");
 
 	// Defaults
 	var viewTitle = "Jouw profielen";
-
-	// View state
-	var data = {
-		value : true,
-		state:{
-            collapsed:true,
-        },
-    };
 
 	// Private functions
 	
@@ -47,13 +62,28 @@
 	module.exports = {
 		name:"profile",
 		components:{
+		    icSlider:icSlider,
+			icSliderItem:icSliderItem,
+			icTrackerInfoSlide:icTrackerInfoSlide,
 			icDimensions:icDimensions,
 			icInterests:icInterests
 		},
 		data : function(){
-			return data;
+			return {
+				value: true,
+				state: {
+					collapsed:true
+				}
+
+			};
 		},
 		computed: {
+			trackers : function(){
+				return this.$store.state.trackers.trackers;
+			},
+			trackersLoaded : function(){
+				return this.$store.state.trackers.trackersLoaded;
+			},
 			profile : function(){
 				return this.$store.state.iqnomy.profile.data;
 			},

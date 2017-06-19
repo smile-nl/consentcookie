@@ -5,10 +5,7 @@
  */
 
 var trackersService = function() {
-	
-	// Custom import
-	var trackers = [];
-	
+
 	// Libraries
 	var underscore = require("underscore");
 	var jsCookie = require('js-cookie');
@@ -29,12 +26,33 @@ var trackersService = function() {
 	}
 	
 	function _initTrackers(){
-		trackers = require('assets/json/trackers.json');
+		// This should be a promise, because we can retrieve the trackers from somewhere else
+		loadTrackers(function($trackers){
+			vue.$store.commit("trackers/update",$trackers);
+		});
+	}
+
+	function loadTrackers($callback){
+		var trackers = require('assets/json/trackers.json');
+
+		if(typeof $callback === "function"){
+			$callback(trackers);
+		};
 	}
 	
 	function _initStore(){
 		storeModule = {
-			
+			namespaced: true,
+			state:{
+				trackersLoaded : false,
+				trackers : [],
+			},
+			mutations : {
+				update : function($state,$data){
+					$state.trackers = $data.trackers;
+					$state.trackersLoaded = true;
+				},
+			}
 		};
 		vue.$store.registerModule("trackers",storeModule);
 	}

@@ -4,7 +4,6 @@
 			<div class="ic-view-content-wrapper" v-bind:style="contentWrapperCss" v-show="isShown">
 				<div  class="ic-view-content" v-bind:style="contentCss">
 					<ic-view-header :height="headerHeight"></ic-view-header>
-					<div class="ic-demo-warning" >Dit is een demo versie</div>
 					<router-view></router-view>
 				</div>
 			</div>
@@ -98,13 +97,5 @@
 			background: #FFFFFF;
 			overflow:hidden;
 		}
-		
-		.ic-demo-warning{
-			text-align: center;
-		    padding: 10px;
-		    margin: 10px;
-		    background: rgb(250, 255, 189);
-		    border: 1px solid #E7E8E1;
-		}	
 	}
 </style>
