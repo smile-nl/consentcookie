@@ -2,11 +2,7 @@
 	<div id="profile" class="ic-content">
 		<!-- Profile tracker slider -->
 		<div class="ic-header">
-			<ic-slider>
-				<ic-slider-item v-for="tracker in trackers">
-					<ic-tracker-info-slide :tracker="tracker"></ic-tracker-info-slide>
-				</ic-slider-item>
-			</ic-slider>
+
 		</div>
 		<!-- Profile detail -->
 		<div class="ic-detail">
@@ -45,9 +41,6 @@
 <script>
 
 	// Components
-	var icSlider = require("components/general/slider/icSlider.vue")
-	var icSliderItem = require("components/general/slider/icSliderItem.vue");
-
 	var icTrackerInfoSlide = require("components/profile/icTrackerInfoSlide.vue")
 
 	var icDimensions = require("components/profile/icDimensions.vue");
@@ -62,8 +55,6 @@
 	module.exports = {
 		name:"profile",
 		components:{
-		    icSlider:icSlider,
-			icSliderItem:icSliderItem,
 			icTrackerInfoSlide:icTrackerInfoSlide,
 			icDimensions:icDimensions,
 			icInterests:icInterests
