@@ -11,7 +11,7 @@
 					<ic-switch class="v-centered toggle" v-model="value">
 					</ic-switch>
 					<ic-dropdown-button :state="state" :iconShowInfo="'question'" :iconHideInfo="'chevron-up'"></ic-dropdown-button>
-					<div class="notification" v-if="value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
+					<div class="notification" v-if="!value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
                     <div class="text" v-if="!state.collapsed"> In dit scherm wordt jouw HumanSwitch profiel getoond. Meer informatie over de HumanSwitch tracker kun je vinden in <router-link to="tracking">voorkeuren</router-link>  </div>
 			</ic-content-box>
 			<ic-content-box :title="'Dimensions'">
@@ -29,6 +29,7 @@
 	// Components
 	var icDimensions = require("components/profile/icDimensions.vue");
 	var icInterests = require("components/profile/icInterests.vue");
+    var icNoContent = require("components/general/icNoContent.vue");
 
 	// Defaults
 	var viewTitle = "Jouw profielen";
@@ -48,7 +49,8 @@
 		name:"profile",
 		components:{
 			icDimensions:icDimensions,
-			icInterests:icInterests
+			icInterests:icInterests,
+            icNoContent : icNoContent
 		},
 		data : function(){
 			return data;

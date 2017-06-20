@@ -1,7 +1,7 @@
 <template>
     <div id="tracking" class="ic-content">
         <div v-if="!trackers || trackers.length == 0" class="no-content">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
+            <i class="fa fa-toggle-on" aria-hidden="true"></i>
         </div>
 
         <div class="trackers" v-if="trackers && trackers.length > 0">
@@ -51,7 +51,7 @@
     var trackers = require('assets/json/trackers.json');
 
     // Defaults
-    var viewTitle = "Voorkeuren";
+    var viewTitle = "Connecties";
 
     // View state
     var data = {
