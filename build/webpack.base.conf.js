@@ -54,7 +54,7 @@ module.exports = {
         loader: 'json'
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif)(\?.*)?$/,
         loader: process.env.NODE_ENV === 'production' ? 'base64-image-loader' : "url",
         query: {
           limit : 1000000,

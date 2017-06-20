@@ -4,7 +4,6 @@ module.exports = function configRouter(vue) {
 	var vueRouter = require('vue-router');
 
 	// Default
-	var DEFAULT_PATH_BASE = "/";
 	var DEFAULT_PATH_WELCOME = "/welcome";
 	var DEFAULT_PATH_FORYOU = "/foryou";
 
@@ -24,13 +23,13 @@ module.exports = function configRouter(vue) {
 	// Custom functions
 	routerInstance.reset = function(){
 		this.history.current = DEFAULT_RESET_PATH;
-	}
+	};
 		
 	// Config the router
 	routerInstance.beforeEach(function(to, from, next){
 		
 		// Already on the welcome screen so no need to check if we need to redirect
-		if(DEFAULT_PATH_WELCOME == to.path ){
+		if(DEFAULT_PATH_WELCOME === to.path ){
 			return next();
 		}
 		// Show welcome for first time visit
@@ -58,11 +57,11 @@ module.exports = function configRouter(vue) {
 	routerInstance.afterEach(function(to, from){
 		var isContentActive = routerInstance.app.$store.state.view.contentActive;
 		
-		if(typeof from.path == 'undefined' || typeof to.path == 'undefined'){
+		if(typeof from.path === 'undefined' || typeof to.path === 'undefined'){
 			return;
 		}
 		
-		if(!isContentActive && from.path && to.path && from.path == to.path){
+		if(!isContentActive && from.path && to.path && from.path === to.path){
 			routerInstance.app.$store.commit('updateView',{open:true,contentActive:true});
 		}
 	});
@@ -72,26 +71,15 @@ module.exports = function configRouter(vue) {
 		return [{
 			path:DEFAULT_PATH_WELCOME,
 			component : require('views/welcome.vue')
-		},{	
-			path:'/profile',
-			component : require('views/profile.vue')
 		},{
 			path:DEFAULT_PATH_FORYOU,
 			component : require('views/foryou.vue')
 		},{
-			path:'/settings',
-			component : require('views/settings.vue')
-		},{
 			path:'/howto',
 			component : require('views/howto.vue')
 		},{
-			path:'/tracking',
-			component : require('views/tracking.vue')
-		},{
-			name:'trackingDetail',
-			path:'/tracking/detail',
-			component : require('views/tracking-detail.vue'),
-			props: true,
+			path:'/connections',
+			component : require('views/connections.vue')
 		}];
 	}	
 	

@@ -84,7 +84,7 @@
 
 <style lang="scss" scoped>
 	
-	@import '../assets/scss/general-variables';
+	@import '../../assets/scss/general-variables';
 
 	#ic-tracking-detail {
 		

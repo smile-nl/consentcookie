@@ -1,7 +1,7 @@
 <template>
 	<div id="icMenu" class="clearfix">
 		<div class="ic-menu-button" v-on:click="toggleOpen">
-			<img class="hs-logo" src="../../assets/img/hs_logo_red.png"/>
+			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
 		</div>
 		<div :class="'ic-menu-bar ' + contentActiveClass">
 			<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
@@ -22,19 +22,15 @@
 		path : "/foryou",
 		info : "Voor jou",
 	}, {
-		icon : "user",
-		path : "/profile",
-		info : "Profielen",
-	}, {
 		icon : "toggle-on",
-		path : "/tracking",
-		info : "Voorkeuren"
+		path : "/connections",
+		info : "Connecties"
 	}, {
 		icon : "question",
+		iconSize: "30",
 		path : "/howto",
 		info : "Info",
 	}];
-
 
 	/* VUE */
 	module.exports = {
@@ -73,7 +69,18 @@
 </script>
 
 <style lang="scss" scoped>
-	
+
+	@import '../../assets/scss/general-variables';
+
+	$menu-button-size:60;
+	$menu-button-height:$menu-button-size + px;
+	$menu-button-width:$menu-button-size + px;
+	$menu-button-radius:$menu-button-size + px;
+
+	$menu-logo-size:$menu-button-size - 10;
+	$menu-logo-height:$menu-logo-size + px;
+	$menu-logo-width:$menu-logo-size + px;
+
 	#icMenu {
 		
 		display:block;
@@ -84,21 +91,20 @@
 			position:absolute;
 			right:0px;
 			bottom:0px;
-			height: 60px;
-			width: 60px;
-			border-radius: 60px;
-			background:#FFFFFF;
-			text-align: center;
-			box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
+			line-height: $menu-button-height;
+			height: $menu-button-height;
+			width: $menu-button-width;
+			border-radius: $menu-button-radius;
+			background: $ic-color-white;
+			box-shadow: $ic-drop-shadow;
 			cursor: pointer;
-			
+
 			.hs-logo{
 				position: absolute;
-			    margin: auto;
-			    top: 0;
-			    left: 0;
-			    right: 0;
-			    bottom: 0;
+				top:3px;
+				left:5px;
+				height: $menu-logo-height;
+				width: $menu-logo-width;
 			}
 		}
 	
@@ -110,9 +116,8 @@
 			    height:60px;
 		    	padding: 5px 30px 5px 5px;
 		    	border-radius:60px 0px 0px 60px;
-		    	background: rgba(252,109,109,255);
+		    	background: $ic-brand-color;
 			}
-		
 		}
 	}
 
