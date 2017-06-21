@@ -49,7 +49,7 @@
 	@import '../../assets/scss/general-variables';
 
 	$switch-width: 60;
-	$switch-height: 34;
+	$switch-height: 30;
 	$switch-border-width: 1;
 	$switch-on-margin-offset: -2;
 	$switch-color-on:$ic-brand-color;

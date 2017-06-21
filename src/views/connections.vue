@@ -1,44 +1,10 @@
 <template>
     <div id="tracking" class="ic-content">
-        <div v-if="!trackers || trackers.length == 0" class="no-content">
-            <i class="fa fa-line-chart" aria-hidden="true"></i>
-        </div>
-
         <div class="trackers" v-if="trackers && trackers.length > 0">
-            <ic-content-box :title="tracker.name" v-for="tracker in trackers" class="inline-fix">
-                <div class="logo v-centered">
-                    <img :src="tracker.icon" />
-                </div>
-                <ic-switch v-model="tracker.value"></ic-switch>
-                <ic-dropdown-button :state="tracker" :iconShowInfo="'chevron-down'" :iconHideInfo="'chevron-up'" title="Meer informatie"></ic-dropdown-button>
+            <ic-connection-summary v-for="tracker in trackers" :connection="tracker">
 
-                <div class="notification" v-if="tracker.value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
-                <div v-if="!tracker.collapsed">
-                    <div class="description">{{tracker.description}}</div>
-                    <div class="properties">
-                        <div class="property">
-                            <i :class="'fa ' + (tracker.detail.bullets.optional ? 'fa-check ' : 'fa-close')"></i>
-                            <div class="text v-centered">Deze {{tracker.type}} is optioneel</div>
-                        </div>
-                        <div class="property">
-                            <i :class="'fa ' + (tracker.detail.bullets.profiling ? 'fa-check ' : 'fa-close')"></i>
-                            <div class="text v-centered">Deze {{tracker.type}} maakt profielen</div>
-                        </div>
-                        <div class="property">
-                            <i :class="'fa ' + (tracker.detail.bullets.crosssite ? 'fa-check ' : 'fa-close')"></i>
-                            <div class="text v-centered">Deze {{tracker.type}} werkt over meerdere websites</div>
-                        </div>
-                        <div class="property">
-                            <i :class="'fa ' + (tracker.detail.bullets.cookie ? 'fa-check ' : 'fa-close')"></i>
-                            <div class="text v-centered">Deze {{tracker.type}} maakt gebruik van analytic cookies</div>
-                        </div>
-                        <div class="property">
-                            <i :class="'fa ' + (tracker.detail.bullets.functional ? 'fa-check ' : 'fa-close')"></i>
-                            <div class="text v-centered">Deze {{tracker.type}} maakt gebruik van functionele cookies</div>
-                        </div>
-                    </div>
-                </div>
-            </ic-content-box>
+
+            </ic-connection-summary>
         </div>
     </div>
 </template>
@@ -50,6 +16,9 @@
     // Custom import
     var trackers = require('assets/json/trackers.json');
 
+    // Components
+    var icConnectionSummary = require('components/connections/icConnectionSummary.vue');
+
     // Defaults
     var viewTitle = "Voorkeuren";
 
@@ -60,8 +29,9 @@
 
     // Public functions
     module.exports = {
-        name: "tracking",
+        name: "connections",
         components:{
+	        icConnectionSummary:icConnectionSummary
         },
         props:{
             tracker: Object

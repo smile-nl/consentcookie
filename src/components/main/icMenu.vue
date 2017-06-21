@@ -109,13 +109,13 @@
 		}
 	
 		.ic-menu-bar{
-			margin-right:30px;
+			margin-right:($menu-button-size / 2) + px;
 			overflow:hidden;
 		
 			.ic-menu-items{
-			    height:60px;
-		    	padding: 5px 30px 5px 5px;
-		    	border-radius:60px 0px 0px 60px;
+			    height:$menu-button-size + px;
+		    	padding: 5px ($menu-button-size / 2) + px 5px 5px;
+		    	border-radius:$menu-button-size + px 0px 0px $menu-button-size + px;
 		    	background: $ic-brand-color;
 			}
 		}

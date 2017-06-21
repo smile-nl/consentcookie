@@ -39,7 +39,7 @@
 	var underscore = require("underscore");
 	
 	// Defaults
-	var viewTitle = "Who is tracking you?";
+	var viewTitle = "Who is connections you?";
 	
 	// View state
 	var data = {
@@ -48,7 +48,7 @@
 	
 	// Public functions
 	module.exports = {
-		name:"tracking",
+		name:"connections",
 		components:{
 		},
 		props: {
