@@ -47,7 +47,7 @@
 
 		.ic-impression-wrapper{
 			margin:0px 10px 10px 10px;
-			border: $ic-content-border;
+			border: $ic-box-border;
 		}
 		
 		.ic-impression-wrapper:first-child{

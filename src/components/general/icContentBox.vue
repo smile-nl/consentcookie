@@ -38,7 +38,7 @@ module.exports = {
   		}
   		
   		.content{
-  			border: $ic-content-border;
+  			border: $ic-box-border;
   		
 	  		> * {
 	  			padding: $ic-content-padding;

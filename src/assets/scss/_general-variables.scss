@@ -34,6 +34,7 @@ $ic-color-grey: #d9d9d9;
 $ic-color-dark-grey: #7f7f7f;
 
 $ic-brand-color: rgba(252,109,109,1);
+$ic-brand-color: #FC898A;
 $ic-brand-color-faded: rgba(252,109,109,0.4);
 
 $ic-overlay-white-transparant: rgba(255,255,255,0.4);
@@ -43,8 +44,7 @@ $ic-overlay-black-transparant: rgba(0,0,0,0.4);
 $ic-drop-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.15);
  
  
-// Components 
-$ic-content-border: 1px solid $ic-color-grey;
+// Components
 $ic-content-padding: 20px; 
  
 // Buttons
@@ -52,8 +52,11 @@ $ic-button-default-font-color: $ic-color-white;
 $ic-button-default-background-color: $ic-brand-color;
 $ic-button-default-box-shadow: 0 0 1px #b8bbbf;
 
-$ic-button-default-plain-color: $ic-brand-color;  
- 
+$ic-button-default-plain-color: $ic-brand-color;
+
+$ic-box-border: 1px solid $ic-color-grey;
+$ic-box-border-radius:5px;
+
  
 // ui-mint
 // General colors

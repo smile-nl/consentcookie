@@ -9,7 +9,7 @@
                 <div class="logo v-centered">
                     <img :src="tracker.icon" />
                 </div>
-                <ic-switch class="v-centered toggle" v-model="tracker.value"></ic-switch>
+                <ic-switch v-model="tracker.value"></ic-switch>
                 <ic-dropdown-button :state="tracker" :iconShowInfo="'chevron-down'" :iconHideInfo="'chevron-up'" title="Meer informatie"></ic-dropdown-button>
 
                 <div class="notification" v-if="tracker.value"> Let op! De tracker staat uit, dit betekent dat we geen gegevens bijhouden en geen persoonlijke aanbiedingen kunnen doen. </div>
