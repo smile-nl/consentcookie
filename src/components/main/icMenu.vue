@@ -56,7 +56,7 @@
 				this.$store.commit('toggleView');
 				if(this.$store.state.view.open){
 					// Go to last opened view or the welcome view
-					var lastPath = this.$store.state.application.lastPath;
+					var lastPath = this.$store.state.application.state.lastPath;
 					return this.$router.push({path: lastPath});
 				}
 			}

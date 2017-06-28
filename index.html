@@ -2,6 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="nl" lang="nl">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title><%= htmlWebpackPlugin.options.title %></title>
+
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+		<!-- JS Cookie -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.1.4/js.cookie.min.js"></script>
+
 	</head>
 	<body>
 		<style>
@@ -11,7 +25,22 @@
 				height: 100%;
 			}
 		</style>
-		<h1>Test COOKIE</h1>
+		<div class="container">
+			<h1>Test page icookie</h1>
+			<div class="row">
+				<div class="col-lg-1">
+					<button type="button" class="btn btn-lg btn-success" onclick="removeCookieConsent();">Remove cookie consent cookie</button>
+				</div>
+			</div>
+		</div>
+		<script type="application/javascript">
+			var icookieBuildConfig = <%= JSON.stringify(htmlWebpackPlugin.options.config) %>;
+		</script>
+		<script type="application/javascript">
+			function removeCookieConsent(){
+				Cookies.remove(icookieBuildConfig.consent.cookieName);
+			}
+		</script>
 		
 		<!-- Start 7Tag script code -->
 		<script type="text/javascript">

@@ -3,7 +3,10 @@ module.exports = function configState(vue) {
 	// Get the dependencies
 	var veux = require('vuex');
 	var vuexPersistedState =  require('vuex-persistedstate');
-	
+
+	// Import default config
+	var applicationConfig = require("customConfig");
+
 	// Defaults options
 	var envs = ["production","test"];
 	
@@ -13,10 +16,9 @@ module.exports = function configState(vue) {
 	};
 	
 	var pathsToPersist = [
-		"application.shownWelcome",
-		"application.lastPath",
+		"application.state",
 		"route",
-		"settings",
+		"settings"
 	];
 	
 	var vuexPlugins = [
@@ -59,8 +61,11 @@ module.exports = function configState(vue) {
 				}
 			},
 			application : {
-				shownWelcome : false,
-				lastPath: null
+				state:{
+					shownWelcome : false,
+					lastPath: null
+				},
+				config:applicationConfig
 			}
 	  	},
 	  	mutations : {
@@ -70,8 +75,8 @@ module.exports = function configState(vue) {
 	  			$state.view.contentActive = validator.isBoolean($payload.contentActive) ? $payload.contentActive : $state.view.contentActive;  
 	  		},
 	  		updateApplication : function($state,$payload){
-	  			$state.application.shownWelcome = !validator.isBoolean($payload.shownWelcome) ? $state.application.shownWelcome : $payload.shownWelcome;
-	  			$state.application.lastPath = validator.isInValid($payload.lastPath) ? $state.application.lastPath : $payload.lastPath;
+	  			$state.application.state.shownWelcome = !validator.isBoolean($payload.shownWelcome) ? $state.application.state.shownWelcome : $payload.shownWelcome;
+	  			$state.application.state.lastPath = validator.isInValid($payload.lastPath) ? $state.application.state.lastPath : $payload.lastPath;
 	  		},
 	  		toggleView : function($state){
 	  			$state.view.open = !$state.view.open; 

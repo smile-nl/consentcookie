@@ -1,0 +1,7 @@
+#
+# Config file based in YAML format used to customize icookie
+#
+welcome:
+consent:
+  cookieName: "icookie-consent-cookie"
+  cookieValue: "true"

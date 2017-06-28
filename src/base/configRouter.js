@@ -33,7 +33,7 @@ module.exports = function configRouter(vue) {
 			return next();
 		}
 		// Show welcome for first time visit
-		if(!routerInstance.app.$store.state.application.shownWelcome){
+		if(!routerInstance.app.$store.state.application.state.shownWelcome){
   			return next(DEFAULT_PATH_WELCOME);
   		}
   		return next();

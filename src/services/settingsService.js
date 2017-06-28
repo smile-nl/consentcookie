@@ -15,6 +15,8 @@ module.exports = function() {
 	var DEFAULT_IMPRESS_ULR_PRODUCTION = "https://liquifier.iqnomy.com/myliquidsuite-ws/async/impr";
 	var DEFAULT_IMPRESS_ULR_TEST = "https://liquifier.test.iqnomy.com/myliquidsuite-ws/async/impr";
 
+	var customConfig = require("customConfig");
+
 	// Private functions
 	function _init(vueServices){
 		
