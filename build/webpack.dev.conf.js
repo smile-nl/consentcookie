@@ -5,11 +5,16 @@ var utils = require('./utils');
 var baseWebpackConfig = require('./webpack.base.conf');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var FriendlyErrors = require('friendly-errors-webpack-plugin');
+var yaml = require('js-yaml');
+var fs = require("fs");
 
 // add hot-reload related code to entry chunks
 Object.keys(baseWebpackConfig.entry).forEach(function (name) {
 	baseWebpackConfig.entry[name] = ['./build/dev-client'].concat(baseWebpackConfig.entry[name])
 });
+
+// Inject custom config in the HTML template, for testing
+var customBuildConfig = yaml.safeLoad(fs.readFileSync(config.build.customBuildConfig,'utf8'));
 
 module.exports = merge(baseWebpackConfig, {
 	module: {
@@ -29,10 +34,10 @@ module.exports = merge(baseWebpackConfig, {
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: 'index.html',
-			inject: true
+			inject: true,
+			title: "Icookie Test Page",
+			config:customBuildConfig
 		}),
-
-
 		new FriendlyErrors()
 	]
 });
