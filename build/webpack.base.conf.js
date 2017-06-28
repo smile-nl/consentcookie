@@ -1,17 +1,14 @@
-var path = require('path')
-var config = require('../config')
-var utils = require('./utils')
-var projectRoot = path.resolve(__dirname, '../')
+var path = require('path');
+var config = require('../config');
+var utils = require('./utils');
+var projectRoot = path.resolve(__dirname, '../');
 
-var env = process.env.NODE_ENV
+var env = process.env.NODE_ENV;
 // check env & config/index.js to decide whether to enable CSS source maps for the
 // various preprocessor loaders added to vue-loader at the end of this file
-var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap)
-var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap)
-var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
-
-// Use a custom config to customise the icookie build
-var customConfigPath = (process.env.configProvided ? "" : path.resolve(__dirname, './custom/icookie-custom-config.yml'));
+var cssSourceMapDev = (env === 'development' && config.dev.cssSourceMap);
+var cssSourceMapProd = (env === 'production' && config.build.productionSourceMap);
+var useCssSourceMap = cssSourceMapDev || cssSourceMapProd;
 
 module.exports = {
 	entry: {
@@ -33,7 +30,7 @@ module.exports = {
 			'views': path.resolve(__dirname, '../src/views'),
 			'services': path.resolve(__dirname, '../src/services'),
 			'plugins': path.resolve(__dirname, '../src/plugins'),
-			'customConfig':path.resolve(customConfigPath),
+			'customConfig':path.resolve(config.build.customBuildConfig)
 		}
 	},
 	resolveLoader: {
