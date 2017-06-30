@@ -5,6 +5,7 @@ target/*
 dist/*
 /.tern-project
 npm-debug.log
+.idea/
 
 # Created by https://www.gitignore.io/api/node,intellij+iml
 
