@@ -115,33 +115,6 @@
   color: $ic-brand-color;
 }
 
-#icookie .no-content {
-  text-align: center;
-  padding-top: 120px;
-  min-height: 400px;
-
-  i {
-    font-size: 100px;
-    opacity: 0.1;
-  }
-}
-
-#icookie .ic-info{
-  margin: 0px 20px 20px 20px;
-  
-  .title{
-      font-size: 26px;
-      color:$ic-brand-color;
-      margin: 30px 0px 5px 0px;
-   }
-  
-  .text {
-      line-height: 22px;
-      font-size: 15px;
-      padding-top: 15px;
-  }
-}
-
 #icookie .notification{
     padding: 5px 10px;
     border-left: 3px solid #ef5350;
