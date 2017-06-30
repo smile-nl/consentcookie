@@ -70,6 +70,11 @@ module.exports = function configRouter(vue) {
 			return;
 		}
 
+		// Do nothing if consent has not been accepted yet.
+		if(!_getConsentService().isAccepted()){
+			return;
+		}
+
 		// If we had a match, save the last path and set the content active
 		if(_validRoute(to)){
 			_getStore().commit('updateApplication',{lastPath:to.path,contentActive:true});

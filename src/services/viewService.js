@@ -45,8 +45,11 @@ module.exports = function() {
 
 	function _toggleMenu(){
 		var isOpen = (true === vue.$store.state.application.state.menuOpen);
+		var isContentActive = (true == vue.$store.state.application.state.contentActive);
+
 		// Close the content also when we have open content and we are closing the menu
-		_show((isOpen ? false : null),!(vue.$store.state.application.state.menuOpen));
+		// Open the content when a content was already active
+		_show((isOpen ? false : (isContentActive ? true : null)),!(vue.$store.state.application.state.menuOpen));
 
 		if(vue.$store.state.application.state.menuOpen){
 			// Go to last opened view or the welcome view
