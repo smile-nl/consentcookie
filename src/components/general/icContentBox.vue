@@ -1,53 +1,34 @@
 <template>
-	<div :class="'ic-content-box' + clazz">
-		<div v-if="title" class="title">{{title}}</div>
-		<div class="content">
-			<slot></slot>
-		</div>
+	<div class="ic-content-box">
+		<slot></slot>
 	</div>
 </template>
 
 <script>
-module.exports = {
-    name: 'ic-content-box',
-    props: {
-        styleClass: String,
-        title: String
-    },
-    data : function(){
-    	return {};
-    },
-    computed : {
-    	clazz : function(){
-    		return (typeof this.styleClass !== 'undefined' && this.styleClass) ? " " + this.styleClass : "";
-    	}
-    }
-};
+	module.exports = {
+		name: 'icContentBox',
+	};
 </script>
 
 <style lang="scss" scoped>
- 
-  @import '../../assets/scss/general-variables';
-  
-  .ic-content-box{
-  		margin: 5px;
-  		
-  		.title{
-  			margin: 20px 10px 10px 10px;
-            font-size: 20px;
-  		}
-  		
-  		.content{
-  			border: $ic-box-border;
-  		
-	  		> * {
-	  			padding: $ic-content-padding;
-	  			//border-bottom: $ic-content-border;
-	  		}
-	  	
-	  		> *:last-child{
-	  			border:none;
-	  		}
+
+	@import '../../assets/scss/general-variables';
+
+	.ic-content-box {
+		margin: 5px;
+		padding: 10px 25px;
+		border:$ic-box-border;
+		border-radius: $ic-box-border-radius;
+
+		.icTitle {
+			font-size: 26px;
+			color: $ic-brand-color;
+			margin: 15px 0px 5px 0px;
 		}
-  }
+		.icText {
+			line-height: 22px;
+			font-size: 15px;
+			padding-top: 15px;
+		}
+	}
 </style>

@@ -1,14 +1,14 @@
 <template>
 	<div id="icMenu" class="clearfix">
-		<div class="ic-menu-button" v-on:click="toggleOpen">
-			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
-		</div>
-		<div :class="'ic-menu-bar ' + contentActiveClass">
+		<div class="ic-menu-bar">
 			<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
 				<div class="ic-menu-items clearfix" v-show="isOpen">
 					<ic-menu-item v-for="menuItem in menuItems" :data="menuItem"></ic-menu-item>
 				</div>
 			</transition>
+		</div>
+		<div class="ic-menu-button" v-on:click="toggleOpen">
+			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
 		</div>
 	</div>
 </template>
@@ -21,15 +21,18 @@
 		icon : "gift",
 		path : "/foryou",
 		info : "Voor jou",
+		title: ""
 	}, {
 		icon : "toggle-on",
 		path : "/connections",
-		info : "Connecties"
+		info : "Connecties",
+		title: ""
 	}, {
 		icon : "question",
 		iconSize: "30",
 		path : "/howto",
 		info : "Info",
+		title: ""
 	}];
 
 	/* VUE */
@@ -45,23 +48,17 @@
 		},
 		computed : {
 			isOpen : function(){
-				return this.$store.state.view.open;
-			},
-			contentActiveClass : function(){
-				return this.$store.state.view.contentActive ? "" : "no-content";
+				return this.$store.state.application.state.menuOpen;
 			}
 		},
 		methods : {
 			toggleOpen : function(){
-				this.$store.commit('toggleView');
-				if(this.$store.state.view.open){
-					// Go to last opened view or the welcome view
-					var lastPath = this.$store.state.application.state.lastPath;
-					return this.$router.push({path: lastPath});
+				if(!this.$store.state.application.state.menuActive){
+					return false;
 				}
+				this.$services.view.toggleMenu();
 			}
 		},
-		watch : {},
 		ready : function() {
 
 		}
@@ -71,6 +68,8 @@
 <style lang="scss" scoped>
 
 	@import '../../assets/scss/general-variables';
+
+	$menu-button-shadow: 0px 0px 15px 2px rgba(136, 136, 136, 0.15);
 
 	$menu-button-size:60;
 	$menu-button-height:$menu-button-size + px;
@@ -85,24 +84,25 @@
 		
 		display:block;
 		position:relative;
+		height: $menu-button-size + px;
 		
 		.ic-menu-button{
-			z-index:1000;
 			position:absolute;
 			right:0px;
 			bottom:0px;
 			line-height: $menu-button-height;
 			height: $menu-button-height;
 			width: $menu-button-width;
-			border-radius: $menu-button-radius;
 			background: $ic-color-white;
-			box-shadow: $ic-drop-shadow;
 			cursor: pointer;
+			border:$ic-box-border;
+			border-radius: $menu-button-radius;
+			box-shadow: $menu-button-shadow;
 
 			.hs-logo{
 				position: absolute;
 				top:3px;
-				left:5px;
+				left:4px;
 				height: $menu-logo-height;
 				width: $menu-logo-width;
 			}

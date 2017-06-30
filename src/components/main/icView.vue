@@ -1,20 +1,27 @@
 <template>
-	<div id="icView" v-bind:style="viewCss">
-		<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
-			<div class="ic-view-content-wrapper" v-bind:style="contentWrapperCss" v-show="isShown">
-				<div  class="ic-view-content" v-bind:style="contentCss">
+	<div id="icView">
+		<div class="icViewWrapper">
+			<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
+				<div class="viewHolder" v-show="isShown" v-bind:style="viewHolderCss">
 					<ic-view-header :height="headerHeight"></ic-view-header>
-					<router-view></router-view>
+					<ic-view-content v-bind:style="viewContentCss">
+						<router-view></router-view>
+					</ic-view-content>
 				</div>
-			</div>
-		</transition>
+			</transition>
+		</div>
 	</div>
 </template>
 
 <script>
-	
+
+	// Libaries
+	var _ = require("underscore");
+
+	// Components
 	var icViewHeader = require("components/main/icViewHeader.vue");
-	
+	var icViewContent = require("components/main/icViewContent.vue");
+
 	// Defaults
 	var DEFAULT_HEADER_HEIGHT = 56;
 	var DEFAULT_SCROLLBAR_SIZE = 20; // Its actually 17px but 20 is just to be safe.
@@ -23,53 +30,49 @@
 	var DEFAULT_MAX_HEIGHT = "inherit";
 	var DEFAULT_MIN_HEIGHT = 400;
 	var DEFAULT_BOTTOM_POS = 90;
-	
+
 	// Data
-	var componentData = {
+	var data = {
 		headerHeight: DEFAULT_HEADER_HEIGHT,
-		viewCss : {
-			maxHeight:DEFAULT_MAX_HEIGHT,
-			bottom: _sizeInPx(DEFAULT_BOTTOM_POS),
-		},
-		contentWrapperCss : {
-			marginRight: "-" + _sizeInPx(DEFAULT_SCROLLBAR_SIZE),
+		viewHolderCss : {
+			height:DEFAULT_MAX_HEIGHT,
 			maxHeight:DEFAULT_MAX_HEIGHT,
 		},
-		contentCss : {
-			marginRight: _sizeInPx(DEFAULT_SCROLLBAR_SIZE)
+		viewContentCss:{
+			height: "calc(100% - " + DEFAULT_HEADER_HEIGHT + "px)"
 		}
-		
 	};
-	
+
 	// Private function
 	function _sizeInPx(size){
 		return size ? size + "px" : null;
 	}
-	
+
 	function _calcMaxHeight(vueComponent){
 		var curWindowHeight = global.innerHeight;
-		
+
 		// Calc the maxHeight based on the bottom pos and top gap size
-		var maxHeight = typeof curWindowHeight === 'number' 
+		var maxHeight = _.isNumber(curWindowHeight)
 			? _sizeInPx(curWindowHeight-DEFAULT_BOTTOM_POS-DEFAULT_GAP_SIZE_TOP - DEFAULT_MARGIN_MENU - DEFAULT_SCROLLBAR_SIZE)
-			: DEFAULT_MAX_HEIGHT
+			: DEFAULT_MAX_HEIGHT;
 		// Set the max height
-		componentData.viewCss.maxHeight = maxHeight;
-		// componentData.contentWrapperCss.maxHeight = maxHeight - ;
+		data.viewHolderCss.height = maxHeight;
+		data.viewHolderCss.maxHeight = maxHeight;
 	}
-	
+
 	/* VUE */
 	module.exports = {
 		name:"icView",
 		components: {
-			icViewHeader:icViewHeader
+			icViewHeader:icViewHeader,
+			icViewContent:icViewContent
 		},
 		data: function(){
-			return componentData;
-		},	
+			return data;
+		},
 		computed : {
 			isShown : function(){
-				return this.$store.state.view.open && this.$store.state.view.contentActive;
+				return this.$store.state.application.state.contentOpen;
 			}
 		},
 		created : function(){
@@ -79,23 +82,28 @@
 </script>
 
 <style lang="scss" scoped>
-	
+
 	@import '../../assets/scss/general-variables';
 
+	/* Take in account the overflow hidden on the right side */
+	$menu-drop-shadow: -5px 5px 10px 0px rgba(136, 136, 136, 0.15);
+
 	#icView{
-		position: absolute;
-		right: 0px;
-		overflow:hidden;
-		
-		.ic-view-content-wrapper{
-			overflow-y: scroll;
-		}
-		
-		.ic-view-content{
-			border-radius: 5px;
-			box-shadow: $ic-drop-shadow;
-			background: #FFFFFF;
-			overflow:hidden;
+		position: relative;
+
+		.icViewWrapper{
+			position: absolute;
+			right:0px;
+			bottom: 0px;
+			padding: 0px 0px 15px 15px;
+			overflow: hidden;
+
+			.viewHolder{
+				border-radius: $ic-box-border-radius;
+				box-shadow: $menu-drop-shadow;
+				background: $ic-color-white;
+				overflow: hidden;
+			}
 		}
 	}
 </style>
