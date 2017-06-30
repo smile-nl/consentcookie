@@ -34,7 +34,7 @@
 				return this.$root._services
 			}
 		});
-		
+
 		// Link the plugin before the vue app is created		  	
 		Vue.mixin({
 			beforeCreate : function beforeCreate() {
@@ -100,7 +100,6 @@
 	};
 
 	VueServices.prototype.init = function init(vueInstance /* Vue component instance */) {
-		var this$1 = this;
 
 		// main app already initialized.
 		if (this.vueInstance) {
@@ -111,10 +110,6 @@
 		// Init the services
 		_initServices(this);
 	};
-	
-
-	// var prototypeAccessors = { currentRoute: {} };	
-	// Object.defineProperties(VueServices.prototype, prototypeAccessors);
 
 	VueServices.install = install;
 	VueServices.version = '1.0.0';

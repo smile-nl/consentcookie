@@ -3,7 +3,6 @@
         <div class="trackers" v-if="trackers && trackers.length > 0">
             <ic-connection-summary v-for="tracker in trackers" :connection="tracker">
 
-
             </ic-connection-summary>
         </div>
     </div>

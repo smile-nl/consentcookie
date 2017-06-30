@@ -6,9 +6,11 @@
 				<div v-if="loading" class="loader">
 					<i class="fa fa-spinner fa-pulse fa-fw" aria-hidden="true"></i>
 				</div>
+				<!--
 				<div class="action close" v-on:click="close()">
 					<i class="fa fa-close" aria-hidden="true"></i>
 				</div>
+				-->
 			</div>
 		</div>
 	</div>
@@ -42,10 +44,12 @@
 			}
 		},
 		methods: {
+			/*
 			close : function(){
 				this.$store.commit("updateView",{contentActive:false});
 				this.$router.reset();
 			}
+			*/
 		},
 	};
 </script>
@@ -55,7 +59,7 @@
 	@import '../../assets/scss/general-variables';
 
 	.ic-view-header{
-		
+
 		min-width: 350px;
 		padding:20px;
 		background: $ic-brand-color;
