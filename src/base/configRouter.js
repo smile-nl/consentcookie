@@ -4,7 +4,7 @@ module.exports = function configRouter(vue) {
 	var vueRouter = require('vue-router');
 
 	// Default
-	var DEFAULT_PATH_WELCOME = "/welcome";
+	var DEFAULT_PATH_CONSENT = "/consent";
 	var DEFAULT_PATH_FORYOU = "/foryou";
 
 	var DEFAULT_RESET_PATH = {matched:[]};
@@ -19,7 +19,15 @@ module.exports = function configRouter(vue) {
 		linkActiveClass: "active",
 		routes: getRouterPaths()	
 	});
-	
+
+	function _getStore(){
+		return routerInstance.app.$store;
+	}
+
+	function _getConsentService(){
+		return routerInstance.app.$services.consent;
+	}
+
 	// Custom functions
 	routerInstance.reset = function(){
 		this.history.current = DEFAULT_RESET_PATH;
@@ -27,33 +35,40 @@ module.exports = function configRouter(vue) {
 		
 	// Config the router
 	routerInstance.beforeEach(function(to, from, next){
-		
-		// Already on the welcome screen so no need to check if we need to redirect
-		if(DEFAULT_PATH_WELCOME === to.path ){
+
+		// Check if we already are showing the consent
+		// Do nothing then
+		if(DEFAULT_PATH_CONSENT === to.path ){
 			return next();
 		}
-		// Show welcome for first time visit
-		if(!routerInstance.app.$store.state.application.state.shownWelcome){
-  			return next(DEFAULT_PATH_WELCOME);
-  		}
-  		return next();
-	});
-	routerInstance.beforeEach(function(to, from, next){
-		
+
+		// Check if we need to show the consent
+		if(!_getConsentService().isAccepted()){
+			return next(DEFAULT_PATH_CONSENT);
+		}
+
 		// Fallback for a route that does not exist
 		if(to.matched.length === 0){
-			return next(DEFAULT_PATH_FORYOU);	
+			return next(DEFAULT_PATH_FORYOU);
 		}
+
   		return next();
 	});
 	// Save current visited path if valid
 	routerInstance.afterEach(function(to, from){
-		if(to.matched.length > 0){
-			routerInstance.app.$store.commit('updateApplication',{lastPath:to.path});
-			routerInstance.app.$store.commit('updateView',{contentActive:true});
+
+		// Check if we have a valid route
+		if(!from || !from.path || !to || !to.path){
+			return;
+		}
+
+		// If we had a match, save the last path and set the content active
+		if(to && to.matched && to.matched.length > 0){
+			_getStore().commit('updateApplication',{lastPath:to.path,contentActive:true});
 		}
 	});
 	// Open content when its closed and opened again
+	/*
 	routerInstance.afterEach(function(to, from){
 		var isContentActive = routerInstance.app.$store.state.view.contentActive;
 		
@@ -65,12 +80,12 @@ module.exports = function configRouter(vue) {
 			routerInstance.app.$store.commit('updateView',{open:true,contentActive:true});
 		}
 	});
-	
+	*/
 	
 	function getRouterPaths(){
 		return [{
-			path:DEFAULT_PATH_WELCOME,
-			component : require('views/welcome.vue')
+			path:DEFAULT_PATH_CONSENT,
+			component : require('views/consent.vue')
 		},{
 			path:DEFAULT_PATH_FORYOU,
 			component : require('views/foryou.vue')

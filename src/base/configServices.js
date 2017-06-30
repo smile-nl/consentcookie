@@ -21,6 +21,9 @@ module.exports = function configServiceLoader(vue) {
 		},{
 			name:"trackers",
 			service:require("services/trackersService.js")
+		},{
+			name:"consent",
+			service:require("services/consentService.js")
 		}
 	]; 
 	

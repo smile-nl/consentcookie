@@ -6,17 +6,29 @@
 </template>
 
 <script>
+
 	var icMenu = require('../components/main/icMenu.vue');
 	var icView = require('../components/main/icView.vue');
 		
 	module.exports = {
 		name:"main",
 		components:{
-			icMenu,icView
+			icMenu:icMenu,
+			icView:icView
 		},
-		created : function() {
-			
-  		}
+		data: function(){
+			return {}
+		},
+		beforeMount: function(){
+			if(this.$services.consent.isAccepted()){
+				this.$services.view.enableMenu();
+			}
+		},
+		mounted : function(){
+			if(!this.$services.consent.isAccepted()){
+				this.$services.consent.showConsent();
+			}
+		}
 	};
 </script>
 
