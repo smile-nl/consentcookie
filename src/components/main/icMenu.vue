@@ -21,18 +21,15 @@
 		icon : "gift",
 		path : "/foryou",
 		info : "Voor jou",
-		title: ""
 	}, {
 		icon : "toggle-on",
 		path : "/connections",
 		info : "Connecties",
-		title: ""
 	}, {
 		icon : "question",
 		iconSize: "30",
 		path : "/howto",
 		info : "Info",
-		title: ""
 	}];
 
 	/* VUE */

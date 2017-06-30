@@ -28,6 +28,14 @@ module.exports = function configRouter(vue) {
 		return routerInstance.app.$services.consent;
 	}
 
+	function _getViewService(){
+		return routerInstance.app.$services.view;
+	}
+
+	function _validRoute(to){
+		return to && to.matched && to.matched.length > 0;
+	}
+
 	// Custom functions
 	routerInstance.reset = function(){
 		this.history.current = DEFAULT_RESET_PATH;
@@ -63,7 +71,7 @@ module.exports = function configRouter(vue) {
 		}
 
 		// If we had a match, save the last path and set the content active
-		if(to && to.matched && to.matched.length > 0){
+		if(_validRoute(to)){
 			_getStore().commit('updateApplication',{lastPath:to.path,contentActive:true});
 		}
 	});

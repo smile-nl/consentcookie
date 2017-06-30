@@ -1,7 +1,9 @@
 #
 # Config file based in YAML format used to customize icookie
 #
-welcome:
+enviroment:
+  test: false
+  production: true
 consent:
   cookie:
     name: "icookie-consent-cookie"

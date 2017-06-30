@@ -18,7 +18,6 @@ module.exports = function configState(vue) {
 	
 	var pathsToPersist = [
 		"application.state.lastPath",
-		"route",
 		"settings"
 	];
 	
