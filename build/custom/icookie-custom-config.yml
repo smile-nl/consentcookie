@@ -3,5 +3,11 @@
 #
 welcome:
 consent:
-  cookieName: "icookie-consent-cookie"
-  cookieValue: "true"
+  cookie:
+    name: "icookie-consent-cookie"
+    value: "true"
+  info:
+    title: "Deze demo website maakt gebruik van cookies"
+    text: "Met deze applicatie krijg je informatie over welke cookies dat zijn én kun je zien welke voordelen dat voor jou oplevert."
+    link: "http://www.icookie.io"
+    timeout: 300
