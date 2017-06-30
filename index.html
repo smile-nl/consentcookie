@@ -10,6 +10,9 @@
 		<!-- jQuery library -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+		<!-- JS URL -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.5.0/url.js"></script>
+
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -20,25 +23,135 @@
 	<body>
 		<style>
 			html {
-				background: #D6D6D6;
 				width: 100%;
 				height: 100%;
 			}
+			body {
+				position: relative;
+				background: #D6D6D6;
+				width: 100%;
+				height: 100%;
+				margin: 0px;
+				padding: 0px;
+			}
+			#iframe {
+				/* display:none; */
+				position: absolute;
+				top:0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				border:none;
+			}
 		</style>
-		<div class="container">
-			<h1>Test page icookie</h1>
+		<iframe id="iframe" src=""></iframe>
+
+		<div class="container" style="width: 500px;border: 2px solid darkgrey; padding: 0px 30px;position: absolute;left:30px;top:30px;background: rgba(0,0,0,0.3)" >
 			<div class="row">
-				<div class="col-lg-1">
-					<button type="button" class="btn btn-lg btn-success" onclick="removeCookieConsent();">Remove cookie consent cookie</button>
-				</div>
+				<h1>Test page icookie</h1>
+			</div>
+			<div class="row">
+				<form class="form-horizontal">
+					<fieldset>
+
+						<!-- Button Drop Down -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="background">Background color</label>
+							<div class="col-md-8">
+								<input id="background" name="background" type="text" placeholder="#FFFFFF" class="form-control input-md">
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="website">Background website</label>
+							<div class="col-md-8">
+								<input id="website" name="website" type="text" placeholder="https://www.tweakers.net" class="form-control input-md">
+							</div>
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<button type="button" name="update" class="btn btn-success" onclick="updateConfiguration();">Update configuration</button>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			<div class="row" style="margin-top:30px">
+				<form class="form-horizontal">
+					<fieldset>
+
+						<!-- Button -->
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<button type="button" class="btn btn-success" onclick="removeCookieConsent();">Remove consent & refresh</button>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<button type="button" name="random" class="btn btn-success" onclick="randomBackground();">Random background color</button>
+							</div>
+						</div>
+						<!--
+						<div class="form-group">
+							<div class="col-md-offset-4 col-md-8">
+								<button type="button" name="random" class="btn btn-success" onclick="randomWebsite();">Random website</button>
+							</div>
+						</div>
+						-->
+					</fieldset>
+				</form>
 			</div>
 		</div>
 		<script type="application/javascript">
 			var icookieBuildConfig = <%= JSON.stringify(htmlWebpackPlugin.options.config) %>;
 		</script>
 		<script type="application/javascript">
+			var backgroundColor = "#DDDDDD";
+			var backgroundUrl = url('?') ? url('?').website :  "";
+
+			loadConfig();
+
+			function updateConfiguration(){
+				backgroundColor = jQuery("#background").val();
+				backgroundUrl = jQuery("#website").val();
+				loadConfig();
+			}
+
+			function randomBackground(){
+				backgroundColor = getRandomColor();
+				backgroundUrl = "";
+				jQuery("#background").val(backgroundColor);
+				loadConfig();
+			}
+
+			function randomWebsite(){
+				backgroundUrl = "https://www.theuselesswebindex.com/website/";
+				loadConfig();
+			}
+
+			function loadConfig(){
+				jQuery("body").css("background",backgroundColor);
+				jQuery("#iframe").attr("src",backgroundUrl);
+			}
+
 			function removeCookieConsent(){
-				Cookies.remove(icookieBuildConfig.consent.cookieName);
+				Cookies.remove(icookieBuildConfig.consent.cookie.name);
+				window.location = window.location;
+			}
+
+			function getRandomColor() {
+				var letters = '0123456789ABCDEF';
+				var color = '#';
+				for (var i = 0; i < 6; i++) {
+					color += letters[Math.floor(Math.random() * 16)];
+				}
+				return color;
 			}
 		</script>
 		
