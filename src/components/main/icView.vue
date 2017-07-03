@@ -23,41 +23,45 @@
 	var icViewContent = require("components/main/icViewContent.vue");
 
 	// Defaults
-	var DEFAULT_HEADER_HEIGHT = 56;
-	var DEFAULT_SCROLLBAR_SIZE = 20; // Its actually 17px but 20 is just to be safe.
-	var DEFAULT_MARGIN_MENU = 40;
-	var DEFAULT_GAP_SIZE_TOP = 20;
+	var DEFAULT_MIN_TOP_MARGIN = 30;
 	var DEFAULT_MAX_HEIGHT = "inherit";
-	var DEFAULT_MIN_HEIGHT = 400;
-	var DEFAULT_BOTTOM_POS = 90;
+	var DEFAULT_HEADER_HEIGHT = 56;
+
+	// Private variables
+	var viewElement = null;
 
 	// Data
 	var data = {
 		headerHeight: DEFAULT_HEADER_HEIGHT,
+		viewContentCss:{
+			height: "calc(100% - " + DEFAULT_HEADER_HEIGHT + "px)"
+		},
 		viewHolderCss : {
 			height:DEFAULT_MAX_HEIGHT,
 			maxHeight:DEFAULT_MAX_HEIGHT,
 		},
-		viewContentCss:{
-			height: "calc(100% - " + DEFAULT_HEADER_HEIGHT + "px)"
-		}
 	};
 
 	// Private function
-	function _sizeInPx(size){
-		return size ? size + "px" : null;
+	function _calcHeight(){
+		if(!viewElement){
+			return false;
+		}
+
+		// calculate the max height
+		var icViewBottom = viewElement.getBoundingClientRect().bottom;
+		data.viewHolderCss.maxHeight = icViewBottom - DEFAULT_MIN_TOP_MARGIN + "px";
+
+		// calculate the optimal height
+		// heights needs to be set to enable scrolling
 	}
 
-	function _calcMaxHeight(vueComponent){
-		var curWindowHeight = global.innerHeight;
+	function _initBrowserEvents(){
+		window.addEventListener("resize",_updatePositions);
+	}
 
-		// Calc the maxHeight based on the bottom pos and top gap size
-		var maxHeight = _.isNumber(curWindowHeight)
-			? _sizeInPx(curWindowHeight-DEFAULT_BOTTOM_POS-DEFAULT_GAP_SIZE_TOP - DEFAULT_MARGIN_MENU - DEFAULT_SCROLLBAR_SIZE)
-			: DEFAULT_MAX_HEIGHT;
-		// Set the max height
-		data.viewHolderCss.height = maxHeight;
-		data.viewHolderCss.maxHeight = maxHeight;
+	function _updatePositions(event){
+		_calcHeight();
 	}
 
 	/* VUE */
@@ -76,7 +80,13 @@
 			}
 		},
 		created : function(){
-			_calcMaxHeight(this);
+			_initBrowserEvents();
+		},
+		mounted : function(){
+			// Set reference to the DOM element
+			viewElement = this.$el;
+			// Calc the optimal sizes
+			_calcHeight();
 		}
 	};
 </script>

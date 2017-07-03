@@ -1,7 +1,7 @@
 <template>
 	<div id="ic-view-content">
 		<div class="ic-view-scollholder" v-bind:style="scrollholderCSS">
-			<div class="ic-view-scrollcontent">
+			<div class="ic-view-scrollcontent" v-bind:style="scrollContentCSS">
 				<slot></slot>
 			</div>
 		</div>
@@ -22,6 +22,10 @@
 				scrollholderCSS:{
 					/* to hide the scrollbar we want a negative margin */
 					marginRight: -DEFAULT_SCROLLBAR_WIDTH + "px",
+				},
+				scrollContentCSS :{
+					/* to align content properly, undo the negagive margin*/
+					marginRight: DEFAULT_SCROLLBAR_WIDTH + "px",
 				}
 			};
 		},
@@ -31,7 +35,6 @@
 		methods: {
 
 		},
-
 	};
 </script>
 
