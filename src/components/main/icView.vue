@@ -4,7 +4,7 @@
 			<transition enter-active-class="icAnimated icSlideInRight" leave-active-class="icAnimated icSlideOutRight">
 				<div class="viewHolder" v-show="isShown" v-bind:style="viewHolderCss">
 					<ic-view-header :height="headerHeight"></ic-view-header>
-					<ic-view-content v-bind:style="viewContentCss" :content-height.sync="contentHeight">
+					<ic-view-content v-bind:style="viewContentCss">
 						<router-view></router-view>
 					</ic-view-content>
 				</div>
@@ -24,15 +24,11 @@
 
 	// Defaults
 	var DEFAULT_MIN_TOP_MARGIN = 30;
-
-
-	var DEFAULT_HEADER_HEIGHT = 56;
-	var DEFAULT_SCROLLBAR_SIZE = 20; // Its actually 17px but 20 is just to be safe.
-	var DEFAULT_MARGIN_MENU = 40;
-	var DEFAULT_GAP_SIZE_TOP = 20;
 	var DEFAULT_MAX_HEIGHT = "inherit";
-	var DEFAULT_MIN_HEIGHT = 400;
-	var DEFAULT_BOTTOM_POS = 90;
+	var DEFAULT_HEADER_HEIGHT = 56;
+
+	// Private variables
+	var viewElement = null;
 
 
 	// Private variables
@@ -48,14 +44,9 @@
 			height:DEFAULT_MAX_HEIGHT,
 			maxHeight:DEFAULT_MAX_HEIGHT,
 		},
-		contentHeight: 0
 	};
 
 	// Private function
-	function _sizeInPx(size){
-		return size ? size + "px" : null;
-	}
-
 	function _calcHeight(){
 		if(!viewElement){
 			return false;
@@ -67,11 +58,14 @@
 
 		// calculate the optimal height
 		// heights needs to be set to enable scrolling
+	}
 
+	function _initBrowserEvents(){
+		window.addEventListener("resize",_updatePositions);
+	}
 
-
-
-
+	function _updatePositions(event){
+		_calcHeight();
 	}
 
 	/* VUE */
@@ -99,14 +93,6 @@
 			_calcHeight();
 		}
 	};
-
-	function _initBrowserEvents(){
-		window.addEventListener("resize",_updatePositions);
-	}
-
-	function _updatePositions(event){
-		_calcHeight();
-	}
 </script>
 
 <style lang="scss" scoped>

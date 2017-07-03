@@ -1,7 +1,7 @@
 <template>
 	<div id="ic-view-content">
 		<div class="ic-view-scollholder" v-bind:style="scrollholderCSS">
-			<div class="ic-view-scrollcontent">
+			<div class="ic-view-scrollcontent" v-bind:style="scrollContentCSS">
 				<slot></slot>
 			</div>
 		</div>
@@ -14,9 +14,6 @@
 	// http://www.textfixer.com/tutorials/browser-scrollbar-width.php
 	var DEFAULT_SCROLLBAR_WIDTH = 17;
 
-	// Private variables
-	var contentElement = null;
-
 	// Vue module
 	module.exports = {
 		name : "icViewContent",
@@ -25,27 +22,19 @@
 				scrollholderCSS:{
 					/* to hide the scrollbar we want a negative margin */
 					marginRight: -DEFAULT_SCROLLBAR_WIDTH + "px",
+				},
+				scrollContentCSS :{
+					/* to align content properly, undo the negagive margin*/
+					marginRight: DEFAULT_SCROLLBAR_WIDTH + "px",
 				}
 			};
 		},
-		mounted : function(){
-			console.log("mounted");
+		computed : {
 
-			contentElement = this.$el;
-			// Add resize listener
-			contentElement.addEventListener("resize",function(){
-				debugger;
-				this.updateHeight();
-			});
 		},
 		methods: {
-			updateHeight : function(){
-				var self = this;
-				debugger;
-			}
-		}
 
-
+		},
 	};
 </script>
 
