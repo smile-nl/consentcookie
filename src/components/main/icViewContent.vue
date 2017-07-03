@@ -14,6 +14,9 @@
 	// http://www.textfixer.com/tutorials/browser-scrollbar-width.php
 	var DEFAULT_SCROLLBAR_WIDTH = 17;
 
+	// Private variables
+	var contentElement = null;
+
 	// Vue module
 	module.exports = {
 		name : "icViewContent",
@@ -25,12 +28,23 @@
 				}
 			};
 		},
-		computed : {
+		mounted : function(){
+			console.log("mounted");
 
+			contentElement = this.$el;
+			// Add resize listener
+			contentElement.addEventListener("resize",function(){
+				debugger;
+				this.updateHeight();
+			});
 		},
 		methods: {
+			updateHeight : function(){
+				var self = this;
+				debugger;
+			}
+		}
 
-		},
 
 	};
 </script>
