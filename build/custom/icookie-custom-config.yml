@@ -9,7 +9,7 @@ consent:
     name: "icookie-consent-cookie"
     value: "true"
   info:
-    title: "Welkom bij icookie"
-    text: "Met icookie krijg je meer informatie over welke cookies dat zijn en kun je deze datastromen uit of aan zetten zodat je controle krijgt over jouw persoonlijke data."
+    title: "Custom title"
+    text: "Custom text"
     link: "http://www.icookie.io"
     timeout: 300
