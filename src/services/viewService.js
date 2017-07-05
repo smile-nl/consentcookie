@@ -5,15 +5,18 @@
  */
 module.exports = function() {
 
+	// Defaults
+	var DEFAULT_EVENT_WINDOW_RESIZE = "windowResize";
+
+	// Private variables
 	var vue = null;
-	
-	// Defaults options	
 
 	// Private functions
 	function _init(vueServices){
 		vue = vueServices.vueInstance;
 
 		_initRouteListener();
+		_initResizeListener();
 	}
 
 	/**
@@ -33,6 +36,27 @@ module.exports = function() {
 				vue.$services.view.openContent();
 			}
 		})
+	}
+
+	function _initResizeListener(){
+		console.log("Called: _initResizeListener");
+
+		window.addEventListener("resize",function(event){
+
+			var windowDimension = {
+				innerHeight: window.innerHeight,
+				innerWidth: window.innerWidth,
+				outerHeight: window.outerHeight,
+				outerWidth: window.outerWidth
+			};
+
+			// Notify of change
+			vue.$emit(DEFAULT_EVENT_WINDOW_RESIZE,windowDimension);
+		});
+	}
+
+	function _onResize($fn){
+		vue.$on(DEFAULT_EVENT_WINDOW_RESIZE,$fn);
 	}
 
 	function _show($showContent,$showMenu){
@@ -71,6 +95,7 @@ module.exports = function() {
 		enableContent : function(){_enable(true,null)},
 		disable: function(){_enable(false,false)},
 		disableMenu: function(){_enable(null,false)},
-		toggleMenu: function(){_toggleMenu()}
+		toggleMenu: function(){_toggleMenu()},
+		onResize : _onResize,
 	};
 }();

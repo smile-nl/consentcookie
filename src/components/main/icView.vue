@@ -60,11 +60,7 @@
 		// heights needs to be set to enable scrolling
 	}
 
-	function _initBrowserEvents(){
-		window.addEventListener("resize",_updatePositions);
-	}
-
-	function _updatePositions(event){
+	function _updatePositions($windowDimensions){
 		_calcHeight();
 	}
 
@@ -84,7 +80,7 @@
 			}
 		},
 		created : function(){
-			_initBrowserEvents();
+			this.$services.view.onResize(_updatePositions);
 		},
 		mounted : function(){
 			// Set reference to the DOM element
