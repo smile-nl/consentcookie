@@ -1,5 +1,5 @@
 <template>
-    <div id="tracking" class="ic-content">
+    <div id="tracking">
         <div class="trackers" v-if="trackers && trackers.length > 0">
             <ic-connection-summary v-for="tracker in trackers" :connection="tracker">
 
@@ -78,7 +78,7 @@
         }
 
         .properties {
-            margin:20px px;
+            margin:20px 0px;
             padding: 0px 0px 0px 5px;
 
             .property{

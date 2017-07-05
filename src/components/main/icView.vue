@@ -23,16 +23,14 @@
 	var icViewContent = require("components/main/icViewContent.vue");
 
 	// Defaults
-	var DEFAULT_MIN_TOP_MARGIN = 30;
+	var DEFAULT_VIEW_TOP_MARGIN = 30;
 	var DEFAULT_MAX_HEIGHT = "inherit";
 	var DEFAULT_HEADER_HEIGHT = 56;
 
 	// Private variables
+	var vueInstance = null;
 	var viewElement = null;
-
-
-	// Private variables
-	var viewElement = null;
+	var viewWrapperElement = null;
 
 	// Data
 	var data = {
@@ -43,25 +41,39 @@
 		viewHolderCss : {
 			height:DEFAULT_MAX_HEIGHT,
 			maxHeight:DEFAULT_MAX_HEIGHT,
-		},
+		}
 	};
 
 	// Private function
-	function _calcHeight(){
+	function _getMaxHeight(){
+		var icViewBottom = viewElement.getBoundingClientRect().bottom;
+		return icViewBottom - DEFAULT_VIEW_TOP_MARGIN;
+	}
+
+	function _calcMaxHeight(){
 		if(!viewElement){
 			return false;
 		}
 
 		// calculate the max height
-		var icViewBottom = viewElement.getBoundingClientRect().bottom;
-		data.viewHolderCss.maxHeight = icViewBottom - DEFAULT_MIN_TOP_MARGIN + "px";
-
-		// calculate the optimal height
-		// heights needs to be set to enable scrolling
+		data.viewMaxHeight = _getMaxHeight();
+		data.viewHolderCss.maxHeight = data.viewMaxHeight + "px";
 	}
 
-	function _updatePositions($windowDimensions){
-		_calcHeight();
+	function _calHeight(height){
+		if(!_.isNumber(height)){
+			return false;
+		}
+
+		var maxHeight = _getMaxHeight();
+		var maxContentHeight = maxHeight - DEFAULT_HEADER_HEIGHT;
+
+		data.viewHolderCss.height = (height < maxContentHeight) ? 'inherit' : maxHeight + "px";
+	}
+
+	function _updateDimensions(){
+		_calcMaxHeight();
+		_calHeight(vueInstance.$store.state.view.content.size);
 	}
 
 	/* VUE */
@@ -77,16 +89,28 @@
 		computed : {
 			isShown : function(){
 				return this.$store.state.application.state.contentOpen;
+			},
+			height: function(){
+				return this.$store.state.view.content.size;
 			}
 		},
-		created : function(){
-			this.$services.view.onResize(_updatePositions);
+		watch: {
+			height: function(newval){
+				_calHeight(newval);
+			}
 		},
 		mounted : function(){
-			// Set reference to the DOM element
+			// Set reference to vue instance
+			vueInstance = this;
+
+			// Set reference to the DOM elements
 			viewElement = this.$el;
+			viewWrapperElement = viewElement.firstChild;
+
 			// Calc the optimal sizes
-			_calcHeight();
+			_updateDimensions();
+
+			this.$services.view.onResize(_updateDimensions);
 		}
 	};
 </script>

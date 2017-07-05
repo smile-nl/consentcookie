@@ -1,11 +1,11 @@
 /**
  * @author Steven Choo
- * 
+ *
  * The main applications service. One to rule them all!
  */
 
-var mainService = function(){	
-		
+var mainService = function(){
+
 	var vueInstance = null;
 	var vueInstanceStore = null;
 
@@ -13,18 +13,26 @@ var mainService = function(){
 	function _init(vueServices){
 		vueInstance = vueServices.vueInstance;
 		vueInstanceStore = vueInstance.$store;
-	}	
-		
+	}
+
 	// Public functions
 	return {
 		// Vue services require a init function
-		init: function(vueServices){
+		init: function (vueServices) {
 			_init(vueServices);
 		},
-		onResize : function(e){
-			console.log(e)
+		$on : function(){
+			vueInstance.$on.apply(vueInstance,arguments);
+		},
+		$once : function(){
+			vueInstance.$once.apply(vueInstance,arguments);
+		},
+		$off : function(){
+			vueInstance.$off.apply(vueInstance,arguments);
+		},
+		$emit : function(){
+			vueInstance.$emit.apply(vueInstance,arguments);
 		}
-	};
-	
+	}
 }();
 module.exports = mainService;

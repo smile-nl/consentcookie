@@ -35,11 +35,8 @@ module.exports = function configState(vue) {
 		state: {
 			view : {
 				title: "",
-				size:{
-					height: null,
-					width: null,
-					maxHeight: null,
-					maxWidth:null
+				content:{
+					size : null,
 				}
 			},
 			application : {
@@ -55,10 +52,15 @@ module.exports = function configState(vue) {
 	  	},
 	  	mutations : {
 	  		updateView : function($state,$payload){
+			    if(!_.isObject($payload)){
+				    return false;
+			    }
+
 	  			$state.view.title = _.isString($payload.title) ? $payload.title : $state.view.title;
+			    $state.view.content.size = _.isObject($payload.content) && _.isNumber($payload.content.size) ? $payload.content.size : $state.view.content.size;
 	  		},
 	  		updateApplication : function($state,$payload){
-	  			if(!_.isObject){
+	  			if(!_.isObject($payload)){
 	  				return false;
 			    }
 			    var applicationState = $state.application.state;

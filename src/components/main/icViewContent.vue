@@ -14,27 +14,50 @@
 	// http://www.textfixer.com/tutorials/browser-scrollbar-width.php
 	var DEFAULT_SCROLLBAR_WIDTH = 17;
 
+	// private variables
+	var vueInstance = null;
+	var scrollContent = null;
+	var scrollContentObserver = null;
+
+	var data =  {
+		scrollholderCSS:{
+			/* to hide the scrollbar we want a negative margin */
+			marginRight: -DEFAULT_SCROLLBAR_WIDTH + "px",
+		},
+		scrollContentCSS :{
+			/* to align content properly, undo the negagive margin*/
+			marginRight: DEFAULT_SCROLLBAR_WIDTH + "px",
+		}
+	};
+
+	// private functions
+	function _initContentChangeListener(){
+		// Get reference to the scrollcontent element
+		scrollContent = vueInstance.$el.querySelector(".ic-view-scrollcontent");
+		scrollContentObserver = new MutationObserver(function(mutations, observer) {
+			var contentUpdate = {content:{size:scrollContent.scrollHeight}};
+			vueInstance.$services.view.notifyContentChanged(contentUpdate);
+		});
+		scrollContentObserver.observe(scrollContent,{childList:true,subtree: true});
+	}
+
 	// Vue module
 	module.exports = {
 		name : "icViewContent",
-		data : function(){
-			return {
-				scrollholderCSS:{
-					/* to hide the scrollbar we want a negative margin */
-					marginRight: -DEFAULT_SCROLLBAR_WIDTH + "px",
-				},
-				scrollContentCSS :{
-					/* to align content properly, undo the negagive margin*/
-					marginRight: DEFAULT_SCROLLBAR_WIDTH + "px",
-				}
-			};
+		components:{
 		},
-		computed : {
-
+		data : function(){
+			return data;
 		},
 		methods: {
 
 		},
+		mounted: function(){
+			// Create a reference to the vue instance for later use
+			vueInstance = this;
+
+			_initContentChangeListener();
+		}
 	};
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-	<div id="howto" class="ic-content">
+	<div id="howto">
 		<div class="ic-info">
 			<div class="title">Met icookie heb je controle over jouw data.</div>
 			<div class="text">Met icookie laten we zien welke data we verzamelen, leggen we uit waarom we deze data nodig hebben en krijg je de mogelijkheid om de datastromen aan of uit te zetten. Zo weet je precies waar je aan toe bent en dat is wel zo eerlijk, want het is jouw data.</div>
@@ -79,8 +79,9 @@
 		
 		.howto-video{
 			position: relative;
-			width: calc(100%-40px);
-			margin: 20px;
+			width: 320px;
+			margin: 0px auto;
+			height: 200px;
 			text-align: center;
 			
 			.ic-video-toggle{

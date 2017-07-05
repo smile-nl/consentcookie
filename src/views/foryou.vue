@@ -1,5 +1,5 @@
 <template>
-	<div id="foryou" class="ic-content">
+	<div id="foryou">
 		<div v-if="!hasImpressions" class="no-content">
 			<i class="fa fa-gift" aria-hidden="true"></i>
 		</div>

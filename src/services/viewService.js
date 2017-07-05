@@ -7,6 +7,7 @@ module.exports = function() {
 
 	// Defaults
 	var DEFAULT_EVENT_WINDOW_RESIZE = "windowResize";
+	var DEFAULT_EVENT_CONTENT_OPENED = "contentOpened";
 
 	// Private variables
 	var vue = null;
@@ -31,6 +32,11 @@ module.exports = function() {
 
 			var isValidTo = (to && to.matched && to.matched.length > 0);
 
+			// No valid route
+			if(!isValidTo){
+				return false;
+			}
+
 			// Open the content if it`s not opened yet, consent is accepted and its a valid route
 			if(isValidTo && vue.$services.consent.isAccepted() && !(vue.$store.state.application.state.contentOpen)){
 				vue.$services.view.openContent();
@@ -39,8 +45,6 @@ module.exports = function() {
 	}
 
 	function _initResizeListener(){
-		console.log("Called: _initResizeListener");
-
 		window.addEventListener("resize",function(event){
 
 			var windowDimension = {
@@ -55,12 +59,24 @@ module.exports = function() {
 		});
 	}
 
+	function _notifyContentChanged($update){
+		vue.$store.commit("updateView",$update);
+	}
+
+	function _onOpen($fn){
+		vue.$on(DEFAULT_EVENT_CONTENT_OPENED,$fn);
+	}
+
 	function _onResize($fn){
 		vue.$on(DEFAULT_EVENT_WINDOW_RESIZE,$fn);
 	}
 
 	function _show($showContent,$showMenu){
 		vue.$store.commit("updateApplication",{contentOpen:$showContent,menuOpen:$showMenu});
+
+		if(true === $showContent){
+			vue.$emit(DEFAULT_EVENT_CONTENT_OPENED);
+		}
 	}
 
 	function _enable($enableContent,$enableMenu){
@@ -69,7 +85,7 @@ module.exports = function() {
 
 	function _toggleMenu(){
 		var isOpen = (true === vue.$store.state.application.state.menuOpen);
-		var isContentActive = (true == vue.$store.state.application.state.contentActive);
+		var isContentActive = (true === vue.$store.state.application.state.contentActive);
 
 		// Close the content also when we have open content and we are closing the menu
 		// Open the content when a content was already active
@@ -97,5 +113,7 @@ module.exports = function() {
 		disableMenu: function(){_enable(null,false)},
 		toggleMenu: function(){_toggleMenu()},
 		onResize : _onResize,
+		onOpen: _onOpen,
+		notifyContentChanged : _notifyContentChanged
 	};
 }();

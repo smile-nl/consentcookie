@@ -1,5 +1,5 @@
 <template>
-	<div id="welcome" class="ic-content">
+	<div id="welcome">
 		<div class="ic-info">
 			<div class="title">Deze demo website maakt gebruik van cookies</div>
 			<div class="text">Met deze applicatie krijg je informatie over welke cookies dat zijn én kun je zien welke voordelen dat voor jou oplevert. </div>
@@ -59,11 +59,11 @@
 			background-position: top center;
 			
 			.cta{
-			position: absolute;
-			bottom: 10px;
-			left: 10px;
-			right: 10px;
-			text-align: center;
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				right: 10px;
+				text-align: center;
 			}
 		}
 	}
