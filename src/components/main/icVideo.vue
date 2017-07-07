@@ -43,8 +43,8 @@
 			}
 		},
 		methods : {
-			toggleVideo : function(event){
-				if (videoPlayer.paused == false) {
+			toggleVideo : function(){
+				if (videoPlayer.paused === false) {
 					videoPlayer.pause();
 					this.isPaused = true;
 					this.isPlaying = false;
