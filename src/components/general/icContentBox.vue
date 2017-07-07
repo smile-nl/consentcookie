@@ -22,13 +22,15 @@
 
 		.icTitle {
 			font-size: 26px;
+			font-weight: 600;
 			color: $ic-brand-color;
-			margin: 15px 0px 5px 0px;
+			margin: 5px 0px 5px 0px;
 		}
 		.icText {
 			line-height: 22px;
 			font-size: 15px;
-			padding-top: 15px;
+			padding-top: 5px;
+			font-weight: 400;
 		}
 	}
 </style>

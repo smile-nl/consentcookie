@@ -1,72 +1,45 @@
 <template>
 	<div id="howto">
-		<div class="ic-info">
-			<div class="title">Met icookie heb je controle over jouw data.</div>
-			<div class="text">Met icookie laten we zien welke data we verzamelen, leggen we uit waarom we deze data nodig hebben en krijg je de mogelijkheid om de datastromen aan of uit te zetten. Zo weet je precies waar je aan toe bent en dat is wel zo eerlijk, want het is jouw data.</div>
-			<div class="text">Door ons toestemming te geven om jouw data te gebruiken, kunnen we je <router-link to="foryou">persoonlijke aanbiedingen</router-link> doen die bij jouw interesses passen. Daarnaast verbeteren we onze website, passen we ons assortiment aan en laten we relevante reclame zien.</div>
-			<div class="text">Bekijk de functie per datastroom door in het <router-link to="tracking">‘Voorkeuren’ scherm</router-link> op ‘meer weten’ te klikken.</div>
-
-			<div class="title">icookie op uw website?</div>
+		<ic-content-box>
+			<div class="icTitle">Met icookie heb je controle over jouw data</div>
+			<div class="icText">Met icookie kun je zien welke data er op deze website verzameld wordt. In Jouw connecties is het mogelijk om per connectie meer informatie te lezen en om connecties uit of aan te zetten. Zo krijg je controle over jouw data.</div>
+			<div class="icText howto-sub">Het is op dit moment nog niet mogelijk om jouw icookie voorkeuren mee te nemen naar andere websites.</div>
+			<div class="icTitle howto-sub">icookie op uw website?</div>
 			<div class="howto-video">
-				<video id="ic-video-player" src="https://www.icookie.io/video/icookie_introductie_voor_website_eigenaren.mp4" width="100%" preload></video>
-				<div class="ic-video-toggle" v-on:click="toggleVideo" :class="toggleClass">
-					<div class="icon-wrapper inline-fix">
-						<i v-show="!isPlaying" class="fa fa-play-circle v-centered" aria-hidden="true"></i>
-						<i v-show="isPlaying" class="fa fa-pause-circle v-centered" aria-hidden="true"></i>
-					</div>
-				</div>
-			</div>		
-			<div class="text"> Ga naar <a href="www.icookie.io">www.icookie.io</a> voor meer informatie </div>
-
-		</div>
+				<ic-video :video-url="videoUrl"></ic-video>
+			</div>
+			<div>Ga voor meer informatie naar <a href="https://www.icookie.io" target="_blank">www.icookie.io</a></div>
+		</ic-content-box>
 	</div>
 </template>
 <script>
-	// Dependencies
+
+	// Components
+	var icVideo = require("components/main/icVideo.vue");
 
 	// Defaults
-	var viewTitle = "Hoe icookie werkt";
-	
+	var DEFAULT_URL_ABOUT_VIDEO = "https://www.icookie.io/video/icookie_introductie_voor_website_eigenaren.mp4";
+	var DEFAULT_VIEW_TITLE = "Over icookie";
+
 	// View state
 	var data = {
-		toggleClass : "begin",
-		isPlaying: false,
-		isStarted: false,
-		isEnded: false,
+		videoUrl : DEFAULT_URL_ABOUT_VIDEO,
 	};
-	
-	var videoPlayer = null;
-	
+
 	// Public functions
 	module.exports = {
-		name:"howto",
+		name:"about",
 		components:{
+			icVideo:icVideo
 		},
 		data : function(){
 			return data;
 		},
 		methods : {
-			toggleVideo : function(event){
-			  if (videoPlayer.paused == false) {
-			  		videoPlayer.pause();
-			  		console.log(this);
-			  		this.toggleClass = "paused";
-			  		this.isPlaying = false;
-			  }else{
-			  		videoPlayer.play();
-			  		this.toggleClass = "playing";
-			  		this.isPlaying = true;
-			  		this.isStarted = this.isStarted || true;
-			  }
-			},
-		},
-		mounted: function () {
- 	 		this.$nextTick(function () {
-    			videoPlayer = this.$el.querySelector('#ic-video-player');
-  			})
+
 		},
 		beforeMount : function(){
-			this.$store.commit('updateView',{title: viewTitle});
+			this.$store.commit('updateView',{title: DEFAULT_VIEW_TITLE});
 		}
 	};
 </script>
@@ -76,49 +49,28 @@
 	@import '../assets/scss/general-variables';
 
 	#howto{
-		
+
+		.icText.howto-sub{
+			font-style: italic;
+			font-size:12px;
+			font-weight: 600;
+			margin: 15px 0px;
+		}
+
+		.icTitle.howto-sub{
+			font-size: 22px;
+			font-weight: 400;
+			margin-bottom: 5px;
+		}
+
 		.howto-video{
-			position: relative;
-			width: 320px;
-			margin: 0px auto;
-			height: 200px;
+			width: 300px;
+			vertical-align: middle;
 			text-align: center;
-			
-			.ic-video-toggle{
-				transition: all 0.2s;
-			    background:none;
-			    position:absolute;
-			    left:0;
-			    right:0;
-			    top:0;
-			    bottom:0;
-			    
-			    .icon-wrapper{
-			    	width: 100%;
-			    	height: 100%;
-			    	
-			    	i{
-				    	display:none;
-				    	font-size: 40px;
-				    }
-			    }
-			    
-	          	&:hover{
-		      		background: rgba(255,255,255,0.7);
-		      		
-		      		i {
-		      			display:inline-block
-		      		}
-		      	}  
+
+			.icVideo video{
+				border: 1px solid rgba(0,0,0,0.4);
 			}
-			
-			.ic-video-toggle.begin{
-				background: rgba(255,255,255,0.7);
-		      		
-	      		i {
-	      			display:inline-block
-	      		}
-			}	
 		}
 	}
 </style>
