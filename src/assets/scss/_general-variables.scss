@@ -63,6 +63,11 @@ $ic-box-border-radius:5px;
   border-radius: 5px;
 }
 
+@mixin default-state-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 
 // ui-mint
 // General colors

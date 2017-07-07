@@ -7,7 +7,7 @@
 				</div>
 			</transition>
 		</div>
-		<div class="ic-menu-button" v-on:click="toggleOpen">
+		<div :class="'ic-menu-button' + (isDisabled ? ' disabled' : '')" v-on:click="toggleOpen">
 			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
 		</div>
 	</div>
@@ -46,6 +46,9 @@
 		computed : {
 			isOpen : function(){
 				return this.$store.state.application.state.menuOpen;
+			},
+			isDisabled : function(){
+				return !this.$store.state.application.state.menuActive;
 			}
 		},
 		methods : {
@@ -102,6 +105,10 @@
 				left:4px;
 				height: $menu-logo-height;
 				width: $menu-logo-width;
+			}
+
+			&.disabled{
+				@include default-state-disabled;
 			}
 		}
 	
