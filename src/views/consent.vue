@@ -5,7 +5,7 @@
 			<div class="icText">{{consentText}}</div>
 			<div class="contentActions">
 				<ic-button v-on:click="accept" size="large">Accepteren</ic-button>
-				<a :href="consentLink" class="info-link">Meer informatie</a>
+				<a :href="consentLink" class="info-link" target="_blank">Meer informatie</a>
 			</div>
 		</ic-content-box>
 	</div>

@@ -7,7 +7,7 @@
 				</div>
 			</transition>
 		</div>
-		<div :class="'ic-menu-button' + (isDisabled ? ' disabled' : '')" v-on:click="toggleOpen">
+		<div :class="'ic-menu-button' + (isDisabled ? ' disabled' : '')" v-on:click="toggleOpen" :title="menuTooltip">
 			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
 		</div>
 	</div>
@@ -15,12 +15,18 @@
 
 <script>
 
+	// Defaults
+	var DEFAULT_TOOLTIP_DISABLED = "accepteer eerst";
+	var DEFAULT_TOOLTIP_OPEN = "icookie openen";
+	var DEFAULT_TOOLTIP_CLOSE = "icookie sluiten";
+
+	// Components
  	var icMenuItem = require('components/main/icMenuItem.vue');
 
 	var menuItems = [{
 		icon : "gift",
 		path : "/foryou",
-		info : "Voor jou",
+		info : "Voor jou geselecteerd",
 	}, {
 		icon : "toggle-on",
 		path : "/connections",
@@ -29,7 +35,7 @@
 		icon : "question",
 		iconSize: "30",
 		path : "/howto",
-		info : "Info",
+		info : "Over icookie",
 	}];
 
 	/* VUE */
@@ -49,6 +55,17 @@
 			},
 			isDisabled : function(){
 				return !this.$store.state.application.state.menuActive;
+			},
+			menuTooltip: function(){
+				// If disabled
+				if(this.isDisabled){
+					return DEFAULT_TOOLTIP_DISABLED;
+				}
+				if(this.isOpen){
+					return DEFAULT_TOOLTIP_CLOSE;
+				}else{
+					return DEFAULT_TOOLTIP_OPEN;
+				}
 			}
 		},
 		methods : {
