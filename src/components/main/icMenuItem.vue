@@ -40,7 +40,7 @@
 
 		position: relative;
     	cursor:pointer;
-        float:left;
+		display: inline-block;
         height:$menu-item-height;
         width:$menu-item-width;
 		border-radius:$menu-item-radius;

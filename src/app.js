@@ -6,6 +6,7 @@
 
 	// Static dependencies
 	require('font-awesome/css/font-awesome.css');
+	// require('ionicons/dist/css/ionicons.css');
 	// require('../resources/fontello/css/animation.css')
 	// require('../resources/fontello/css/fontello.css')
 	require('./assets/scss/_icookie.scss');

@@ -10,3 +10,5 @@
 .fa-play-circled:before { content: '\f144'; } /* '' */
 .fa-toggle-on:before { content: '\f205'; } /* '' */
 .fa-pause-circle:before { content: '\f28b'; } /* '' */
+.fa-ion-ios-close-empty:before { content: '\f404'; } /* '' */
+.fa-ion-ios-close-outline:before { content: '\f405'; } /* '' */

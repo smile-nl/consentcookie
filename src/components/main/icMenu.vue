@@ -7,8 +7,9 @@
 				</div>
 			</transition>
 		</div>
-		<div :class="'ic-menu-button' + (isDisabled ? ' disabled' : '')" v-on:click="toggleOpen" :title="menuTooltip">
+		<div :class="'ic-menu-button' + (isDisabled ? ' disabled' : '') + (isOpen ? ' open' : ' closed')" v-on:click="toggleOpen" :title="menuTooltip">
 			<img class="hs-logo" src="../../assets/img/hs_logo_red.svg"/>
+			<img class="icMenuClose" src="../../assets/img/ios-close.svg"/>
 		</div>
 	</div>
 </template>
@@ -115,6 +116,7 @@
 			border:$ic-box-border;
 			border-radius: $menu-button-radius;
 			box-shadow: $menu-button-shadow;
+			transition: transform 0.8s ease-in-out;
 
 			.hs-logo{
 				position: absolute;
@@ -122,10 +124,51 @@
 				left:4px;
 				height: $menu-logo-height;
 				width: $menu-logo-width;
+				transition: opacity 0.8s ease-in-out;
+			}
+
+			.icMenuClose {
+				position: absolute;
+				width: $menu-button-width;
+				height: $menu-button-height;
+				line-height: $menu-button-height;
+				text-align: center;
+				transition: opacity 0.8s ease-in-out;
+				fill: $ic-brand-color;
+
+				&:before{
+					margin: 0px;
+				}
+
 			}
 
 			&.disabled{
 				@include default-state-disabled;
+			}
+
+			&.open{
+				transform: rotateZ(0deg);
+
+				.hs-logo{
+					opacity: 0;
+				}
+
+				.icMenuClose{
+					opacity: 1;
+				}
+
+			}
+
+			&.closed{
+				transform: rotateZ(-360deg);
+
+				.hs-logo{
+					opacity: 1;
+				}
+
+				.icMenuClose{
+					opacity: 0;
+				}
 			}
 		}
 	

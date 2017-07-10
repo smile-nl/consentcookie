@@ -10,3 +10,5 @@
 .fa-play-circled { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf144;&nbsp;'); }
 .fa-toggle-on { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf205;&nbsp;'); }
 .fa-pause-circle { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf28b;&nbsp;'); }
+.fa-ion-ios-close-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf404;&nbsp;'); }
+.fa-ion-ios-close-outline { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf405;&nbsp;'); }
