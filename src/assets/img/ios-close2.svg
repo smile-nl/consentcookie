@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="Layer_1"
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="ios-close2.svg">
+  <metadata
+     id="metadata11">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs9" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="2560"
+     inkscape:window-height="1376"
+     id="namedview7"
+     showgrid="true"
+     showguides="false"
+     inkscape:zoom="1.84375"
+     inkscape:cx="211.63464"
+     inkscape:cy="281.14755"
+     inkscape:window-x="1920"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3339" />
+  </sodipodi:namedview>
+  <style
+     id="style3">.st0{fill:rgba(252,109,109,1)}</style>
+  <path
+     class="st0"
+     d="M 433.14549,54.98305 257.31215,230.60805 82.31214,55.816382 57.728813,80.399714 232.72882,254.98305 57.728813,429.77472 82.31214,454.14971 257.31215,279.56638 433.14549,454.98305 457.72882,430.60805 281.89549,254.98305 457.72882,79.566389 Z"
+     id="path5"
+     inkscape:connector-curvature="0"
+     inkscape:transform-center-y="-1.0847455" />
+</svg>

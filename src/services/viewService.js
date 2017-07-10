@@ -9,6 +9,9 @@ module.exports = function() {
 	var DEFAULT_EVENT_WINDOW_RESIZE = "windowResize";
 	var DEFAULT_EVENT_CONTENT_OPENED = "contentOpened";
 
+	var DEFAULT_MAX_PHONE_WIDTH_PORTRAIT = 480;
+	var DEFAULT_MAX_PHONE_HEIGHT_LANDSCAPE = 480;
+
 	// Private variables
 	var vue = null;
 
@@ -18,6 +21,11 @@ module.exports = function() {
 
 		_initRouteListener();
 		_initResizeListener();
+		_initInitialViewState();
+	}
+
+	function _initInitialViewState(){
+		_updateViewState();
 	}
 
 	/**
@@ -54,12 +62,55 @@ module.exports = function() {
 				outerWidth: window.outerWidth
 			};
 
+			_updateViewState();
+
 			// Notify of change
 			vue.$emit(DEFAULT_EVENT_WINDOW_RESIZE,windowDimension);
 		});
 	}
 
-	function _notifyContentChanged($update){
+	function _updateViewState(){
+
+		// Update the view state
+		var width = window.outerWidth;
+		var height = window.outerHeight;
+
+		var isPhone = _isPhoneMode(width,height);
+		var isPortrait = _isPortraitMode(width,height);
+
+		var stateUpdate = null;
+
+		// Optimise the updating of the state, to only update when its changed
+		if(vue.$store.state.view.isPhone !== isPhone){
+			stateUpdate = stateUpdate || {};
+			stateUpdate['isPhone'] = isPhone;
+		}
+		if(vue.$store.state.view.isPortrait !== isPortrait){
+			stateUpdate = stateUpdate || {};
+			stateUpdate['isPortrait'] = isPortrait;
+		}
+		if(stateUpdate){
+			_notifyViewChanged(stateUpdate);
+		}
+	}
+
+	function _isPhoneMode($width,$height){
+		if(typeof $width !== 'number' || typeof $height !== 'number' ){
+			return false;
+		}
+
+		var isPortrait = _isPortraitMode($width,$height);
+		return isPortrait ? ($width <= DEFAULT_MAX_PHONE_WIDTH_PORTRAIT) : ($height <= DEFAULT_MAX_PHONE_HEIGHT_LANDSCAPE);
+	}
+
+	function _isPortraitMode($width,$height){
+		if(typeof $width !== 'number' || typeof $height !== 'number' ){
+			return false;
+		}
+		return $height > $width;
+	}
+
+	function _notifyViewChanged($update){
 		vue.$store.commit("updateView",$update);
 	}
 
@@ -114,6 +165,6 @@ module.exports = function() {
 		toggleMenu: function(){_toggleMenu()},
 		onResize : _onResize,
 		onOpen: _onOpen,
-		notifyContentChanged : _notifyContentChanged
+		notifyViewChanged : _notifyViewChanged
 	};
 }();

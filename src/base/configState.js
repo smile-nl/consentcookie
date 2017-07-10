@@ -36,8 +36,10 @@ module.exports = function configState(vue) {
 			view : {
 				title: "",
 				content:{
-					size : null,
-				}
+					size : null
+				},
+				isPhone : false,
+				isPortrait : false
 			},
 			application : {
 				state:{
@@ -56,7 +58,14 @@ module.exports = function configState(vue) {
 				    return false;
 			    }
 
+			    // View update
 	  			$state.view.title = _.isString($payload.title) ? $payload.title : $state.view.title;
+
+			    // View update
+			    $state.view.isPhone = _.isBoolean($payload.isPhone) ? $payload.isPhone : $state.view.isPhone;
+			    $state.view.isPortrait = _.isBoolean($payload.isPortrait) ? $payload.isPortrait : $state.view.isPortrait;
+
+			    // View Content update
 			    $state.view.content.size = _.isObject($payload.content) && _.isNumber($payload.content.size) ? $payload.content.size : $state.view.content.size;
 	  		},
 	  		updateApplication : function($state,$payload){

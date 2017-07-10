@@ -36,7 +36,7 @@
 		scrollContent = vueInstance.$el.querySelector(".ic-view-scrollcontent");
 		scrollContentObserver = new MutationObserver(function(mutations, observer) {
 			var contentUpdate = {content:{size:scrollContent.scrollHeight}};
-			vueInstance.$services.view.notifyContentChanged(contentUpdate);
+			vueInstance.$services.view.notifyViewChanged(contentUpdate);
 		});
 		scrollContentObserver.observe(scrollContent,{childList:true,subtree: true});
 	}
