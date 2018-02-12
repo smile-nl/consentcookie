@@ -29,7 +29,6 @@
 	// Components
 	var icDimensions = require("components/profile/icDimensions.vue");
 	var icInterests = require("components/profile/icInterests.vue");
-    var icNoContent = require("components/general/icNoContent.vue");
 
 	// Defaults
 	var viewTitle = "Jouw profielen";
@@ -50,7 +49,6 @@
 		components:{
 			icDimensions:icDimensions,
 			icInterests:icInterests,
-            icNoContent : icNoContent
 		},
 		data : function(){
 			return data;
